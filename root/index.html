@@ -540,6 +540,37 @@
                 padding-top: 0 !important;
             }
         }
+        .abu-dhabi-hover {
+            position: relative;
+            z-index: 3;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .ah-bg-img {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 220px;
+            height: 620px;
+            transform: translate(-50%, -60%);
+            background: url('assets/ah.jpg') center center/cover no-repeat;
+            opacity: 0.6;
+            z-index: 1;
+            pointer-events: none;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            transition: opacity 0.25s;
+        }
+        .abu-dhabi-hover:hover .ah-bg-img,
+        .abu-dhabi-hover:focus .ah-bg-img {
+            display: block;
+        }
+        @media (max-width: 700px) {
+            .ah-bg-img {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body style="background:#F7F7F7;">
@@ -555,7 +586,11 @@
         <section class="hero" id="hero">
             <div class="hero-content">
                 <img src="assets/me.jpeg" alt="Viktoria Volokitina portrait" class="hero-img" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:20px;" />
-                <h1 style="font-size:2.6em;line-height:1.2;">Hello! I'm Viktoria Volokitina — a multidisciplinary designer and contemporary artist based in Abu Dhabi.  My practice spans branding, Web3, product visuals, and spatial storytelling. I’m drawn to experiment, which is why this website was vibecoded over a few days.</h1>
+                <h1 style="font-size:2.6em;line-height:1.2;position:relative;z-index:2;">
+                  Hello! I'm Viktoria Volokitina — a multidisciplinary designer and contemporary artist based in <span class="abu-dhabi-hover" style="position:relative;z-index:3;cursor:pointer;">Abu Dhabi
+                    <span class="ah-bg-img" aria-hidden="true"></span>
+                  </span>.  My practice spans branding, Web3, product visuals, and spatial storytelling. I’m drawn to experiment, which is why this website was vibecoded over a few days.
+                </h1>
                 <p style="font-size:1.18em;line-height:1.6;margin-top:22px;color:#222;max-width:800px;opacity:0.6;">I work in focused creative waves rather than on a fixed daily schedule, always with respect for deadlines. Each project is an immersive process, approached with care and intensity. If more time is ever needed, you'll know early. My goal isn’t just to deliver, but to create something meaningful and lasting.</p>
                 <div class="social-links" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
                     <a href="https://www.instagram.com/volv_victory/" target="_blank" aria-label="Instagram"><img src="assets/instagram.svg" alt="Instagram" /></a>
