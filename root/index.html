@@ -8,21 +8,98 @@
     <link rel="stylesheet" href="styles/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        .img-placeholder {
-            width: 120px;
-            height: 120px;
-            background: #ccc;
-            border-radius: 50%;
-            display: inline-block;
-            margin-bottom: 20px;
+        /* --- LOADING SCREEN --- */
+        .loading-overlay {
+            position: fixed;
+            z-index: 5000;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #F7F7F7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s;
         }
-        .project-img-placeholder {
-            width: 100%;
-            height: 180px;
-            background: #ccc;
-            border-radius: 10px 10px 0 0;
-            margin-bottom: 16px;
-            display: block;
+        .loading-dots {
+            display: flex;
+            gap: 12px;
+        }
+        .loading-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ff0081;
+            opacity: 0.7;
+            animation: loading-bounce 1s infinite alternate;
+        }
+        .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes loading-bounce {
+            0% { transform: translateY(0); opacity: 0.7; }
+            100% { transform: translateY(-18px); opacity: 1; }
+        }
+        /* --- FOOTER --- */
+        .hero {
+            background: #F7F7F7;
+            /* Equal top and bottom padding for desktop */
+            padding-top: 64px;
+            padding-bottom: 64px;
+            margin-top: 0;
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+        @media (max-width: 900px) {
+            .hero-content {
+                max-width: 98vw;
+                width: 100%;
+                padding: 0 8px 32px 8px;
+            }
+        }
+        @media (max-width: 700px) {
+            .hero-content {
+                max-width: 100vw;
+                width: 100%;
+                padding: 0 4vw 32px 4vw;
+            }
+            .hero {
+                padding-top: 18px;
+                padding-bottom: 36px;
+                margin: 0;
+            }
+        }
+        /* Ensure Mahjong game never overlaps hero */
+        #hero {
+            position: relative;
+            z-index: 2;
+        }
+        #mahjong-game {
+            margin-top: 0 !important;
+            padding-top: 24px;
+            z-index: 1;
+        }
+        @media (max-width: 700px) {
+            #mahjong-game {
+                padding-top: 12px;
+            }
+        }
+        body {
+            overflow-x: hidden;
+        }
+        footer {
+            background: #F7F7F7;
+            color: #111;
+            text-align: center;
+            padding: 32px 0 18px 0;
+        }
+        .footer-content a {
+            color: #111;
+            text-decoration: underline;
+        }
+        .footer-copyright {
+            font-size: 12px;
+            color: #111;
+            margin-top: 8px;
         }
         .pixel-bunny {
             width: 48px;
@@ -33,14 +110,31 @@
         }
         .hero-content {
             text-align: left;
-            max-width: 700px;
+            max-width: 900px;
+            width: 90%;
             margin: 0 auto;
+            padding-top: 32px;
+            padding-bottom: 32px;
         }
-        .hero-content h1, .hero-content .subtitle {
+        .hero-content h1 {
+            font-size: 1.5em !important;
+            line-height: 1.3;
+        }
+        .hero-content .subtitle {
             font-family: 'Syne', Arial, sans-serif;
         }
-        body, .footer-content, .service, .project, .book-call, .social-links a, .header-content nav a {
+        body, .footer-content, .service, .book-call, .social-links a, .header-content nav a {
             font-family: 'Inter', Arial, sans-serif;
+        }
+        .social-links a,
+        .book-call {
+            color: #ff0081 !important;
+            text-decoration: none;
+        }
+        .book-call::after {
+            content: ' \2192'; /* Unicode right arrow */
+            font-size: 1.1em;
+            margin-left: 0.2em;
         }
         .hamburger {
             display: none;
@@ -75,7 +169,7 @@
         .footer-graffiti {
             font-family: 'Graffiti', cursive;
             font-size: 14px;
-            color: #333;
+            color: inherit;
             display: block;
             margin-top: 8px;
         }
@@ -86,7 +180,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.9);
+            background: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -99,127 +193,585 @@
         }
         .vibe-shine {
             font-size: 24px;
-            color: #ff0081;
-            text-shadow: 0 0 5px rgba(255, 0, 130, 0.7), 0 0 10px rgba(255, 0, 130, 0.5);
+            color: inherit;
+            text-shadow: none;
         }
         .footer-copyright {
             font-size: 12px;
-            color: #aaa;
+            color: inherit;
+        }
+        /* --- PROJECTS V2 --- */
+        .projects-v2 {
+            display: block;
+            max-width: 1100px;
+            margin: 0 auto 48px auto;
+            padding: 0 16px;
+        }
+        .projects-v2-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            justify-content: center;
+            align-items: center;
+        }
+        .project-v2-img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            background: #ececec;
+            transition: box-shadow 0.18s cubic-bezier(.4,0,.2,1), transform 0.18s;
+        }
+        .project-v2-img:hover, .project-v2-img:focus {
+            box-shadow: 0 4px 16px rgba(255,0,129,0.13);
+            transform: translateY(-2px) scale(1.03);
+            outline: none;
+        }
+        /* --- MAHJONG GAME --- */
+        .mahjong-game {
+            max-width: 1100px;
+            margin: 0 auto 48px auto; /* remove top margin, only bottom for section separation */
+            padding: 0 16px;
+            text-align: center;
+        }
+        @media (max-width: 700px) {
+            .mahjong-game {
+                margin-bottom: 24px;
+            }
+        }
+        .mahjong-title {
+            font-family: 'Syne', Arial, sans-serif;
+            font-size: 2em;
+            margin-bottom: 24px;
+            color: #111;
+        }
+        .mahjong-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 18px;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+            margin: 0 auto 32px auto;
+        }
+        .mahjong-tile {
+            width: 100%;
+            max-width: 180px;
+            aspect-ratio: 4/5;
+            background: #ececec;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            cursor: pointer;
+            perspective: 600px;
+            outline: none;
+            transition: box-shadow 0.18s cubic-bezier(.4,0,.2,1);
+        }
+        .mahjong-tile:hover, .mahjong-tile:focus {
+            box-shadow: 0 4px 16px rgba(255,0,129,0.13);
+        }
+        .mahjong-tile.flipped .mahjong-tile-inner,
+        .mahjong-tile.matched .mahjong-tile-inner {
+            transform: rotateY(180deg);
+        }
+        .mahjong-tile-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        .mahjong-tile-front, .mahjong-tile-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0; top: 0;
+            border-radius: 12px;
+            backface-visibility: hidden;
+        }
+        .mahjong-tile-front {
+            background: #ececec;
+        }
+        .mahjong-tile-back {
+            transform: rotateY(180deg);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mahjong-tile-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .mahjong-tile.matched {
+            opacity: 0.45;
+            pointer-events: none;
+        }
+        .mahjong-message {
+            font-size: 1.2em;
+            color: #ff0081;
+            margin-top: 18px;
+            min-height: 1.5em;
+        }
+        /* --- MAHJONG LEADERBOARD POPUP --- */
+        .mahjong-leaderboard-btn {
+            display: inline-block;
+            margin: 0 0 24px 0;
+            padding: 10px 28px;
+            font-size: 1.1em;
+            font-family: 'Syne', Arial, sans-serif;
+            background: #ff0081;
+            color: #fff;
+            border: none;
+            border-radius: 22px;
+            cursor: pointer;
+            transition: background 0.18s;
+        }
+        .mahjong-leaderboard-btn:hover, .mahjong-leaderboard-btn:focus {
+            background: #d6006c;
+        }
+        .mahjong-leaderboard-popup {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.18);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .mahjong-leaderboard-popup.open {
+            display: flex;
+        }
+        .mahjong-leaderboard-content {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+            padding: 36px 32px 28px 32px;
+            min-width: 320px;
+            max-width: 90vw;
+            text-align: center;
+            position: relative;
+        }
+        .mahjong-leaderboard-content h3 {
+            font-family: 'Syne', Arial, sans-serif;
+            font-size: 1.3em;
+            margin-bottom: 18px;
+            color: #ff0081;
+        }
+        .mahjong-leaderboard-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 18px 0;
+        }
+        .mahjong-leaderboard-list li {
+            font-size: 1.1em;
+            margin-bottom: 7px;
+            color: #222;
+        }
+        .mahjong-leaderboard-close {
+            position: absolute;
+            top: 12px; right: 18px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: #ff0081;
+            cursor: pointer;
+        }
+        @media (max-width: 700px) {
+            .mahjong-zoom-img {
+                max-width: 95vw;
+                max-height: 60vh;
+            }
+            .hero-content {
+                padding-top: 24px;
+            }
+            .hero-img {
+                margin-top: 12px !important;
+            }
+        }
+        .mahjong-toggle-projects-btn {
+            display: inline-block;
+            padding: 10px 28px;
+            font-size: 1.1em;
+            font-family: 'Syne', Arial, sans-serif;
+            background: #fff;
+            color: #ff0081;
+            border: 2px solid #ff0081;
+            border-radius: 22px;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s;
+            height: 44px;
+            line-height: 1.1;
+            box-sizing: border-box;
+        }
+        .mahjong-toggle-projects-btn:hover, .mahjong-toggle-projects-btn:focus {
+            background: #ff0081;
+            color: #fff;
+        }
+        @media (max-width: 700px) {
+            .mahjong-message,
+            .mahjong-leaderboard-list li,
+            .mahjong-leaderboard-content h3,
+            .mahjong-toggle-projects-btn,
+            .mahjong-leaderboard-btn {
+                font-size: 0.98em !important;
+            }
+            .footer-copyright {
+                font-size: 10px;
+            }
+        }
+        /* --- WIN POPUP --- */
+        #mahjong-win-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 3000;
+            background: rgba(0,0,0,0.18);
+            justify-content: center;
+            align-items: center;
+        }
+        .mahjong-win-content {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+            padding: 44px 36px 32px 36px;
+            min-width: 320px;
+            max-width: 90vw;
+            text-align: center;
+            position: relative;
+        }
+        .mahjong-win-message {
+            font-size: 1.25em;
+            color: #ff0081;
+            margin-bottom: 24px;
+        }
+        .mahjong-win-ok {
+            padding: 10px 32px;
+            font-size: 1.1em;
+            font-family: 'Syne', Arial, sans-serif;
+            background: #ff0081;
+            color: #fff;
+            border: none;
+            border-radius: 22px;
+            cursor: pointer;
+        }
+        /* --- SOCIAL ICON BUTTONS --- */
+        .social-links a {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: #fff;
+            border: 2px solid #ff0081;
+            border-radius: 50%;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s, border-color 0.18s;
+            box-sizing: border-box;
+            padding: 0;
+        }
+        .social-links a.book-call {
+            background: #ff0081;
+            color: #fff !important;
+            border: none;
+            border-radius: 22px;
+            font-family: 'Syne', Arial, sans-serif;
+            font-size: 1.1em;
+            padding: 0 28px;
+            width: auto;
+            height: 44px;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s, color 0.18s;
+            margin-left: 8px;
+        }
+        .social-links a.book-call:hover, .social-links a.book-call:focus {
+            background: #d6006c;
+            color: #fff !important;
+            text-decoration: none !important;
+        }
+        .book-call::after {
+            content: '';
+        }
+        .social-links a:hover, .social-links a:focus {
+            background: #ff0081;
+            border-color: #ff0081;
+            box-shadow: 0 4px 16px rgba(255,0,129,0.13);
+        }
+        .social-links img {
+            width: 24px;
+            height: 24px;
+            transition: filter 0.18s;
+            filter: invert(36%) sepia(99%) saturate(7496%) hue-rotate(314deg) brightness(99%) contrast(106%);
+        }
+        .social-links a:hover img, .social-links a:focus img {
+            filter: brightness(0) invert(1);
+        }
+        /* --- PINK CIRCLE MOUSE --- */
+        #pink-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ff0081;
+            opacity: 0.18;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.18s, height 0.18s, opacity 0.18s, background 0.18s;
+        }
+        @media (max-width: 700px) {
+            #pink-cursor { display: none; }
+        }
+        /* --- HERO/MAHJONG SPACING FIX FOR MOBILE --- */
+        @media (max-width: 700px) {
+            .hero {
+                padding-bottom: 48px;
+            }
+            #mahjong-game {
+                margin-top: 0 !important;
+                padding-top: 0 !important;
+            }
         }
     </style>
 </head>
-<body>
-    <header class="main-header">
-        <div class="header-content">
-            <div class="nav-left">
-                <span class="pixel-bunny"></span>
-                <nav>
-                    <a href="#hero">about</a>
-                    <a href="#projects">portfolio</a>
-                </nav>
-                <div class="hamburger" id="hamburger-menu" aria-label="Open navigation" tabindex="0">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+<body style="background:#F7F7F7;">
+    <div class="loading-overlay" id="loading-overlay" aria-label="Loading" role="status">
+        <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+        </div>
+    </div>
+    <div id="pink-cursor"></div>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <img src="assets/me.jpeg" alt="Viktoria Volokitina portrait" class="hero-img" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:20px;" />
+                <h1 style="font-size:2.6em;line-height:1.2;">Hello! I'm Viktoria Volokitina — a multidisciplinary designer and contemporary artist based in Abu Dhabi.  My practice spans branding, Web3, product visuals, and spatial storytelling. I’m drawn to experiment, which is why this website was vibecoded over a few days.</h1>
+                <p style="font-size:1.18em;line-height:1.6;margin-top:22px;color:#222;max-width:800px;opacity:0.6;">I work in focused creative waves rather than on a fixed daily schedule, always with respect for deadlines. Each project is an immersive process, approached with care and intensity. If more time is ever needed, you'll know early. My goal isn’t just to deliver, but to create something meaningful and lasting.</p>
+                <div class="social-links" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
+                    <a href="https://www.instagram.com/volv_victory/" target="_blank" aria-label="Instagram"><img src="assets/instagram.svg" alt="Instagram" /></a>
+                    <a href="https://www.behance.net/volv_victory" target="_blank" aria-label="Behance"><img src="assets/behance.svg" alt="Behance" /></a>
+                    <a href="https://www.linkedin.com/in/volvvictory/" target="_blank" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn" /></a>
+                    <a class="book-call" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0gXCwYVL7o99qEhqoWkemf4UN5DNvc6fpr_NUs3JcYjqJNbyN9hbXCpE5Qf_ULKrvOrfjbDSy3" target="_blank">Book a Call</a>
                 </div>
             </div>
-            <a class="book-call" href="https://calendar.google.com/" target="_blank">Book a Call</a>
-        </div>
-    </header>
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <span class="img-placeholder"></span>
-            <h1>Hello! I'm Viktoria Volokitina — a multidisciplinary designer and contemporary artist.</h1>
-            <p class="subtitle">With over 8 years of experience across brand identity, visual storytelling, and interactive environments, I bring clarity and energy to every project. I'm open to international collaborations.</p>
-            <div class="social-links">
-                <a href="https://www.instagram.com/volv_victory/" target="_blank">Instagram</a>
-                <a href="https://www.behance.net/volv_victory" target="_blank">Behance</a>
-                <a href="https://www.linkedin.com/in/volvvictory/" target="_blank">LinkedIn</a>
-                <a href="https://t.me/volvvictory" target="_blank">Telegram</a>
-                <a href="mailto:volv.victory@gmail.com">Email</a>
+        </section>
+        <!-- Mahjong Game Section -->
+        <section class="mahjong-game" id="mahjong-game">
+            <div class="mahjong-board" id="mahjong-board"></div>
+            <div class="mahjong-message" id="mahjong-message"></div>
+            <div style="display:flex;gap:18px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
+                <button class="mahjong-leaderboard-btn" id="mahjong-leaderboard-btn">Leaderboard</button>
+                <button class="mahjong-toggle-projects-btn" id="mahjong-toggle-projects-btn">I don't play</button>
+            </div>
+        </section>
+        <section class="projects-v2" id="projects-v2" style="display:none;">
+            <div class="projects-v2-grid" id="projects-v2-grid"></div>
+        </section>
+        <div class="mahjong-leaderboard-popup" id="mahjong-leaderboard-popup" aria-modal="true" role="dialog" tabindex="-1">
+            <div class="mahjong-leaderboard-content">
+                <button class="mahjong-leaderboard-close" id="mahjong-leaderboard-close" aria-label="Close leaderboard">&times;</button>
+                <h3>Leaderboard</h3>
+                <ul class="mahjong-leaderboard-list" id="mahjong-leaderboard-list"></ul>
+                <div style="font-size:0.95em;color:#888;">Best times (seconds) — local to your browser</div>
             </div>
         </div>
-    </section>
-
-    <!-- What I Do Section -->
-    <section class="what-i-do">
-        <h2>What I Do</h2>
-        <div class="services">
-            <div class="service">
-                <h3>Design for Startups <span class="duration">from 3 weeks</span></h3>
-                <ul>
-                    <li>Market research</li>
-                    <li>Naming</li>
-                    <li>Branding (logo, presentations)</li>
-                    <li>Illustrations and visuals</li>
-                    <li>Templates</li>
-                </ul>
+        <!-- Footer Contact Section -->
+        <footer>
+            <div class="footer-content">
+                <!-- You can add footer links or contact info here if needed -->
             </div>
-            <div class="service">
-                <h3>UX/UI Design</h3>
-                <ul>
-                    <li>Concept search</li>
-                    <li>Design</li>
-                    <li>Prototyping</li>
-                </ul>
+            <div class="footer-copyright">
+                © 2025 Viktoria Volokitina. All rights reserved
             </div>
-            <div class="service">
-                <h3>Consultation <span class="duration">1h, $100</span></h3>
-                <ul>
-                    <li>Expert advice to improve your product and design strategy</li>
-                </ul>
+        </footer>
+        
+        <div class="mahjong-leaderboard-popup" id="leaderboard-popup">
+            <div class="mahjong-leaderboard-content">
+                <button class="mahjong-leaderboard-close" id="close-popup">&times;</button>
+                <h3>Mahjong Match - Leaderboard</h3>
+                <ol class="mahjong-leaderboard-list" id="leaderboard-list">
+                    <!-- Leaderboard items will be populated by JavaScript -->
+                </ol>
             </div>
         </div>
-    </section>
-
-    <!-- Projects Showcase Section -->
-    <section class="projects" id="projects">
-        <h2>Projects Showcase</h2>
-        <div class="project-list">
-            <a class="project" href="#" target="_blank">
-                <span class="project-img-placeholder"></span>
-                <h3>Project One</h3>
-                <p>Brand identity and visual storytelling for a tech startup.</p>
-            </a>
-            <a class="project" href="#" target="_blank">
-                <span class="project-img-placeholder"></span>
-                <h3>Project Two</h3>
-                <p>UI/UX design for a mobile application.</p>
-            </a>
-            <a class="project" href="#" target="_blank">
-                <span class="project-img-placeholder"></span>
-                <h3>Project Three</h3>
-                <p>Branding and illustrations for a creative agency.</p>
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer Contact Section -->
-    <footer>
-        <div class="footer-content">
-            <p><a href="mailto:volv.victory@gmail.com">volv.victory@gmail.com</a></p>
-            <p class="footer-copyright">© 2025 all rights reserved</p>
-        </div>
-    </footer>
-    <section class="vibe-footer" id="vibe-footer">
-        <div class="vibe-footer-content">
-            <span class="footer-graffiti vibe-shine">this webside was vibecoded by myself — it has cool vibe.</span>
-        </div>
-    </section>
-    <script src="scripts/main.js"></script>
-    <script>
-        // Hamburger menu toggle
-        const hamburger = document.getElementById('hamburger-menu');
-        const nav = document.querySelector('.header-content nav');
-        hamburger.addEventListener('click', () => {
-            nav.classList.toggle('open');
+        <script src="scripts/main.js"></script>
+        <script>
+    // --- MAHJONG GAME LOGIC + LEADERBOARD + TOGGLE PROJECTS ---
+    (function() {
+        const imageList = [
+            'assets/01_m.jpg',
+            'assets/02_m.jpg',
+            'assets/03_m.jpg',
+            'assets/04_m.jpg',
+            'assets/05_m.jpg',
+            'assets/06_m.jpg',
+            'assets/07_m.jpg'
+        ];
+        let tiles = [...imageList, ...imageList];
+        let startTime, timerActive = false;
+        // Shuffle
+        function shuffle(arr) { return arr.sort(() => Math.random() - 0.5); }
+        function resetGame() {
+            tiles = shuffle([...imageList, ...imageList]);
+            matched = 0;
+            first = null; second = null; lock = false;
+            renderBoard();
+            message.textContent = '';
+            startTime = Date.now();
+            timerActive = true;
+        }
+        const board = document.getElementById('mahjong-board');
+        const message = document.getElementById('mahjong-message');
+        let first = null, second = null, lock = false, matched = 0;
+        function renderBoard() {
+            board.innerHTML = '';
+            tiles.forEach((img, idx) => {
+                const tile = document.createElement('div');
+                tile.className = 'mahjong-tile';
+                tile.dataset.idx = idx;
+                tile.tabIndex = 0;
+                tile.setAttribute('aria-label', 'Mahjong tile');
+                tile.innerHTML = '<div class="mahjong-tile-inner"><div class="mahjong-tile-front"><img src="assets/cover.jpg" alt="Card cover" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" /></div><div class="mahjong-tile-back"><img src="' + img + '" alt="Tile image" /></div></div>';
+                tile.addEventListener('click', (e) => { flipTile(tile, idx); });
+                tile.addEventListener('keypress', e => { if (e.key === 'Enter' || e.key === ' ') flipTile(tile, idx); });
+                board.appendChild(tile);
+            });
+        }
+        function flipTile(tile, idx) {
+            if (lock || tile.classList.contains('matched') || tile.classList.contains('flipped')) return;
+            tile.classList.add('flipped');
+            if (!first) {
+                first = tile;
+            } else if (!second && tile !== first) {
+                second = tile;
+                lock = true;
+                setTimeout(() => {
+                    const img1 = tiles[+first.dataset.idx];
+                    const img2 = tiles[+second.dataset.idx];
+                    if (img1 === img2) {
+                        first.classList.add('matched');
+                        second.classList.add('matched');
+                        matched += 2;
+                        if (matched === tiles.length) {
+                            timerActive = false;
+                            const time = Math.round((Date.now() - startTime) / 1000);
+                            winMessage.textContent = `Congratulations! You matched all tiles in ${time} seconds!`;
+                            winPopup.style.display = 'flex';
+                            saveScore(time);
+                            renderLeaderboard();
+                        }
+                    } else {
+                        first.classList.remove('flipped');
+                        second.classList.remove('flipped');
+                    }
+                    first = null; second = null; lock = false;
+                }, 600); // match flip animation duration in CSS
+            }
+        }
+        // --- LEADERBOARD ---
+        const leaderboardBtn = document.getElementById('mahjong-leaderboard-btn');
+        const leaderboardPopup = document.getElementById('mahjong-leaderboard-popup');
+        const leaderboardClose = document.getElementById('mahjong-leaderboard-close');
+        const leaderboardList = document.getElementById('mahjong-leaderboard-list');
+        function getScores() {
+            return JSON.parse(localStorage.getItem('mahjongScores') || '[]');
+        }
+        function saveScore(time) {
+            let scores = getScores();
+            scores.push(time);
+            scores = scores.sort((a,b) => a-b).slice(0, 10); // top 10
+            localStorage.setItem('mahjongScores', JSON.stringify(scores));
+        }
+        function renderLeaderboard() {
+            const scores = getScores();
+            leaderboardList.innerHTML = scores.length ? scores.map((s,i) => `<li>${i+1}. ${s} sec</li>`).join('') : '<li>No scores yet</li>';
+        }
+        leaderboardBtn.addEventListener('click', () => {
+            renderLeaderboard();
+            leaderboardPopup.classList.add('open');
+            leaderboardPopup.focus();
         });
-        hamburger.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                nav.classList.toggle('open');
+        leaderboardClose.addEventListener('click', () => {
+            leaderboardPopup.classList.remove('open');
+        });
+        leaderboardPopup.addEventListener('click', e => {
+            if (e.target === leaderboardPopup) leaderboardPopup.classList.remove('open');
+        });
+        // --- TOGGLE PROJECTS PREVIEW ---
+        const toggleBtn = document.getElementById('mahjong-toggle-projects-btn');
+        const gameSection = document.getElementById('mahjong-game');
+        const projectsSection = document.getElementById('projects-v2');
+        const projectsGrid = document.getElementById('projects-v2-grid');
+        let projectsVisible = false;
+        function renderProjectsGrid() {
+            projectsGrid.innerHTML = imageList.map(img => `<img src="${img}" class="project-v2-img" tabindex="0" alt="Project preview image" />`).join('');
+        }
+        toggleBtn.addEventListener('click', () => {
+            projectsVisible = !projectsVisible;
+            if (projectsVisible) {
+                gameSection.style.display = 'none';
+                projectsSection.style.display = 'block';
+                renderProjectsGrid();
+                toggleBtn.textContent = 'Back to game';
+            } else {
+                gameSection.style.display = '';
+                projectsSection.style.display = 'none';
+                toggleBtn.textContent = "I don't play";
             }
         });
+        // --- INIT ---
+        resetGame();
+        // --- WIN POPUP ---
+        const winPopup = document.createElement('div');
+        winPopup.id = 'mahjong-win-popup';
+        winPopup.style = 'display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:3000;background:rgba(0,0,0,0.18);justify-content:center;align-items:center;';
+        winPopup.innerHTML = `
+            <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,0.13);padding:44px 36px 32px 36px;min-width:320px;max-width:90vw;text-align:center;position:relative;">
+                <div id="mahjong-win-message" style="font-size:1.25em;color:#ff0081;margin-bottom:24px;"></div>
+                <button id="mahjong-win-ok" style="padding:10px 32px;font-size:1.1em;font-family:'Syne',Arial,sans-serif;background:#ff0081;color:#fff;border:none;border-radius:22px;cursor:pointer;">Okay</button>
+            </div>
+        `;
+        document.body.appendChild(winPopup);
+        const winMessage = winPopup.querySelector('#mahjong-win-message');
+        const winOkBtn = winPopup.querySelector('#mahjong-win-ok');
+        winOkBtn.addEventListener('click', () => { winPopup.style.display = 'none'; });
+    })();
+    // --- PINK CIRCLE MOUSE ---
+    (function() {
+        const cursor = document.getElementById('pink-cursor');
+        document.addEventListener('mousemove', function(e) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.addEventListener('mousedown', function() {
+            cursor.style.width = '44px';
+            cursor.style.height = '44px';
+            cursor.style.opacity = '0.28';
+        });
+        document.addEventListener('mouseup', function() {
+            cursor.style.width = '32px';
+            cursor.style.height = '32px';
+            cursor.style.opacity = '0.18';
+        });
+    })();
+    window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.getElementById('loading-overlay').style.opacity = '0';
+            setTimeout(function() {
+                document.getElementById('loading-overlay').style.display = 'none';
+            }, 400);
+        }, 900); // show loading for at least 0.9s
+    });
     </script>
-</body>
+    </body>
 </html>
