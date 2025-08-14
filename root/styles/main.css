@@ -23,16 +23,6 @@ body {
     display: none !important;
 }
 
-.hero {
-    background: #f4f4f4;
-    color: #222;
-    min-height: 100vh;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0;
-}
 .hero-content {
     text-align: left;
     max-width: 900px;
@@ -64,7 +54,7 @@ body {
     margin: 18px 0 0 0;
 }
 .social-links a {
-    color: #ff0081 !important;
+    color: #ff0081;
     font-weight: 600;
     text-decoration: none;
     margin-right: 18px;
@@ -74,7 +64,7 @@ body {
     margin-right: 0;
 }
 .social-links a:hover {
-    color: #222 !important;
+    color: ##fff;
     text-decoration: underline;
 }
 
@@ -139,15 +129,22 @@ body {
     background: none;
     box-shadow: none;
     border-radius: 0;
-    padding: 0;
     margin: 0;
     overflow: visible;
     text-align: left;
-    transition: transform 0.2s;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 18px;
+    transition: all 0.28s cubic-bezier(.4,0,.2,1);
 }
 .project:hover {
-    transform: scale(1.04) translateY(-6px);
-    z-index: 2;
+    transform: scale(1.35) translateY(-28px) rotate(-3deg);
+    z-index: 5;
+    box-shadow: 0 36px 96px 16px #D7BAAD, 0 16px 64px 0 #B58E7B, 0 0 0 12px #fffbe9;
+    border: 12px solid #D7BAAD;
+    background: #fffbe9;
+    filter: brightness(1.18) saturate(1.22) contrast(1.13);
+    transition: all 0.28s cubic-bezier(.4,0,.2,1);
 }
 .project-img-placeholder {
     background: #ccc;
@@ -175,6 +172,9 @@ body {
 .project:hover .project-hover {
     opacity: 1;
     pointer-events: auto;
+    background: rgba(30,30,30,0.995);
+    box-shadow: 0 36px 96px #D7BAAD;
+    transition: all 0.28s cubic-bezier(.4,0,.2,1);
 }
 .project-hover h3 {
     margin: 0 0 8px 0;
@@ -302,13 +302,6 @@ footer {
     padding-left: 18px;
     padding-right: 18px;
 }
-.project h3, .project p {
-    text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
-}
 
 @media (max-width: 1000px) {
     .services, .project-list {
@@ -322,67 +315,4 @@ footer {
     .main-header {
         padding: 0;
     }
-}
-
-.vibe-footer {
-    width: 100vw;
-    height: 100vh;
-    min-height: 400px;
-    background: linear-gradient(120deg, #232526 0%, #6dd5ed 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-.vibe-footer::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    left: -20%;
-    width: 140vw;
-    height: 140vh;
-    background: radial-gradient(circle at 30% 30%, #6dd5ed55 0%, transparent 60%),
-                radial-gradient(circle at 70% 70%, #ff008155 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, #fff8 0%, transparent 70%);
-    animation: vibe-bg-move 12s linear infinite alternate;
-    z-index: 0;
-}
-@keyframes vibe-bg-move {
-    0% {
-        transform: scale(1) translate(0, 0);
-        filter: blur(0px);
-    }
-    50% {
-        transform: scale(1.1) translate(40px, 30px);
-        filter: blur(4px);
-    }
-    100% {
-        transform: scale(1) translate(-20px, -20px);
-        filter: blur(0px);
-    }
-}
-.vibe-footer-content {
-    width: 100%;
-    text-align: center;
-    z-index: 2;
-    position: relative;
-}
-.vibe-shine {
-    font-family: 'Syne', Arial, sans-serif;
-    font-size: 2.2em;
-    color: #fff;
-    letter-spacing: 0.04em;
-    text-shadow: 0 0 16px #fff, 0 0 32px #6dd5ed, 2px 2px 0 #232526;
-    background: linear-gradient(90deg, #fff 20%, #6dd5ed 50%, #fff 80%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 2.5s linear infinite;
-    display: inline-block;
-    padding: 0 24px;
-}
-@keyframes shine {
-    0% { background-position: -200px 0; }
-    100% { background-position: 200px 0; }
 }
