@@ -757,11 +757,11 @@
         const lightboxCaption = document.getElementById('lightbox-caption');
         const lightboxClose = document.getElementById('lightbox-close');
 
-        function renderGallery(imageList){
+        function renderGallery(imageNames){
             if(!grid) return;
-            grid.innerHTML = imageList.map((name,i) => {
+            grid.innerHTML = imageNames.map((name,i) => {
                 const src = 'gallery/' + name;
-                return `<button class="gallery-item" data-src="${src}" data-index="${i}" style="border:none;padding:0;background:none;cursor:pointer;border-radius:12px;overflow:hidden;display:block;box-shadow:0 2px 8px rgba(0,0,0,0.06)"><img src="${src}" alt="Gallery image ${i+1}" style="width:100%;height:100%;object-fit:cover;display:block;" /></button>`;
+                return `<button class="gallery-item" data-src="${src}" data-index="${i}" style="border:none;padding:0;background:none;cursor:pointer;border-radius:12px;overflow:hidden;display:block;box-shadow:0 2px 8px rgba(0,0,0,0.06)"><img src="${src}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;" /></button>`;
             }).join('');
             Array.from(grid.querySelectorAll('.gallery-item')).forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -774,20 +774,61 @@
             });
         }
 
-        // try fetching gallery/list.json
-        fetch('gallery/list.json').then(r => {
-            if(!r.ok) throw new Error('no list.json');
-            return r.json();
-        }).then(list => {
-            if(Array.isArray(list) && list.length) renderGallery(list);
-            else renderGallery(['01.jpg','02.jpg','03.jpg']); // fallback names
-        }).catch(()=> {
-            // fallback to a small hardcoded list if fetch fails
-            renderGallery(['01.jpg','02.jpg','03.jpg']);
-        });
+        async function checkExists(url){
+            try{
+                const res = await fetch(url, { method: 'HEAD' });
+                return res.ok;
+            }catch(e){
+                return false;
+            }
+        }
 
-        lightboxClose.addEventListener('click', ()=> lightbox.style.display = 'none');
-        lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.style.display = 'none'; });
+        // Try list.json first, otherwise auto-detect files named gm_01..gm_N
+        (async function loadGallery(){
+            // 1) try gallery/list.json (expected to be array of filenames)
+            try{
+                const r = await fetch('gallery/list.json');
+                if(r.ok){
+                    const list = await r.json();
+                    if(Array.isArray(list) && list.length){
+                        renderGallery(list);
+                        return;
+                    }
+                }
+            }catch(e){ /* ignore and fallback */ }
+
+            // 2) probe for gm_01..gm_MAX (adjust MAX if you have more)
+            const MAX = 40;
+            const names = [];
+            const checks = [];
+            for(let i=1;i<=MAX;i++){
+                const idx = String(i).padStart(2,'0'); // 01,02,...
+                const candidates = [`gm_${idx}.jpg`,`gm_${idx}.png`,`gm_${idx}.jpeg`,`gm_${idx}.webp`];
+                // push a promise that finds the first existing variant
+                checks.push((async ()=>{
+                    for(const n of candidates){
+                        const url = 'gallery/' + n;
+                        if(await checkExists(url)){
+                            return n;
+                        }
+                    }
+                    return null;
+                })());
+            }
+            const results = await Promise.all(checks);
+            for(const r of results) if(r) names.push(r);
+
+            if(names.length){
+                renderGallery(names);
+                return;
+            }
+
+            // 3) last-resort fallback: try a few default names
+            renderGallery(['01.jpg','02.jpg','03.jpg'].map(n=>'gallery/'+n).map(p=>p.replace('gallery/','')));
+        })();
+
+        lightboxClose && lightboxClose.addEventListener('click', ()=> lightbox.style.display = 'none');
+        lightbox && lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.style.display = 'none'; });
         document.addEventListener('keydown', (e) => { if(e.key === 'Escape') lightbox.style.display = 'none'; });
     })();
     // keep remaining scripts (pink cursor / loading) untouched
