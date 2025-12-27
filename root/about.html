@@ -16,20 +16,37 @@
         }
     </style>
 </head>
-<body>
-    <header style="position:fixed;top:0;left:0;width:100%;background:#F7F7F7;z-index:1000;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #D7BAAD;">
-        <div style="display:flex;align-items:center;gap:32px;width:100%;">
-            <h1 style="font-family:'Syne',Inter,sans-serif;font-size:1.5em;color:#111;margin:0;">Viktoria Volokitina</h1>
-            <nav style="margin-left:auto;">
-                <a href="index.html" style="margin:0 16px;">Home</a>
-                <a href="about.html" style="margin:0 16px;font-weight:bold;">About</a>
-                <button class="book-call" id="contact-btn" style="margin:0 16px;">Contact</button>
-            </nav>
+<body style="background:#F7F7F7;">
+    <div class="loading-overlay" id="loading-overlay" aria-label="Loading" role="status">
+        <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
         </div>
-    </header>
+    </div>
+    <div id="pink-cursor"></div>
+    <div id="site-header"></div>
+    <script>
+    // Dynamically load the shared header (robust for local/server use)
+    (function() {
+      var headerPath = 'header.html';
+      fetch(headerPath)
+        .then(function(r) {
+          if (!r.ok) throw new Error('Header not found');
+          return r.text();
+        })
+        .then(function(html) {
+          document.getElementById('site-header').innerHTML = html;
+        })
+        .catch(function(e) {
+          document.getElementById('site-header').innerHTML = '<div style="background:#F7F7F7;color:#D7BAAD;padding:12px;text-align:center;">Header failed to load</div>';
+          console.error('Header load error:', e);
+        });
+    })();
+    </script>
     <main style="margin-top:100px;padding:32px;max-width:800px;margin-left:auto;margin-right:auto;">
         <section class="about" id="about" style="max-width:800px;margin:48px auto;">
-            <h2 id="about-title">About</h2>
+            <img src="assets/viktoria%20volokitina.jpeg" alt="Viktoria Volokitina" style="width:180px;height:180px;object-fit:cover;border-radius:50%;margin-bottom:24px;box-shadow:0 2px 12px 0 rgba(215,186,173,0.13);display:block;" />
             <p style="font-size:1.18em;line-height:1.6;margin-top:22px;color:#222;max-width:800px;">Viktoria Volokitina — a multidisciplinary designer and contemporary artist based in Abu Dhabi. My practice spans branding, Web3, product visuals, and spatial storytelling. I’m drawn to experiment, which is why this website was vibecoded over a few days.</p>
             <p style="font-size:1.18em;line-height:1.6;margin-top:22px;color:#222;max-width:800px;opacity:0.6;">I work in focused creative waves rather than on a fixed daily schedule, always with respect for deadlines. Each project is an immersive process, approached with care and intensity. If more time is ever needed, you'll know early. My goal isn’t just to deliver, but to create something meaningful and lasting.</p>
         </section>
@@ -51,9 +68,9 @@
 
         <!-- Technical proficiency -->
         <section class="proficiency" id="proficiency" aria-labelledby="proficiency-title">
+        <section class="proficiency" id="proficiency" aria-labelledby="proficiency-title" style="max-width:800px;margin:48px auto;padding:0;">
             <div class="proficiency-grid">
                 <div class="section">
-                    <strong>Design & 3D</strong>
                     <div class="chips" aria-hidden="false">
                         <span class="chip">Figma</span>
                         <span class="chip">Adobe Creative Suite</span>
@@ -61,28 +78,29 @@
                         <span class="chip">TouchDesigner</span>
                         <span class="chip">Midjourney</span>
                         <span class="chip">Framer</span>
-                    </div>
-                </div>
-                <div class="section">
-                    <strong>Dev</strong>
-                    <div class="chips">
                         <span class="chip">Unity</span>
                         <span class="chip">UE5</span>
                         <span class="chip">Python (basics)</span>
                         <span class="chip">HTML/CSS/JS</span>
-                    </div>
-                </div>
-                <div class="section">
-                    <strong>Project Management</strong>
-                    <div class="chips">
                         <span class="chip">Jira</span>
                         <span class="chip">GitHub</span>
                         <span class="chip">Notion</span>
+                        <span class="chip">Visual Storytelling</span>
+                        <span class="chip">Critical Feedback</span>
+                        <span class="chip">Critical Feedback</span>
                         <span class="chip">Collaboration with curators, scientists, developers</span>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+        <footer>
+            <div class="footer-content">
+                <!-- You can add footer links or contact info here if needed -->
+            </div>
+            <div class="footer-copyright">
+                © 2025 Viktoria Volokitina. All rights reserved
+            </div>
+        </footer>
 </body>
 </html>
