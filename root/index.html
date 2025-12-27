@@ -591,8 +591,26 @@
     font-size: 0.9em;
     color: #555;
 }
-    </style>
-</head>
+/* --- GALLERY FILTERS --- */
+.gallery-filter {
+    padding: 8px 16px;
+    border: 1px solid #D7BAAD;
+    border-radius: 20px;
+    background: #fff;
+    color: #D7BAAD;
+    font-family: 'Syne', Arial, sans-serif;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.gallery-filter.active {
+    background: #D7BAAD;
+    color: #fff;
+}
+.gallery-filter:hover {
+    background: #D7BAAD;
+    color: #fff;
+}
 <body style="background:#F7F7F7;">
     <div class="loading-overlay" id="loading-overlay" aria-label="Loading" role="status">
         <div class="loading-dots">
@@ -603,7 +621,16 @@
     </div>
     <div id="pink-cursor"></div>
 
-    <!-- header removed -->
+    <!-- Header -->
+    <header style="position:fixed;top:0;left:0;width:100%;background:#F7F7F7;z-index:1000;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #D7BAAD;">
+        <h1 style="font-family:'Syne',Arial,sans-serif;font-size:1.5em;color:#111;margin:0;">Viktoria Volokitina</h1>
+        <nav>
+            <a href="#hero" style="color:#D7BAAD;text-decoration:none;margin:0 16px;font-family:'Inter',Arial,sans-serif;">Home</a>
+            <a href="#gallery" style="color:#D7BAAD;text-decoration:none;margin:0 16px;font-family:'Inter',Arial,sans-serif;">Gallery</a>
+            <a href="#highlights" style="color:#D7BAAD;text-decoration:none;margin:0 16px;font-family:'Inter',Arial,sans-serif;">Highlights</a>
+            <a href="#proficiency" style="color:#D7BAAD;text-decoration:none;margin:0 16px;font-family:'Inter',Arial,sans-serif;">Proficiency</a>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
@@ -705,11 +732,18 @@
         </section>
         <main style="display: grid; grid-template-columns: 1fr; gap: 0;">
         <!-- REPLACED: Mahjong game removed and replaced with image gallery -->
-        <section class="gallery" id="gallery" style="max-width:1100px;margin:48px auto;padding:32px 16px;background:#fafafa;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-            <div id="gallery-grid" class="projects-v2-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;"></div>
+        <section class="gallery" id="gallery" style="width:100%;margin:0;padding:0;">
+            <div class="gallery-filters" style="display:flex;gap:12px;margin:32px 16px 24px 16px;justify-content:flex-start;flex-wrap:wrap;">
+                <button class="gallery-filter active" data-filter="all">All</button>
+                <button class="gallery-filter" data-filter="painting">Painting</button>
+                <button class="gallery-filter" data-filter="digital">Digital</button>
+                <button class="gallery-filter" data-filter="installation">Installation</button>
+                <button class="gallery-filter" data-filter="interactive">Interactive</button>
+            </div>
+            <div id="gallery-grid" class="projects-v2-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;padding:0 16px 32px 16px;"></div>
 
             <!-- Lightbox -->
-            <div id="lightbox" style="display:none;position:fixed;inset:0;z-index:3500;background:rgba(0,0,0,0.75);align-items:center;justify-content:center;padding:24px;">
+            <div id="lightbox" style="display:none;position:fixed;inset:0;z-index:3500;background:rgba(0,0,0,0.75);align-items:center;justify-content:center;padding:24px;display:flex;flex-direction:column;">
                 <button id="lightbox-close" aria-label="Close" style="position:absolute;top:18px;right:18px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;">&times;</button>
                 <img id="lightbox-img" src="" alt="" style="max-width:calc(100% - 48px);max-height:calc(100% - 48px);border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.5);" />
                 <div id="lightbox-caption" style="color:#fff;text-align:center;margin-top:12px;font-family:Inter,Arial,sans-serif;"></div>
@@ -717,8 +751,8 @@
         </section> <!-- end gallery -->
 
         <!-- Selected exhibitions & awards -->
-        <section class="highlights" id="highlights" aria-labelledby="highlights-title">
-            <h2 id="highlights-title">Highlights 2018–2025</h2>
+        <section class="highlights" id="highlights" aria-labelledby="highlights-title" style="max-width:1100px;margin:48px auto;">
+            <h2 id="highlights-title">Highlights</h2>
             <div class="timeline" role="list">
                 <div class="timeline-item" role="listitem"><strong>2024:</strong> Featured in <em>Evolution</em> (Tsifergauz, St. Petersburg) and <em>AI:i? Neural Networks and Creative Process</em> (Krasnokholmskaya Gallery).</div>
                 <div class="timeline-item" role="listitem"><strong>2023:</strong> Participant in <em>Forms of Dialogue</em> (MMOMA) and <em>ARTWEEK</em> (Novosibirsk).</div>
@@ -730,7 +764,6 @@
 
         <!-- Technical proficiency -->
         <section class="proficiency" id="proficiency" aria-labelledby="proficiency-title">
-            <h2 id="proficiency-title">Technical Proficiency</h2>
             <div class="proficiency-grid">
                 <div class="section">
                     <strong>Design & 3D</strong>
@@ -813,13 +846,16 @@
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
         const lightboxClose = document.getElementById('lightbox-close');
+        let allImages = [];
+        let currentFilter = 'all';
 
-        function renderGallery(imageNames){
+        function renderGallery(images){
             if(!grid) return;
-            grid.innerHTML = imageNames.map((name,i) => {
-                const src = 'gallery/' + name;
+            grid.innerHTML = images.map((item,i) => {
+                const name = typeof item === 'string' ? item : item.name;
+                const src = 'assets/Gallery/' + name;
                 const title = name.replace(/\.[^/.]+$/, "").replace(/_/g, " ");
-                return `<div class="gallery-item" data-src="${src}" data-index="${i}" style="cursor:pointer;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);background:#fff;padding:12px;">
+                return `<div class="gallery-item" data-src="${src}" data-index="${i}" style="cursor:pointer;border-radius:12px;overflow:hidden;padding:12px;">
                     <img src="${src}" alt="${name}" style="width:100%;height:auto;object-fit:cover;display:block;border-radius:8px;" />
                     <p style="margin:8px 0 4px 0;font-size:1em;font-weight:600;color:#111;text-align:center;">${title}</p>
                     <p style="margin:0;font-size:0.9em;color:#666;text-align:center;">Artwork description</p>
@@ -838,6 +874,15 @@
             });
         }
 
+        function filterImages(){
+            if(currentFilter === 'all'){
+                renderGallery(allImages);
+            }else{
+                const filtered = allImages.filter(item => item.category === currentFilter);
+                renderGallery(filtered);
+            }
+        }
+
         async function checkExists(url){
             try{
                 const res = await fetch(url, { method: 'HEAD' });
@@ -847,13 +892,14 @@
             }
         }
         (async function loadGallery(){
-            // 1) try gallery/list.json (expected to be array of filenames)
+            // 1) try gallery/list.json (expected to be array of filenames or objects)
             try{
-                const r = await fetch('gallery/list.json');
+                const r = await fetch('assets/Gallery/list.json');
                 if(r.ok){
                     const list = await r.json();
                     if(Array.isArray(list) && list.length){
-                        renderGallery(list);
+                        allImages = list;
+                        filterImages();
                         return;
                     }
                 }
@@ -861,13 +907,24 @@
 
             // 2) use a default list of images (add your image filenames here)
             const defaultImages = [
-                '1.jpg',
                 '2.png',
-                '2.png',
-                '4.jpg',              
+                '3.png',
+                '4.jpg',
+                'flowers.jpg'              
             ];
-            renderGallery(defaultImages);
+            allImages = defaultImages.map(name => ({name, category: 'painting'}));
+            filterImages();
         })();
+
+        // Filter buttons
+        document.querySelectorAll('.gallery-filter').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.gallery-filter').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                filterImages();
+            });
+        });
 
         lightboxClose && lightboxClose.addEventListener('click', ()=> lightbox.style.display = 'none');
         lightbox && lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.style.display = 'none'; });
