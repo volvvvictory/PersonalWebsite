@@ -846,8 +846,6 @@
                 return false;
             }
         }
-
-        // Try list.json first, otherwise auto-detect files named gm_01..gm_N
         (async function loadGallery(){
             // 1) try gallery/list.json (expected to be array of filenames)
             try{
@@ -859,36 +857,16 @@
                         return;
                     }
                 }
-            }catch(e){ /* ignore and fallback */ }
+            }catch(e){ /* ignore and use default list */ }
 
-            // 2) probe for gm_01..gm_MAX (adjust MAX if you have more)
-            const MAX = 40;
-            const names = [];
-            const checks = [];
-            for(let i=1;i<=MAX;i++){
-                const idx = String(i).padStart(2,'0'); // 01,02,...
-                const candidates = [`gm_${idx}.jpg`,`gm_${idx}.png`,`gm_${idx}.jpeg`,`gm_${idx}.webp`];
-                // push a promise that finds the first existing variant
-                checks.push((async ()=>{
-                    for(const n of candidates){
-                        const url = 'gallery/' + n;
-                        if(await checkExists(url)){
-                            return n;
-                        }
-                    }
-                    return null;
-                })());
-            }
-            const results = await Promise.all(checks);
-            for(const r of results) if(r) names.push(r);
-
-            if(names.length){
-                renderGallery(names);
-                return;
-            }
-
-            // 3) last-resort fallback: try a few default names
-            renderGallery(['01.jpg','02.jpg','03.jpg'].map(n=>'gallery/'+n).map(p=>p.replace('gallery/','')));
+            // 2) use a default list of images (add your image filenames here)
+            const defaultImages = [
+                '1.jpg',
+                '2.png',
+                '2.png',
+                '4.jpg',              
+            ];
+            renderGallery(defaultImages);
         })();
 
         lightboxClose && lightboxClose.addEventListener('click', ()=> lightbox.style.display = 'none');
