@@ -826,7 +826,7 @@
             </div>
         </section>
         <main style="display: grid; grid-template-columns: 1fr; gap: 0;">
-        <!-- Main Gallery Section -->
+        <!-- REPLACED: Mahjong game removed and replaced with image gallery -->
         <section class="gallery" id="gallery" style="width:100%;margin:0;padding:0;">
             <div style="height:100px;"></div>
             <div class="gallery-filters" style="display:flex;gap:12px;margin:32px 16px 24px 16px;justify-content:center;flex-wrap:wrap;">
@@ -839,13 +839,32 @@
 
             <!-- Lightbox -->
             <div id="lightbox" style="display:none;position:fixed;inset:0;z-index:3500;background:rgba(0,0,0,0.75);align-items:center;justify-content:center;padding:24px;display:flex;flex-direction:column;">
-            <button id="lightbox-close" aria-label="Close" style="position:absolute;top:18px;right:18px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;">&times;</button>
-            <img id="lightbox-img" src="" alt="" style="max-width:calc(100% - 48px);max-height:calc(100% - 48px);border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.5);" />
-            <div id="lightbox-caption" style="color:#fff;text-align:center;margin-top:12px;font-family:Inter,Arial,sans-serif;"></div>
+                                <button id="lightbox-close" aria-label="Close" style="position:absolute;top:18px;right:18px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;">&times;</button>
+                                <img id="lightbox-img" src="" alt="" style="max-width:calc(100% - 48px);max-height:calc(100% - 48px);border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.5);" />
+                                <div id="lightbox-caption" style="color:#fff;text-align:center;margin-top:12px;font-family:Inter,Arial,sans-serif;"></div>
+                                <script>
+                                // Ensure lightbox is hidden on page load
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var lightbox = document.getElementById('lightbox');
+                                    if (lightbox) lightbox.style.display = 'none';
+                                });
+                                </script>
             </div>
         </section> <!-- end gallery -->
 
-        <!-- Mahjong Game Section removed -->
+        <!-- ...existing code... -->
+
+        <!-- ...existing code... -->
+
+        <!-- Mahjong Game Section (removed) -->
+        <!-- <section class="mahjong-game" id="mahjong-game">
+            <div class="mahjong-board" id="mahjong-board"></div>
+            <div class="mahjong-message" id="mahjong-message"></div>
+            <div style="display:flex;gap:18px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
+                <!-- <button class="mahjong-leaderboard-btn" id="mahjong-leaderboard-btn">Leaderboard</button> -->
+                <!-- <button class="mahjong-toggle-projects-btn" id="mahjong-toggle-projects-btn">I don't play</button>
+            </div>
+        </section> -->
         <section class="projects-v2" id="projects-v2" style="display:none;">
             <div class="projects-v2-grid" id="projects-v2-grid"></div>
         </section>
@@ -868,10 +887,18 @@
             </div>
         </footer>
         
-        <!-- Duplicate leaderboard popup removed for clarity -->
+        <div class="mahjong-leaderboard-popup" id="leaderboard-popup">
+            <div class="mahjong-leaderboard-content">
+                <button class="mahjong-leaderboard-close" id="close-popup">&times;</button>
+                <h3>Mahjong Match - Leaderboard</h3>
+                <ol class="mahjong-leaderboard-list" id="leaderboard-list">
+                    <!-- Leaderboard items will be populated by JavaScript -->
+                </ol>
+            </div>
+        </div>
         <script src="scripts/main.js"></script>
         <script>
-    // Gallery script
+    // Gallery script (replaces Mahjong logic)
     (function(){
         const grid = document.getElementById('gallery-grid');
         const lightbox = document.getElementById('lightbox');
@@ -1016,9 +1043,16 @@
             }
         }
 
-        // checkExists function is not used, removed for cleanup
+        async function checkExists(url){
+            try{
+                const res = await fetch(url, { method: 'HEAD' });
+                return res.ok;
+            }catch(e){
+                return false;
+            }
+        }
         (async function loadGallery(){
-            // Try gallery/list.json (expected to be array of filenames or objects)
+            // 1) try gallery/list.json (expected to be array of filenames or objects)
             try{
                 const r = await fetch('assets/Gallery/list.json');
                 if(r.ok){
@@ -1031,7 +1065,7 @@
                 }
             }catch(e){ /* ignore and use default list */ }
 
-            // Use a default list of images if JSON fails
+            // 2) use a default list of images (add your image filenames here)
             const defaultImages = [
                 'painting.abstract.jpg',
                 'painting.flowers01.jpg',
@@ -1095,7 +1129,7 @@
         lightbox && lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.style.display = 'none'; });
         document.addEventListener('keydown', (e) => { if(e.key === 'Escape') lightbox.style.display = 'none'; });
     })();
-    // Keep remaining scripts (pink cursor / loading) untouched
+    // keep remaining scripts (pink cursor / loading) untouched
     </script>
     <script>
     // --- PINK CIRCLE MOUSE ---
