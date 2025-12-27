@@ -3,178 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>volvvictory.github.io</title>
     <title>Viktoria Volokitina — Designer & Artist</title>
     <link rel="stylesheet" href="styles/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        .img-placeholder {
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#FFFFFF">
+        <meta charset="UTF-8">
+    <title>Viktoria Volokitina – Portfolio</title>
+
+    <!-- Meta description for search engines -->
+    <meta name="description" content="Victoria Volokitina – Artist and designer. Explore my portfolio showcasing art, games, and 3D works.">
+
+    <!-- Keywords -->
+    <meta name="keywords" content="Victoria Volokitina, contemporary art, digital art, portfolio, interactive installations, 3D art">
+
+    <!-- Viewport for mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Open Graph -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Meet Viktoria">
+        <meta property="og:description" content="Explore my portfolio showcasing art, games, and 3D works">
+        <meta property="og:image" content="https://volvvictory.netlify.app/ViktoriaOpenGraph.png">
+        <meta property="og:url" content="https://volvvictory.netlify.app/">
+
+    <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Meet Viktoria">
+        <meta name="twitter:description" content="Explore my portfolio showcasing art, games, and 3D works">
+        <meta name="twitter:image" content="https://volvvictory.netlify.app/ViktoriaOpenGraph.png">
+
+            <style>
+        /* --- LOADING SCREEN --- */
+        .loading-overlay {
+            position: fixed;
+            z-index: 5000;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #F7F7F7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s;
+        }
+        .loading-dots {
+            display: flex;
+            gap: 12px;
+        }
+        .loading-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #D7BAAD;
+            opacity: 0.7;
+            animation: loading-bounce 1s infinite alternate;
+        }
+        .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes loading-bounce {
+            0% { transform: translateY(0); opacity: 0.7; }
+            100% { transform: translateY(-18px); opacity: 1; }
+        }
+        /* --- HERO SECTION --- */
+        .hero {
+            background: #F7F7F7;
+            padding-top: 64px;
+            padding-bottom: 80px;
+            margin-top: 0;
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            /* border: 2px solid #D7BAAD; */
+        }
+        .hero-content {
+            text-align: left;
+            max-width: 900px;
+            width: 90%;
+            margin: 0 auto;
+            padding-top: 32px;
+            padding-bottom: 0;
+        }
+        .hero-content h1 {
+            font-size: 1.5em !important;
+            line-height: 1.3;
+        }
+        .hero-content .subtitle {
+            font-family: 'Syne', Arial, sans-serif;
+        }
+        .hero-img {
             width: 120px;
             height: 120px;
-            background: #ccc;
             border-radius: 50%;
-            display: inline-block;
+            object-fit: cover;
             margin-bottom: 20px;
         }
-        /* --- MODERN PROJECTS SECTION --- */
-        .project-list {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 20px 12px;
-            justify-items: stretch;
-            align-items: stretch;
-        }
-        .project {
-            grid-column: span 4;
-            aspect-ratio: 4/5;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            background: #E2E2E2; /* match hero section */
-            border-radius: 32px;
-            box-shadow: none;
-            border: 1px solid #ececec;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.18s cubic-bezier(.4,0,.2,1), border-color 0.18s cubic-bezier(.4,0,.2,1);
-            padding: 0;
-        }
-        .project-blur-bg {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-            border-radius: inherit;
-            overflow: hidden;
-            transition: filter 0.18s cubic-bezier(.4,0,.2,1);
-        }
-        .project-blur-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .project:hover, .project:focus {
-            transform: translateY(-4px) scale(1.025);
-            border-color: #ff0081;
-            z-index: 2;
-        }
-        .project:hover .project-blur-bg, .project:focus .project-blur-bg {
-            filter: blur(7px) brightness(1.08) saturate(1.1);
-        }
-        .project-img-placeholder {
-            width: 100%;
-            height: 100%;
-            min-height: 180px;
-            object-fit: cover;
-            border-radius: 0;
-            display: block;
-            flex: 1 1 auto;
-            margin: 0;
-            position: relative;
-            z-index: 2;
-        }
-        .project .project-hover {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgba(255,255,255,0.92);
-            color: #222;
-            opacity: 0;
-            padding: 32px 22px 28px 22px;
-            transition: opacity 0.18s cubic-bezier(.4,0,.2,1), background 0.18s cubic-bezier(.4,0,.2,1), transform 0.18s cubic-bezier(.4,0,.2,1);
-            pointer-events: none;
-            text-align: center;
-            min-height: 0;
-            min-width: 0;
-            z-index: 3;
-            filter: none !important;
-        }
-        .project:hover .project-hover, .project:focus .project-hover {
-            opacity: 1;
-            pointer-events: auto;
-            background: rgba(255,255,255,0.98);
-            transform: translateY(-10px);
-        }
-        .project-hover h3, .project-hover .project-year, .project-hover .hashtags {
-            align-self: center;
-        }
-        .project-hover h3 {
-            font-family: 'Syne', Arial, sans-serif;
-            font-size: 1.22em;
-            margin: 0 0 8px 0;
-            font-weight: 700;
-            color: #111;
-            word-break: break-word;
-        }
-        .project-year {
-            font-size: 1em;
-            opacity: 0.7;
-            margin-bottom: 12px;
-            color: #444;
-        }
-        .hashtags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            align-items: center;
-            max-width: 100%;
-            overflow-wrap: anywhere;
-            word-break: break-word;
-        }
-        .hashtags span {
-            background: #f8e6f0;
-            border-radius: 18px;
-            padding: 3px 14px;
-            font-size: 1em;
-            font-weight: 400;
-            letter-spacing: 0.01em;
-            color: #ff0081;
-            white-space: pre-line;
-            max-width: 100%;
-            overflow-wrap: anywhere;
-        }
-        @media (max-width: 1200px) {
-            .project-list {
-                grid-template-columns: repeat(6, 1fr);
-            }
-            .project {
-                grid-column: span 6;
-            }
-        }
         @media (max-width: 900px) {
-            .projects {
-                max-width: 100%;
-                padding: 32px 8px 40px 8px;
-            }
-            .project-list {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 14px 6px;
-            }
-            .project {
-                grid-column: span 2;
-                border-radius: 18px;
+            .hero-content {
+                max-width: 98vw;
+                width: 100%;
+                padding: 0 8px 0 8px;
             }
         }
-        @media (max-width: 600px) {
-            .project-list {
-                grid-template-columns: 1fr;
+        @media (max-width: 700px) {
+            .hero {
+                padding-top: 18px;
+                padding-bottom: 72px;
+                margin: 0;
             }
-            .project {
-                grid-column: span 1;
-                border-radius: 12px;
+            .hero-content {
+                max-width: 100vw;
+                width: 100%;
+                padding: 24px 4vw 0 4vw;
             }
-            .project-hover {
-                padding: 16px 8px 12px 8px;
+            .hero-img {
+                margin-top: 12px !important;
+            }
+        }
+        @media (max-width: 500px) {
+            .hero {
+                padding-bottom: 90px;
             }
         }
         /* --- FOOTER --- */
         footer {
-            background: #E2E2E2;
+            background: #F7F7F7;
             color: #111;
             text-align: center;
             padding: 32px 0 18px 0;
@@ -188,37 +143,16 @@
             color: #111;
             margin-top: 8px;
         }
-        .pixel-bunny {
-            width: 48px;
-            height: 48px;
-            display: inline-block;
-            background: url('assets/pixel-bunny.png') no-repeat center center / contain;
-            vertical-align: middle;
-        }
-        .hero-content {
-            text-align: left;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .hero-content h1 {
-            font-size: 1.5em !important;
-            line-height: 1.3;
-        }
-        .hero-content .subtitle {
-            font-family: 'Syne', Arial, sans-serif;
-        }
-        body, .footer-content, .service, .project, .book-call, .social-links a, .header-content nav a {
-            font-family: 'Inter', Arial, sans-serif;
-        }
         .social-links a,
         .book-call {
-            color: #ff0081 !important;
+            color: #D7BAAD;
             text-decoration: none;
         }
         .book-call::after {
             content: ' \2192'; /* Unicode right arrow */
             font-size: 1.1em;
             margin-left: 0.2em;
+            color: #111;
         }
         .hamburger {
             display: none;
@@ -250,320 +184,683 @@
                 display: flex;
             }
         }
-        .footer-graffiti {
-            font-family: 'Graffiti', cursive;
-            font-size: 14px;
-            color: inherit;
-            display: block;
-            margin-top: 8px;
-        }
         .vibe-footer {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: none;
+        }
+        /* --- PROJECTS V2 --- */
+        .projects-v2 {
+            display: block;
+            max-width: 1100px;
+            margin: 0 auto 48px auto;
+            padding: 0 16px;
+        }
+        .projects-v2-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
         }
-        .vibe-footer.open {
-            display: flex;
+        .project-v2-img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(215,186,173,0.06);
+            background: #ececec;
+            transition: box-shadow 0.18s cubic-bezier(.4,0,.2,1), transform 0.18s;
         }
-        .vibe-footer-content {
+        .project-v2-img:hover, .project-v2-img:focus {
+            box-shadow: 0 4px 16px rgba(215,186,173,0.13);
+            transform: translateY(-2px) scale(1.03);
+            outline: none;
+        }
+        /* --- MAHJONG GAME --- */
+        .mahjong-game {
+            max-width: 1100px;
+            margin: 100px auto 48px auto; /* Increase top margin for more space from hero */
+            padding: 0 16px;
             text-align: center;
         }
-        .vibe-shine {
-            font-size: 24px;
-            color: inherit;
-            text-shadow: none;
+        .mahjong-title {
+            font-family: 'Syne', Arial, sans-serif;
+            font-size: 2em;
+            margin-bottom: 24px;
+            color: #111;
         }
-        .footer-copyright {
-            font-size: 12px;
-            color: inherit;
+        .mahjong-board {
+            display: grid !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: auto !important;
+            min-height: 180px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 18px;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+            margin: 0 auto 0 auto; /* Remove bottom margin to eliminate line/gap */
         }
-        /* --- GRID OVERLAY FOR DESIGN GUIDES --- */
-        .grid-overlay {
-            pointer-events: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 9999;
-            display: block;
+        .mahjong-message {
+            margin-top: 18px;
+            min-height: 1.5em;
+            padding: 0 0.5em;
         }
-        .grid-overlay .grid-vertical {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 1.5px;
-            background: rgba(0,0,0,0.10); /* more visible, light gray */
-        }
-        .grid-overlay .grid-horizontal {
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 1.5px;
-            background: rgba(0,0,0,0.08); /* slightly more visible */
-        }
-        /* --- PROJECT SECTION GRID OVERLAY --- */
-        .project-grid-overlay {
-            pointer-events: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-        }
-        .project-grid-overlay .project-grid-vertical {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: rgba(0,255,0,0.3);
-        }
-        .project-grid-overlay .project-grid-horizontal {
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: rgba(0,255,0,0.3);
-        }
-        .projects {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 16px 60px 16px;
-            position: relative;
-        }
-        @media (max-width: 600px) {
-            .project-hover {
-                padding: 18px 12px 12px 12px;
-            }
-        }
-        .what-i_do {
-            display: none !important;
-        }
-        .projects {
-            display: none !important;
-        }
+        /* --- MAHJONG GAME CARDS/TILES: Restore Card Styles --- */
+.mahjong-tile {
+    width: 100%;
+    max-width: 180px;
+    aspect-ratio: 4/5;
+    background: #ececec;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(215,186,173,0.06);
+    cursor: pointer;
+    perspective: 600px;
+    outline: none;
+    transition: box-shadow 0.18s cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+}
+.mahjong-tile:hover, .mahjong-tile:focus {
+    box-shadow: 0 4px 16px rgba(215,186,173,0.13);
+}
+.mahjong-tile.flipped .mahjong-tile-inner,
+.mahjong-tile.matched .mahjong-tile-inner {
+    transform: rotateY(180deg);
+}
+.mahjong-tile-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+    transform-style: preserve-3d;
+    position: relative;
+}
+.mahjong-tile-front, .mahjong-tile-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0; top: 0;
+    border-radius: 12px;
+    backface-visibility: hidden;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.mahjong-tile-front {
+    background: #ececec;
+}
+.mahjong-tile-back {
+    transform: rotateY(180deg);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mahjong-tile-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block !important;
+    opacity: 1 !important;
+    background: #ececec !important;
+}
+.mahjong-tile.matched {
+    opacity: 0.45;
+    pointer-events: none;
+}
+.mahjong-message {
+    font-size: 1.2em;
+    color: #3a2b1a;
+    margin-top: 18px;
+    min-height: 1.5em;
+    background: #F7F7F7;
+    border: none;
+    box-shadow: none;
+    padding: 0 0.5em;
+}
+/* --- MAHJONG LEADERBOARD POPUP --- */
+.mahjong-leaderboard-popup,
+.mahjong-leaderboard-btn {
+    display: none !important;
+}
+/* Remove the following lines to avoid hiding other elements */
+/*
+.mahjong-leaderboard-content,
+.mahjong-leaderboard-close,
+.mahjong-leaderboard-list li,
+.mahjong-leaderboard-content h3 {
+    display: none !important;
+}
+*/
+/* --- COLOR THEME CHANGE: Replace all #ff0081 with #D7BAAD --- */
+.loading-dot {
+    background: #D7BAAD;
+}
+.hero {
+    background: #F7F7F7;
+    /* border: 2px solid #D7BAAD; */
+}
+.hero {
+    border: none;
+}
+.book-call,
+.book-call::after,
+.social-links a,
+.social-links a.book-call,
+.social-links a:hover,
+.social-links a:focus,
+.mahjong-leaderboard-btn,
+.mahjong-leaderboard-btn:hover,
+.mahjong-leaderboard-btn:focus,
+.mahjong-toggle-projects-btn,
+.mahjong-toggle-projects-btn:hover,
+.mahjong-toggle-projects-btn:focus,
+.mahjong-leaderboard-content h3,
+.mahjong-leaderboard-close,
+.mahjong-win-ok,
+#pink-cursor {
+    background: #D7BAAD !important;
+    color: #fff !important;
+    border-color: #D7BAAD !important;
+}
+.social-links a,
+.social-links a.book-call {
+    border-color: #D7BAAD !important;
+}
+.social-links a:hover img, .social-links a:focus img {
+    filter: brightness(0) invert(1);
+}
+.mahjong-tile:hover, .mahjong-tile:focus {
+    box-shadow: 0 4px 16px rgba(215,186,173,0.13);
+}
+.project-v2-img:hover, .project-v2-img:focus {
+    box-shadow: 0 4px 16px rgba(215,186,173,0.13);
+}
+.mahjong-tile {
+    box-shadow: 0 2px 8px rgba(215,186,173,0.06);
+}
+.project-v2-img {
+    box-shadow: 0 2px 8px rgba(215,186,173,0.06);
+}
+.mahjong-leaderboard-content {
+    box-shadow: 0 8px 32px rgba(215,186,173,0.13);
+}
+.mahjong-win-content {
+    box-shadow: 0 8px 32px rgba(215,186,173,0.13);
+}
+/* --- SOCIAL ICON BUTTONS --- */
+.social-links a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    min-width: 56px;
+    padding: 0 32px;
+    border-radius: 28px;
+    background: #fff;
+    border: 2px solid #D7BAAD;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, border-color 0.18s;
+    box-sizing: border-box;
+    margin: 0 10px 10px 0;
+    box-shadow: 0 2px 12px 0 rgba(215,186,173,0.13), 0 1.5px 6px 0 rgba(215,186,173,0.09);
+    font-family: 'Syne', Arial, sans-serif;
+    font-size: 1.18em;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #3a2b1a !important;
+    text-decoration: none !important;
+    gap: 0.5em;
+}
+.social-links a:hover, .social-links a:focus {
+    background: #D7BAAD;
+    border-color: #D7BAAD;
+    color: #fff !important;
+    box-shadow: 0 6px 24px 0 rgba(215,186,173,0.18), 0 2px 8px 0 rgba(215,186,173,0.13);
+    transform: translateY(-2px) scale(1.03);
+}
+.social-links img, .social-links svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+    /* Remove pink filter, set fill via CSS */
+    filter: none !important;
+    fill: #3a2b1a !important;
+    color: #3a2b1a !important;
+    transition: fill 0.18s, color 0.18s;
+}
+.social-links a:hover img, .social-links a:focus img,
+.social-links a:hover svg, .social-links a:focus svg {
+    fill: #fff !important;
+    color: #fff !important;
+}
+/* Remove old filter for pink color */
+/* .social-links img { filter: invert(36%) sepia(99%) saturate(7496%) hue-rotate(314deg) brightness(99%) contrast(106%); } */
+/* --- PINK CIRCLE MOUSE --- */
+#pink-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #D7BAAD;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.18s, height 0.18s, opacity 0.18s, background 0.18s;
+}
+@media (max-width: 1024px) {
+    #pink-cursor {
+        display: none !important;
+    }
+}
+@media (max-width: 700px) {
+    #pink-cursor {
+        display: none !important;
+    }
+}
+.abu-dhabi-hover {
+    position: relative;
+    z-index: 3;
+    cursor: pointer;
+    display: inline-block;
+}
+.ah-bg-img {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 220px;
+    height: 620px;
+    transform: translate(-50%, -60%);
+    background: url('assets/ah.jpg') center center/cover no-repeat;
+    opacity: 0.6;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    transition: opacity 0.25s;
+}
+.abu-dhabi-hover:hover .ah-bg-img,
+.abu-dhabi-hover:focus .ah-bg-img {
+    display: block;
+}
+@media (max-width: 700px) {
+    .ah-bg-img {
+        display: none !important;
+    }
+}
+/* --- BUTTONS: Consistent Modern Style --- */
+.mahjong-toggle-projects-btn,
+.mahjong-leaderboard-btn,
+.book-call,
+.social-links a.book-call {
+    padding: 0 40px;
+    height: 54px;
+    min-width: 170px;
+    border-radius: 28px;
+    background: linear-gradient(90deg, #D7BAAD 0%, #f3e7de 100%);
+    color: #3a2b1a;
+    border: none;
+    font-family: 'Syne', Arial, sans-serif;
+    font-size: 1.18em;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: box-shadow 0.18s, background 0.18s, color 0.18s, transform 0.13s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 12px 0 rgba(215,186,173,0.13), 0 1.5px 6px 0 rgba(215,186,173,0.09);
+    outline: none;
+    text-decoration: none;
+    margin: 0 10px 10px 0;
+    position: relative;
+    overflow: hidden;
+    gap: 0.5em;
+}
+.mahjong-toggle-projects-btn:hover,
+.mahjong-leaderboard-btn:hover,
+.book-call:hover,
+.social-links a.book-call:hover,
+.mahjong-toggle-projects-btn:focus,
+.mahjong-leaderboard-btn:focus,
+.book-call:focus,
+.social-links a.book-call:focus {
+    background: linear-gradient(90deg, #e2c7b2 0%, #f7f2ee 100%);
+    color: #111;
+    box-shadow: 0 6px 24px 0 rgba(215,186,173,0.18), 0 2px 8px 0 rgba(215,186,173,0.13);
+    transform: translateY(-2px) scale(1.03);
+}
+.mahjong-leaderboard-btn,
+.mahjong-leaderboard-btn:focus,
+.mahjong-leaderboard-btn:hover {
+    display: inline-flex;
+}
     </style>
 </head>
-<body style="background:#E2E2E2;">
-    <div class="grid-overlay" id="grid-overlay"></div>
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <img src="assets/me.jpeg" alt="Viktoria Volokitina portrait" class="hero-img" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:20px;" />
-            <h1 style="font-size:2.6em;line-height:1.2;">Hello! I'm Viktoria Volokitina — a multidisciplinary designer and contemporary artist. With 7+ years of experience across branding, web3, product visuals, and spatial storytelling, I love working on future-facing ideas. I collaborate internationally and am always curious about experimental formats and the blend of art and tech.</h1>
-            <div class="social-links" style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
-                <a href="https://www.instagram.com/volv_victory/" target="_blank">Instagram</a>
-                <a href="https://www.behance.net/volv_victory" target="_blank">Behance</a>
-                <a href="https://www.linkedin.com/in/volvvictory/" target="_blank">LinkedIn</a>
-                <a class="book-call" href="https://calendar.google.com/" target="_blank">Book a Call</a>
+<body style="background:#F7F7F7;">
+    <div class="loading-overlay" id="loading-overlay" aria-label="Loading" role="status">
+        <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+        </div>
+    </div>
+    <div id="pink-cursor"></div>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <img src="assets/me.jpeg" alt="Viktoria Volokitina portrait" class="hero-img" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:20px;" />
+                <h1 style="font-size:2.6em;line-height:1.2;position:relative;z-index:2;">
+                  Viktoria Volokitina — a multidisciplinary designer and contemporary artist based in <span class="abu-dhabi-hover" style="position:relative;z-index:3;cursor:pointer;">Abu Dhabi
+                    <span class="ah-bg-img" aria-hidden="true"></span>
+                  </span>.  My practice spans branding, Web3, product visuals, and spatial storytelling. I’m drawn to experiment, which is why this website was vibecoded over a few days.
+                </h1>
+                <p style="font-size:1.18em;line-height:1.6;margin-top:22px;color:#222;max-width:800px;opacity:0.6;">I work in focused creative waves rather than on a fixed daily schedule, always with respect for deadlines. Each project is an immersive process, approached with care and intensity. If more time is ever needed, you'll know early. My goal isn’t just to deliver, but to create something meaningful and lasting.</p>
+                <button class="book-call" id="contact-btn" style="margin-bottom:18px;">Contact</button>
+                <div id="contact-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:4000;background:rgba(0,0,0,0.18);justify-content:center;align-items:center;">
+                    <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(215,186,173,0.13);padding:44px 36px 32px 36px;min-width:320px;max-width:90vw;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center;gap:32px;">
+                        <button id="close-contact-modal" style="position:absolute;top:18px;right:18px;background:none;border:none;font-size:2em;color:#D7BAAD;cursor:pointer;">&times;</button>
+                        <div style="display:flex;gap:18px;justify-content:center;align-items:center;margin:32px 0 0 0;width:100%;">
+                            <a href="https://www.instagram.com/volv_victory/" target="_blank" aria-label="Instagram" class="social-links-modal social-links-btn"><img src="assets/instagram.svg" alt="Instagram" style="width:28px;height:28px;" /></a>
+                            <a href="https://www.behance.net/volv_victory" target="_blank" aria-label="Behance" class="social-links-modal social-links-btn"><img src="assets/behance.svg" alt="Behance" style="width:28px;height:28px;" /></a>
+                            <a href="https://www.linkedin.com/in/volvvictory/" target="_blank" aria-label="LinkedIn" class="social-links-modal social-links-btn"><img src="assets/linkedin.svg" alt="LinkedIn" style="width:28px;height:28px;" /></a>
+                        </div>
+                        <a class="book-call-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0gXCwYVL7o99qEhqoWkemf4UN5DNvc6fpr_NUs3JcYjqJNbyN9hbXCpE5Qf_ULKrvOrfjbDSy3" target="_blank">Book a Call</a>
+                    </div>
+                </div>
+                <script>
+                // Contact modal logic
+                document.getElementById('contact-btn').onclick = function() {
+                    document.getElementById('contact-modal').style.display = 'flex';
+                };
+                document.getElementById('close-contact-modal').onclick = function() {
+                    document.getElementById('contact-modal').style.display = 'none';
+                };
+                document.getElementById('contact-modal').onclick = function(e) {
+                    if (e.target === this) this.style.display = 'none';
+                };
+                </script>
+                <style>
+                .social-links-btn {
+                    display: inline-flex !important;
+                    align-items: center;
+                    justify-content: center;
+                    height: 56px;
+                    min-width: 56px;
+                    padding: 0 32px;
+                    border-radius: 28px;
+                    background: #fff;
+                    border: 2px solid #D7BAAD;
+                    transition: background 0.18s, color 0.18s, box-shadow 0.18s, border-color 0.18s;
+                    box-sizing: border-box;
+                    margin: 0 10px 0 0;
+                    box-shadow: 0 2px 12px 0 rgba(215,186,173,0.13), 0 1.5px 6px 0 rgba(215,186,173,0.09);
+                    font-family: 'Syne', Arial, sans-serif;
+                    font-size: 1.18em;
+                    font-weight: 700;
+                    letter-spacing: 0.01em;
+                    color: #3a2b1a !important;
+                    text-decoration: none !important;
+                    gap: 0.5em;
+                }
+                .social-links-btn:hover, .social-links-btn:focus {
+                    background: #D7BAAD;
+                    border-color: #D7BAAD;
+                    color: #fff !important;
+                    box-shadow: 0 6px 24px 0 rgba(215,186,173,0.18), 0 2px 8px 0 rgba(215,186,173,0.13);
+                    transform: translateY(-2px) scale(1.03);
+                }
+                .social-links-btn img, .social-links-btn svg {
+                    width: 28px;
+                    height: 28px;
+                    display: block;
+                    filter: none !important;
+                    fill: #3a2b1a !important;
+                    color: #3a2b1a !important;
+                    transition: fill 0.18s, color 0.18s;
+                }
+                .social-links-btn:hover img, .social-links-btn:focus img,
+                .social-links-btn:hover svg, .social-links-btn:focus svg {
+                    fill: #fff !important;
+                    color: #fff !important;
+                }
+                .book-call-link {
+                    display: block;
+                    margin: 18px auto 0 auto;
+                    font-family: 'Inter', Arial, sans-serif;
+                    font-size: 1.13em;
+                    color: #3a2b1a;
+                    text-decoration: underline;
+                    background: none;
+                    border: none;
+                    padding: 0;
+                    cursor: pointer;
+                    transition: color 0.18s;
+                }
+                .book-call-link:hover, .book-call-link:focus {
+                    color: #D7BAAD;
+                    text-decoration: underline;
+                }
+                </style>
+            </div>
+        </section>
+        <!-- Mahjong Game Section -->
+        <section class="mahjong-game" id="mahjong-game">
+            <div class="mahjong-board" id="mahjong-board"></div>
+            <div class="mahjong-message" id="mahjong-message"></div>
+            <div style="display:flex;gap:18px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
+                <!-- <button class="mahjong-leaderboard-btn" id="mahjong-leaderboard-btn">Leaderboard</button> -->
+                <button class="mahjong-toggle-projects-btn" id="mahjong-toggle-projects-btn">I don't play</button>
+            </div>
+        </section>
+        <section class="projects-v2" id="projects-v2" style="display:none;">
+            <div class="projects-v2-grid" id="projects-v2-grid"></div>
+        </section>
+        <div class="mahjong-leaderboard-popup" id="mahjong-leaderboard-popup" aria-modal="true" role="dialog" tabindex="-1">
+            <div class="mahjong-leaderboard-content">
+                <button class="mahjong-leaderboard-close" id="mahjong-leaderboard-close" aria-label="Close leaderboard">&times;</button>
+                <h3>Leaderboard</h3>
+                <ul class="mahjong-leaderboard-list" id="mahjong-leaderboard-list"></ul>
+                <div style="font-size:0.95em;color:#888;">Best times (seconds) — local to your browser</div>
             </div>
         </div>
-    </section>
-
-    <!-- What I Do Section -->
-    <section class="what-i-do">
-        <h2>What I Do</h2>
-        <div class="services">
-            <div class="service">
-                <h3>Design for Startups <span class="duration">from 3 weeks</span></h3>
-                <ul>
-                    <li>Market research</li>
-                    <li>Naming</li>
-                    <li>Branding (logo, presentations)</li>
-                    <li>Illustrations and visuals</li>
-                    <li>Templates</li>
-                </ul>
+        <!-- Footer Contact Section -->
+        <footer>
+            <div class="footer-content">
+                <!-- You can add footer links or contact info here if needed -->
             </div>
-            <div class="service">
-                <h3>UX/UI Design</h3>
-                <ul>
-                    <li>Concept search</li>
-                    <li>Design</li>
-                    <li>Prototyping</li>
-                </ul>
+            <div class="footer-copyright">
+                © 2025 Viktoria Volokitina. All rights reserved
             </div>
-            <div class="service">
-                <h3>Consultation <span class="duration">1h, $100</span></h3>
-                <ul>
-                    <li>Expert advice to improve your product and design strategy</li>
-                </ul>
+        </footer>
+        
+        <div class="mahjong-leaderboard-popup" id="leaderboard-popup">
+            <div class="mahjong-leaderboard-content">
+                <button class="mahjong-leaderboard-close" id="close-popup">&times;</button>
+                <h3>Mahjong Match - Leaderboard</h3>
+                <ol class="mahjong-leaderboard-list" id="leaderboard-list">
+                    <!-- Leaderboard items will be populated by JavaScript -->
+                </ol>
             </div>
         </div>
-    </section>
-
-    <!-- Projects Showcase Section -->
-    <section class="projects" id="projects" style="position:relative;">
-        <div class="project-grid-overlay" id="project-grid-overlay"></div>
-        <div class="project-list">
-            <a class="project project1" href="#" target="_blank" tabindex="0" aria-label="Brand Identity project">
-                <div class="project-blur-bg"><img src="assets/p_1.png" alt="" aria-hidden="true" /></div>
-                <img src="assets/p_1.png" alt="Project preview" class="project-img-placeholder" />
-                <div class="project-hover">
-                    <h3>Brand Identity</h3>
-                    <span class="project-year">2024</span>
-                    <div class="hashtags"><span>#branding</span> <span>#identity</span> <span>#logo</span></div>
-                </div>
-            </a>
-            <a class="project project2" href="#" target="_blank" tabindex="0" aria-label="Web3 Visuals project">
-                <div class="project-blur-bg"><img src="assets/p_1.png" alt="" aria-hidden="true" /></div>
-                <img src="assets/p_1.png" alt="Project preview" class="project-img-placeholder" />
-                <div class="project-hover">
-                    <h3>Web3 Visuals</h3>
-                    <span class="project-year">2023</span>
-                    <div class="hashtags"><span>#web3</span> <span>#visuals</span> <span>#crypto</span></div>
-                </div>
-            </a>
-            <a class="project project3" href="#" target="_blank" tabindex="0" aria-label="Spatial Storytelling project">
-                <div class="project-blur-bg"><img src="assets/p_1.png" alt="" aria-hidden="true" /></div>
-                <img src="assets/p_1.png" alt="Project preview" class="project-img-placeholder" />
-                <div class="project-hover">
-                    <h3>Spatial Storytelling</h3>
-                    <span class="project-year">2022</span>
-                    <div class="hashtags"><span>#spatial</span> <span>#storytelling</span> <span>#art</span></div>
-                </div>
-            </a>
-            <a class="project project4" href="#" target="_blank" tabindex="0" aria-label="Interactive Installations project">
-                <div class="project-blur-bg"><img src="assets/p_1.png" alt="" aria-hidden="true" /></div>
-                <img src="assets/p_1.png" alt="Project preview" class="project-img-placeholder" />
-                <div class="project-hover">
-                    <h3>Interactive Installations</h3>
-                    <span class="project-year">2022</span>
-                    <div class="hashtags"><span>#interactive</span> <span>#installation</span> <span>#art</span></div>
-                </div>
-            </a>
-            <a class="project project5" href="#" target="_blank" aria-label="Brand Campaign project">
-                <div class="project-blur-bg"><img src="assets/p_1.png" alt="" aria-hidden="true" /></div>
-                <img src="assets/p_1.png" alt="Project preview" class="project-img-placeholder" />
-                <div class="project-hover">
-                    <h3>Brand Campaign</h3>
-                    <span class="project-year">2021</span>
-                    <div class="hashtags"><span>#campaign</span> <span>#branding</span> <span>#visuals</span></div>
-                </div>
-            </a>
-            <a class="project project6" href="#" target="_blank" aria-label="AR Experience project">
-                <div class="project-blur-bg"><img src="assets/p_1.png" alt="" aria-hidden="true" /></div>
-                <img src="assets/p_1.png" alt="Project preview" class="project-img-placeholder" />
-                <div class="project-hover">
-                    <h3>AR Experience</h3>
-                    <span class="project-year">2021</span>
-                    <div class="hashtags"><span>#ar</span> <span>#experience</span> <span>#future</span></div>
-                </div>
-            </a>
-            <a class="project project7" href="#" target="_blank" aria-label="Product Visuals project">
-                <div class="project-blur-bg"><img src="assets/p_1.png" alt="" aria-hidden="true" /></div>
-                <img src="assets/p_1.png" alt="Project preview" class="project-img-placeholder" />
-                <div class="project-hover">
-                    <h3>Product Visuals</h3>
-                    <span class="project-year">2020</span>
-                    <div class="hashtags"><span>#product</span> <span>#visuals</span> <span>#design</span></div>
-                </div>
-            </a>
-            <a class="project project8" href="#" target="_blank" aria-label="Brand Refresh project">
-                <div class="project-blur-bg"><img src="assets/p_1.png" alt="" aria-hidden="true" /></div>
-                <img src="assets/p_1.png" alt="Project preview" class="project-img-placeholder" />
-                <div class="project-hover">
-                    <h3>Brand Refresh</h3>
-                    <span class="project-year">2020</span>
-                    <div class="hashtags"><span>#brand</span> <span>#refresh</span> <span>#identity</span></div>
-                </div>
-            </a>
-            <a class="project project9" href="#" target="_blank" aria-label="Art & Tech Fusion project">
-                <div class="project-blur-bg"><img src="assets/p_1.png" alt="" aria-hidden="true" /></div>
-                <img src="assets/p_1.png" alt="Project preview" class="project-img-placeholder" />
-                <div class="project-hover">
-                    <h3>Art & Tech Fusion</h3>
-                    <span class="project-year">2019</span>
-                    <div class="hashtags"><span>#art</span> <span>#tech</span> <span>#fusion</span></div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer Contact Section -->
-    <footer>
-        <div class="footer-content">
-            <!-- You can add footer links or contact info here if needed -->
-        </div>
-        <div class="footer-copyright">
-            © 2025 Viktoria Volokitina. All rights reserved
-        </div>
-    </footer>
-    <section class="vibe-footer" id="vibe-footer">
-        <div class="vibe-footer-content">
-            <span class="footer-graffiti vibe-shine">this webside was vibecoded by myself — it has cool vibe.</span>
-        </div>
-    </section>
-    <script src="scripts/main.js"></script>
-    <script>
-        // Hamburger menu toggle
-        const hamburger = document.getElementById('hamburger-menu');
-        const nav = document.querySelector('.header-content nav');
-        hamburger.addEventListener('click', () => {
-            nav.classList.toggle('open');
+        <script src="scripts/main.js"></script>
+        <script>
+    // --- MAHJONG GAME LOGIC + LEADERBOARD + TOGGLE PROJECTS ---
+    (function() {
+        // --- WIN POPUP: Create before game logic so variables are available ---
+        const winPopup = document.createElement('div');
+        winPopup.id = 'mahjong-win-popup';
+        winPopup.style = 'display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:3000;background:rgba(0,0,0,0.18);justify-content:center;align-items:center;';
+        winPopup.innerHTML = `
+            <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(215,186,173,0.13);padding:44px 36px 32px 36px;min-width:320px;max-width:90vw;text-align:center;position:relative;">
+                <div id="mahjong-win-message" style="font-size:1.25em;color:#D7BAAD;margin-bottom:24px;"></div>
+                <button id="mahjong-win-ok" style="padding:10px 32px;font-size:1.1em;font-family:'Syne',Arial,sans-serif;background:#D7BAAD;color:#fff;border:none;border-radius:22px;cursor:pointer;">Okay</button>
+            </div>
+        `;
+        document.body.appendChild(winPopup);
+        const winMessage = winPopup.querySelector('#mahjong-win-message');
+        const winOkBtn = winPopup.querySelector('#mahjong-win-ok');
+        winOkBtn.addEventListener('click', () => { winPopup.style.display = 'none'; });
+        // --- MAHJONG GAME LOGIC ---
+        const imageList = [
+            'assets/01_m.jpg',
+            'assets/02_m.jpg',
+            'assets/03_m.jpg',
+            'assets/04_m.jpg',
+            'assets/05_m.jpg',
+            'assets/06_m.jpg',
+            'assets/07_m.jpg'
+        ];
+        let tiles = [...imageList, ...imageList];
+        let startTime, timerActive = false;
+        // Shuffle
+        function shuffle(arr) { return arr.sort(() => Math.random() - 0.5); }
+        function resetGame() {
+            tiles = shuffle([...imageList, ...imageList]);
+            matched = 0;
+            first = null; second = null; lock = false;
+            renderBoard();
+            message.textContent = '';
+            startTime = Date.now();
+            timerActive = true;
+        }
+        const board = document.getElementById('mahjong-board');
+        const message = document.getElementById('mahjong-message');
+        let first = null, second = null, lock = false, matched = 0;
+        function renderBoard() {
+            board.innerHTML = '';
+            tiles.forEach((img, idx) => {
+                const tile = document.createElement('div');
+                tile.className = 'mahjong-tile';
+                tile.dataset.idx = idx;
+                tile.tabIndex = 0;
+                tile.setAttribute('aria-label', 'Mahjong tile');
+                tile.innerHTML = '<div class="mahjong-tile-inner"><div class="mahjong-tile-front"><img src="assets/cover.jpg" alt="Card cover" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" /></div><div class="mahjong-tile-back"><img src="' + img + '" alt="Tile image" /></div></div>';
+                tile.addEventListener('click', (e) => { flipTile(tile, idx); });
+                tile.addEventListener('keypress', e => { if (e.key === 'Enter' || e.key === ' ') flipTile(tile, idx); });
+                board.appendChild(tile);
+            });
+        }
+        function flipTile(tile, idx) {
+            if (lock || tile.classList.contains('matched') || tile.classList.contains('flipped')) return;
+            tile.classList.add('flipped');
+            if (!first) {
+                first = tile;
+            } else if (!second && tile !== first) {
+                second = tile;
+                lock = true;
+                setTimeout(() => {
+                    const img1 = tiles[+first.dataset.idx];
+                    const img2 = tiles[+second.dataset.idx];
+                    if (img1 === img2) {
+                        first.classList.add('matched');
+                        second.classList.add('matched');
+                        matched += 2;
+                        if (matched === tiles.length) {
+                            timerActive = false;
+                            winMessage.textContent = `Congratulations! You matched all tiles in ${Math.round((Date.now() - startTime) / 1000)} seconds!`;
+                            winPopup.style.display = 'flex';
+                            saveScore(Math.round((Date.now() - startTime) / 1000));
+                            renderLeaderboard();
+                        }
+                    } else {
+                        first.classList.remove('flipped');
+                        second.classList.remove('flipped');
+                    }
+                    first = null; second = null; lock = false;
+                }, 600); // match flip animation duration in CSS
+            }
+        }
+        // --- LEADERBOARD ---
+        // Only add event listeners if the elements exist (button is commented out)
+        const leaderboardBtn = document.getElementById('mahjong-leaderboard-btn');
+        const leaderboardPopup = document.getElementById('mahjong-leaderboard-popup');
+        const leaderboardClose = document.getElementById('mahjong-leaderboard-close');
+        const leaderboardList = document.getElementById('mahjong-leaderboard-list');
+        function getScores() {
+            return JSON.parse(localStorage.getItem('mahjongScores') || '[]');
+        }
+        function saveScore(time) {
+            let scores = getScores();
+            scores.push(time);
+            scores = scores.sort((a,b) => a-b).slice(0, 10); // top 10
+            localStorage.setItem('mahjongScores', JSON.stringify(scores));
+        }
+        function renderLeaderboard() {
+            if (!leaderboardList) return;
+            const scores = getScores();
+            leaderboardList.innerHTML = scores.length ? scores.map((s,i) => `<li>${i+1}. ${s} sec</li>`).join('') : '<li>No scores yet</li>';
+        }
+        if (leaderboardBtn && leaderboardPopup && leaderboardClose) {
+            leaderboardBtn.addEventListener('click', () => {
+                renderLeaderboard();
+                leaderboardPopup.classList.add('open');
+                leaderboardPopup.focus();
+            });
+            leaderboardClose.addEventListener('click', () => {
+                leaderboardPopup.classList.remove('open');
+            });
+            leaderboardPopup.addEventListener('click', e => {
+                if (e.target === leaderboardPopup) leaderboardPopup.classList.remove('open');
+            });
+        }
+        // --- TOGGLE PROJECTS PREVIEW ---
+        const toggleBtn = document.getElementById('mahjong-toggle-projects-btn');
+        const gameSection = document.getElementById('mahjong-game');
+        const projectsSection = document.getElementById('projects-v2');
+        const projectsGrid = document.getElementById('projects-v2-grid');
+        let projectsVisible = false;
+        function renderProjectsGrid() {
+            projectsGrid.innerHTML = imageList.map(img => `<img src="${img}" class="project-v2-img" tabindex="0" alt="Project preview image" />`).join('');
+        }
+        toggleBtn.addEventListener('click', () => {
+            projectsVisible = !projectsVisible;
+            if (projectsVisible) {
+                gameSection.style.display = 'none';
+                projectsSection.style.display = 'block';
+                renderProjectsGrid();
+                toggleBtn.textContent = 'Back to game';
+            } else {
+                gameSection.style.display = '';
+                projectsSection.style.display = 'none';
+                toggleBtn.textContent = "I don't play";
+            }
         });
-        hamburger.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                nav.classList.toggle('open');
-            }
+        // --- INIT ---
+        resetGame();
+    })();
+    // --- PINK CIRCLE MOUSE ---
+    (function() {
+        const cursor = document.getElementById('pink-cursor');
+        document.addEventListener('mousemove', function(e) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
-        // --- GRID OVERLAY SCRIPT ---
-        (function drawGrid() {
-            const overlay = document.getElementById('grid-overlay');
-            if (!overlay) return;
-            // Clear previous
-            overlay.innerHTML = '';
-            // Vertical lines (12 cols)
-            const cols = 12;
-            for (let i = 1; i < cols; i++) {
-                const v = document.createElement('div');
-                v.className = 'grid-vertical';
-                v.style.left = (i * 100 / cols) + 'vw';
-                overlay.appendChild(v);
-            }
-            // Horizontal lines (every 100px)
-            const rows = Math.floor(window.innerHeight / 100);
-            for (let i = 1; i < rows; i++) {
-                const h = document.createElement('div');
-                h.className = 'grid-horizontal';
-                h.style.top = (i * 100) + 'px';
-                overlay.appendChild(h);
-            }
-            window.addEventListener('resize', drawGrid);
-        })();
-        // --- PROJECT SECTION GRID OVERLAY SCRIPT ---
-        (function drawProjectGrid() {
-            const grid = document.getElementById('project-grid-overlay');
-            if (!grid) return;
-            grid.innerHTML = '';
-            // 12 columns
-            const cols = 12;
-            for (let i = 1; i < cols; i++) {
-                const v = document.createElement('div');
-                v.className = 'project-grid-vertical';
-                v.style.left = (i * 100 / cols) + '%';
-                grid.appendChild(v);
-            }
-            // Horizontal lines every 100px
-            const section = document.getElementById('projects');
-            if (!section) return;
-            const height = section.offsetHeight;
-            const rows = Math.floor(height / 100);
-            for (let i = 1; i < rows; i++) {
-                const h = document.createElement('div');
-                h.className = 'project-grid-horizontal';
-                h.style.top = (i * 100) + 'px';
-                grid.appendChild(h);
-            }
-            window.addEventListener('resize', drawProjectGrid);
-        })();
+        document.addEventListener('mousedown', function() {
+            cursor.style.width = '44px';
+            cursor.style.height = '44px';
+            cursor.style.opacity = '0.28';
+        });
+        document.addEventListener('mouseup', function() {
+            cursor.style.width = '32px';
+            cursor.style.height = '32px';
+            cursor.style.opacity = '0.18';
+        });
+    })();
+    window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.getElementById('loading-overlay').style.opacity = '0';
+            setTimeout(function() {
+                document.getElementById('loading-overlay').style.display = 'none';
+            }, 400);
+        }, 900); // show loading for at least 0.9s
+    });
     </script>
+    <script data-goatcounter="https://chencri.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
