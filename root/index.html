@@ -565,10 +565,15 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 .proficiency-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-direction: row;
     gap: 32px;
     margin-top: 24px;
+}
+@media (max-width: 768px) {
+    .proficiency-grid {
+        flex-direction: column;
+    }
 }
 .proficiency .section {
     text-align: left;
