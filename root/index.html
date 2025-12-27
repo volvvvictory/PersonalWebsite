@@ -686,9 +686,36 @@
     <!-- Header -->
     <header style="position:fixed;top:0;left:0;width:100%;background:#F7F7F7;z-index:1000;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #D7BAAD;">
         <div style="display:flex;align-items:center;gap:32px;width:100%;">
-            <h1 style="font-family:'Syne',Arial,sans-serif;font-size:1.5em;color:#111;margin:0;">Viktoria Volokitina</h1>
-            <nav style="margin-left:auto;">
-                <button class="book-call" id="contact-btn" style="margin:0 16px;">Contact</button>
+            <h1 style="font-family:'Syne',Arial,sans-serif;font-size:1.5em;color:#111;margin:0;">
+                <a href="index.html" style="color:inherit;text-decoration:none;">Viktoria Volokitina</a>
+            </h1>
+            <nav style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+                <div class="nav-dropdown" style="position:relative;display:inline-block;margin:0 16px;">
+                    <a href="#" style="cursor:pointer;">Selected &#9662;</a>
+                    <div class="dropdown-content" style="display:none;position:absolute;left:0;top:100%;background:#fff;border:1px solid #D7BAAD;border-radius:8px;box-shadow:0 2px 12px rgba(215,186,173,0.13);min-width:180px;z-index:2000;">
+                        <a href="index.html" style="display:block;padding:10px 18px;color:#3a2b1a;text-decoration:none;">Main Portfolio</a>
+                        <a href="special1.html" style="display:block;padding:10px 18px;color:#3a2b1a;text-decoration:none;">Special Project 1</a>
+                        <a href="special2.html" style="display:block;padding:10px 18px;color:#3a2b1a;text-decoration:none;">Special Project 2</a>
+                        <!-- Add more special projects as needed -->
+                    </div>
+                </div>
+                <a href="about.html" style="margin:0 16px;">About</a>
+                            <script>
+                            // Dropdown menu logic for Selected
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var dropdown = document.querySelector('.nav-dropdown');
+                                var content = dropdown.querySelector('.dropdown-content');
+                                dropdown.addEventListener('mouseenter', function() {
+                                    content.style.display = 'block';
+                                });
+                                dropdown.addEventListener('mouseleave', function() {
+                                    content.style.display = 'none';
+                                });
+                            });
+                            </script>
+                <a href="https://www.instagram.com/volv_victory/" target="_blank" aria-label="Instagram" class="social-links-modal social-links-btn"><img src="assets/instagram.svg" alt="Instagram" style="width:28px;height:28px;" /></a>
+                <a href="https://www.behance.net/volv_victory" target="_blank" aria-label="Behance" class="social-links-modal social-links-btn"><img src="assets/behance.svg" alt="Behance" style="width:28px;height:28px;" /></a>
+                <a href="https://www.linkedin.com/in/volvvictory/" target="_blank" aria-label="LinkedIn" class="social-links-modal social-links-btn"><img src="assets/linkedin.svg" alt="LinkedIn" style="width:28px;height:28px;" /></a>
             </nav>
         </div>
 
@@ -830,65 +857,22 @@
 
             <!-- Lightbox -->
             <div id="lightbox" style="display:none;position:fixed;inset:0;z-index:3500;background:rgba(0,0,0,0.75);align-items:center;justify-content:center;padding:24px;display:flex;flex-direction:column;">
-                <button id="lightbox-close" aria-label="Close" style="position:absolute;top:18px;right:18px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;">&times;</button>
-                <img id="lightbox-img" src="" alt="" style="max-width:calc(100% - 48px);max-height:calc(100% - 48px);border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.5);" />
-                <div id="lightbox-caption" style="color:#fff;text-align:center;margin-top:12px;font-family:Inter,Arial,sans-serif;"></div>
+                                <button id="lightbox-close" aria-label="Close" style="position:absolute;top:18px;right:18px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;">&times;</button>
+                                <img id="lightbox-img" src="" alt="" style="max-width:calc(100% - 48px);max-height:calc(100% - 48px);border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.5);" />
+                                <div id="lightbox-caption" style="color:#fff;text-align:center;margin-top:12px;font-family:Inter,Arial,sans-serif;"></div>
+                                <script>
+                                // Ensure lightbox is hidden on page load
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var lightbox = document.getElementById('lightbox');
+                                    if (lightbox) lightbox.style.display = 'none';
+                                });
+                                </script>
             </div>
         </section> <!-- end gallery -->
 
-        <!-- About Section -->
-        <section class="about" id="about" style="max-width:800px;margin:48px auto;">
-            <h2>About</h2>
-            <p style="font-size:1.18em;line-height:1.6;margin-top:22px;color:#222;max-width:800px;">Viktoria Volokitina — a multidisciplinary designer and contemporary artist based in Abu Dhabi. My practice spans branding, Web3, product visuals, and spatial storytelling. I’m drawn to experiment, which is why this website was vibecoded over a few days.</p>
-            <p style="font-size:1.18em;line-height:1.6;margin-top:22px;color:#222;max-width:800px;opacity:0.6;">I work in focused creative waves rather than on a fixed daily schedule, always with respect for deadlines. Each project is an immersive process, approached with care and intensity. If more time is ever needed, you'll know early. My goal isn’t just to deliver, but to create something meaningful and lasting.</p>
-        </section>
+        <!-- ...existing code... -->
 
-        <!-- Selected exhibitions & awards -->
-        <section class="highlights" id="highlights" aria-labelledby="highlights-title" style="max-width:800px;margin:48px auto;">
-            <h2 id="highlights-title">Highlights</h2>
-            <div class="timeline" role="list">
-                <div class="timeline-item" role="listitem"><strong>2024:</strong> Featured in <em>Evolution</em> (Tsifergauz, St. Petersburg) and <em>AI:i? Neural Networks and Creative Process</em> (Krasnokholmskaya Gallery).</div>
-                <div class="timeline-item" role="listitem"><strong>2023:</strong> Participant in <em>Forms of Dialogue</em> (MMOMA) and <em>ARTWEEK</em> (Novosibirsk).</div>
-                <div class="timeline-item" role="listitem"><strong>2022:</strong> Winner of the <em>Start Science-Art</em> grant for the project <em>Sluchilos</em>.</div>
-                <div class="timeline-item" role="listitem"><strong>2021:</strong> Exhibited <em>Selfportrait</em> at Erarta Museum; Participant in the <em>Venice XVII Architecture Biennale</em> (Russian collaborative project "Open").</div>
-                <div class="timeline-item" role="listitem"><strong>2020:</strong> <strong>Gold Medalist/Winner</strong> of the <em>ArtMasters National Championship</em> in the Mixed Reality Designer category.</div>
-            </div>
-        </section>
-
-        <!-- Technical proficiency -->
-        <section class="proficiency" id="proficiency" aria-labelledby="proficiency-title">
-            <div class="proficiency-grid">
-                <div class="section">
-                    <strong>Design & 3D</strong>
-                    <div class="chips" aria-hidden="false">
-                        <span class="chip">Figma</span>
-                        <span class="chip">Adobe Creative Suite</span>
-                        <span class="chip">Blender</span>
-                        <span class="chip">TouchDesigner</span>
-                        <span class="chip">Midjourney</span>
-                        <span class="chip">Framer</span>
-                    </div>
-                </div>
-                <div class="section">
-                    <strong>Dev</strong>
-                    <div class="chips">
-                        <span class="chip">Unity</span>
-                        <span class="chip">UE5</span>
-                        <span class="chip">Python (basics)</span>
-                        <span class="chip">HTML/CSS/JS</span>
-                    </div>
-                </div>
-                <div class="section">
-                    <strong>Project Management</strong>
-                    <div class="chips">
-                        <span class="chip">Jira</span>
-                        <span class="chip">GitHub</span>
-                        <span class="chip">Notion</span>
-                        <span class="chip">Collaboration with curators, scientists, developers</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- ...existing code... -->
 
         <!-- Mahjong Game Section (removed) -->
         <!-- <section class="mahjong-game" id="mahjong-game">
@@ -985,7 +969,7 @@
         }).join('')}
     </div>
     <div style="min-width:260px;max-width:340px;color:#fff;font-size:1.08em;line-height:1.5;text-align:left;background:linear-gradient(135deg,rgba(34,34,34,0.85) 80%,rgba(215,186,173,0.18) 100%);padding:22px 22px 22px 28px;border-radius:16px;box-shadow:0 2px 12px 0 rgba(34,34,34,0.13);backdrop-filter:blur(2px);">
-        <strong>For All Exists Infinity 2021</strong><br>VR game art project where you are able to influence the virtual world, creating traces. These traces are a way of communication with artificial intelligence.<br><br><em>Exhibit:</em> Game Junction<br><em>Artists:</em> Victoria Volokitina, Leonid Gremyachikh
+        <strong>For All Exists Infinity 2021</strong><br>VR game art project where you are able to influence the virtual world, creating traces. These traces are a way of communication with artificial intelligence.<br><br><em>Exhibit:</em> Gallery Khodynka, 'Game Junction' exhibition, 2021<br><em>Artists:</em> Victoria Volokitina, Leonid Gremyachikh
     </div>
 </div>
 <div class="allinall-modal-mobile" style="display:none;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:98vw;">
