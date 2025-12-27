@@ -1,52 +1,85 @@
 <!DOCTYPE html>
-<html lang="en"> Arial, sans-serif;
-<head>rgin: 0;
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viktoria Volokitina — Designer & Artist</title>
-}
     <link rel="stylesheet" href="styles/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    background: none;
     <!-- Favicons & PWA -->
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#FFFFFF">
-    justify-content: space-between;
-    <!-- SEO -->100px;
+    <!-- SEO -->
     <meta name="description" content="Viktoria Volokitina – Artist and designer. Explore my portfolio showcasing art, games, and 3D works.">
     <meta name="keywords" content="Viktoria Volokitina, contemporary art, digital art, portfolio, interactive installations, 3D art">
-}
-    <!-- Open Graph -->av-left nav, .nav-left .hamburger {
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Meet Viktoria">
     <meta property="og:description" content="Explore my portfolio showcasing art, games, and 3D works">
     <meta property="og:image" content="https://volvvictory.netlify.app/ViktoriaOpenGraph.png">
     <meta property="og:url" content="https://volvvictory.netlify.app/">
-    max-width: 900px;
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Meet Viktoria">
     <meta name="twitter:description" content="Explore my portfolio showcasing art, games, and 3D works">
     <meta name="twitter:image" content="https://volvvictory.netlify.app/ViktoriaOpenGraph.png">
-.hero-content h1 {
-    <style>mily: 'Syne', Arial, sans-serif;
+    <style>
+        /* Clean main stylesheet: remove 'Arial' and use Inter everywhere */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;700;800&display=swap');
+
+        :root{
+          --bg: #F7F7F7;
+          --text: #111;
+          --muted: #666;
+          --accent: #D7BAAD;
+        }
+
+        /* Global reset + typography */
+        *{box-sizing:border-box}
+        html,body{height:100%;margin:0;padding:0}
+        html,body,input,button,textarea,select{
+          font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+          color:var(--text);
+          -webkit-font-smoothing:antialiased;
+          -moz-osx-font-smoothing:grayscale;
+        }
+
+        /* Headings use Inter as well (keeps consistent) */
+        h1,h2,h3,h4,h5,h6{font-family:'Inter',inherit;margin:0;font-weight:700}
+
+        /* Basic layout helpers */
+        .container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+        /* Links & buttons default */
+        a{color:var(--accent);text-decoration:none}
+        a:hover{text-decoration:underline}
+        button, .btn{font-family:inherit;cursor:pointer}
+
+        /* Accessibility */
+        img{max-width:100%;height:auto;display:block}
+
+        /* Small utilities used across the site */
+        .text-center{text-align:center}
+        .mb-8{margin-bottom:2rem}
+        .mt-8{margin-top:2rem}
+
         /* --- LOADING SCREEN --- */
         .loading-overlay {
             position: fixed;
             z-index: 5000;;
             top: 0; left: 0; width: 100vw; height: 100vh;
             background: #F7F7F7;
-            display: flex;Arial, sans-serif;
+            display: flex;
             align-items: center;
             justify-content: center;
             transition: opacity 0.4s;
         } {
         .loading-dots {
             display: flex;
-            gap: 12px;r', Arial, sans-serif;
+            gap: 12px;
         }height: 1.8;
         .loading-dot {
             width: 18px;
