@@ -1,317 +1,317 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f7f6f9;
-    color: #222;
+<!DOCTYPE html>
+<html lang="en"> Arial, sans-serif;
+<head>rgin: 0;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viktoria Volokitina — Designer & Artist</title>
 }
-
-.main-header {
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Inter:wght@100..900&display=swap" rel="stylesheet">
     background: none;
-    box-shadow: none;
-    border-bottom: none;
-}
-.header-content {
-    display: flex;
-    align-items: center;
+    <!-- Favicons & PWA -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#FFFFFF">
     justify-content: space-between;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 18px 24px 0 24px;
+    <!-- SEO -->100px;
+    <meta name="description" content="Viktoria Volokitina – Artist and designer. Explore my portfolio showcasing art, games, and 3D works.">
+    <meta name="keywords" content="Viktoria Volokitina, contemporary art, digital art, portfolio, interactive installations, 3D art">
 }
-.header-content nav, .nav-left nav, .nav-left .hamburger {
-    display: none !important;
-}
-
-.hero-content {
-    text-align: left;
+    <!-- Open Graph -->av-left nav, .nav-left .hamburger {
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Meet Viktoria">
+    <meta property="og:description" content="Explore my portfolio showcasing art, games, and 3D works">
+    <meta property="og:image" content="https://volvvictory.netlify.app/ViktoriaOpenGraph.png">
+    <meta property="og:url" content="https://volvvictory.netlify.app/">
     max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px;
-    box-sizing: border-box;
-    word-break: break-word;
-}
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Meet Viktoria">
+    <meta name="twitter:description" content="Explore my portfolio showcasing art, games, and 3D works">
+    <meta name="twitter:image" content="https://volvvictory.netlify.app/ViktoriaOpenGraph.png">
 .hero-content h1 {
-    font-family: 'Syne', Arial, sans-serif;
-    font-size: 2.6em;
-    line-height: 1.2;
-    max-width: 100%;
-    word-break: break-word;
-}
-.hero-content .subtitle {
-    font-family: 'Inter', Arial, sans-serif;
-    line-height: 1.8;
-    color: #222;
-}
-.subtitle {
-    font-size: 1.3em;
-    margin-bottom: 20px;
-    font-family: 'Inter', Arial, sans-serif;
-    line-height: 1.8;
-    color: #222;
-}
-.social-links {
-    margin: 18px 0 0 0;
-}
-.social-links a {
-    color: #ff0081;
-    font-weight: 600;
-    text-decoration: none;
-    margin-right: 18px;
-    transition: color 0.2s;
-}
-.social-links a:last-child {
-    margin-right: 0;
-}
-.social-links a:hover {
-    color: #fff;
-}
-
-.what-i-do {
-    background: #fff;
-    padding: 60px 0;
-    text-align: center;
-}
-.services {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: 30px;
-    align-items: stretch;
-}
-.service {
-    background: none;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 30px 24px;
+    <style>mily: 'Syne', Arial, sans-serif;
+        /* --- LOADING SCREEN --- */
+        .loading-overlay {
+            position: fixed;
+            z-index: 5000;;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #F7F7F7;
+            display: flex;Arial, sans-serif;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s;
+        } {
+        .loading-dots {
+            display: flex;
+            gap: 12px;r', Arial, sans-serif;
+        }height: 1.8;
+        .loading-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #D7BAAD;
+            opacity: 0.7;
+            animation: loading-bounce 1s infinite alternate;
+        }weight: 600;
+        .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes loading-bounce {
+            0% { transform: translateY(0); opacity: 0.7; }
+            100% { transform: translateY(-18px); opacity: 1; }
+        }n-right: 0;
+        /* --- HERO SECTION --- */
+        .hero {:hover {
+            background: #F7F7F7;
+            padding-top: 64px;
+            padding-bottom: 80px;
+            margin-top: 0;
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            /* border: 2px solid #D7BAAD; */
+        }ay: flex;
+        .hero-content {umn;
+            text-align: left;
+            max-width: 900px;
+            width: 90%;h;
+            margin: 0 auto;
+            padding-top: 32px;
+            padding-bottom: 0;
+        }r-radius: 0;
+        .hero-content h1 {
+            font-size: 1.5em !important;
+            line-height: 1.3;
+        }eight: 180px;
+        .hero-content .subtitle {
+            font-family: 'Syne', Arial, sans-serif;
+        }idth: 600px;
+        .hero-img {1px solid #e0e0e0;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }n-top: 0;
+        @media (max-width: 900px) {
+            .hero-content {
+                max-width: 98vw;
+                width: 100%;
+                padding: 0 8px 0 8px;
+            }: 0.9em;
+        }: #6dd5ed;
+        @media (max-width: 700px) {
+            .hero {x;
+                padding-top: 18px;
+                padding-bottom: 72px;
+                margin: 0;
+            };
+            .hero-content {
+                max-width: 100vw;
+                width: 100%;
+                padding: 24px 4vw 0 4vw;
+            }60px 0 60px 0;
+            .hero-img {
+                margin-top: 12px !important;
+            } {
+        }ay: flex;
+        @media (max-width: 500px) {
+            .hero {: center;
+                padding-bottom: 90px;
+            }p: 30px;
+        }
+        /* --- FOOTER --- */
+        footer {lative;
+            background: #F7F7F7;
+            color: #111;
+            text-align: center;
+            padding: 32px 0 18px 0;
+        }low: visible;
+        .footer-content a {
+            color: #111;art;
+            text-decoration: underline;
+        }ng: 0 18px;
+        .footer-copyright {ubic-bezier(.4,0,.2,1);
+            font-size: 12px;
+            color: #111;
+            margin-top: 8px;ranslateY(-28px) rotate(-3deg);
+        }ex: 5;
+        .social-links a,6px 16px #D7BAAD, 0 16px 64px 0 #B58E7B, 0 0 0 12px #fffbe9;
+        .book-call {id #D7BAAD;
+            color: #D7BAAD;
+            text-decoration: none;ate(1.22) contrast(1.13);
+        }ition: all 0.28s cubic-bezier(.4,0,.2,1);
+        .book-call::after {
+            content: ' \2192'; /* Unicode right arrow */
+            font-size: 1.1em;
+            margin-left: 0.2em;
+            color: #111;.2s;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }fy-content: flex-end;
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background: #333;
+            margin-bottom: 4px;
+            transition: all 0.3s;
+        }round: rgba(30,30,30,0.82);
+        @media (max-width: 768px) {
+            .nav-left nav {
+                display: none;px;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;hover {
+                background: white;
+                width: 100%;
+                padding: 10px 0;995);
+            }w: 0 36px 96px #D7BAAD;
+            .nav-left nav.open {bezier(.4,0,.2,1);
+                display: flex;
+            }r h3 {
+            .hamburger {
+                display: flex;
+            }ly: 'Syne', Arial, sans-serif;
+        }weight: 700;
+        .vibe-footer {
+            display: none;
+        }size: 1em;
+        /* --- PROJECTS V2 --- */
+        .projects-v2 {;
+            display: block;rial, sans-serif;
+            max-width: 1100px;
+            margin: 0 auto 48px auto;
+            padding: 0 16px;
+        }: #fff;
+        .projects-v2-grid {
+            display: grid;Arial, sans-serif;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            justify-content: center;g, #232526 0%, #414345 100%);
+            align-items: center;
+        }align: center;
+        .project-v2-img {0;
+            width: 100%;
+            aspect-ratio: 4/5;l, sans-serif;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(215,186,173,0.06);
+            background: #ececec;
+            transition: box-shadow 0.18s cubic-bezier(.4,0,.2,1), transform 0.18s;
+        }n: 0 auto;
+        .project-v2-img:hover, .project-v2-img:focus {
+            box-shadow: 0 4px 16px rgba(215,186,173,0.13);
+            transform: translateY(-2px) scale(1.03);
+            outline: none;
+        }ontent a {
+        /* --- MAHJONG GAME --- */
+        .mahjong-game {ne;
+            max-width: 1100px;
+            margin: 100px auto 48px auto; /* Increase top margin for more space from hero */
+            padding: 0 16px;
+            text-align: center;
+        }ontent a:hover {
+        .mahjong-title {
+            font-family: 'Syne', Arial, sans-serif;
+            font-size: 2em;
+            margin-bottom: 24px;
+            color: #111;
+        }size: 1.08em;
+        .mahjong-board {em;
+            display: grid !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: auto !important;
+            min-height: 180px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 18px;
+            justify-content: center;
+            justify-items: center;ns-serif;
+            align-items: center;
+            margin: 0 auto 0 auto; /* Remove bottom margin to eliminate line/gap */
+        }shadow: 2px 2px 0 #232526, 4px 4px 0 #6dd5ed;
+        .mahjong-message {
+            margin-top: 18px;
+            min-height: 1.5em;
+            padding: 0 0.5em;
+        }
+        /* --- MAHJONG GAME CARDS/TILES: Restore Card Styles --- */
+.mahjong-tile {nu styles */
     width: 100%;
-    min-height: 180px;
-    text-align: left;
-    margin: 0 auto;
-    max-width: 600px;
-    border-bottom: 1px solid #e0e0e0;
-}
-.service:last-child {
-    border-bottom: none;
-}
-.service h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 1.15em;
-    color: #35424a;
-}
-.service .duration {
-    font-size: 0.9em;
-    color: #6dd5ed;
-    font-weight: normal;
-    margin-left: 8px;
-}
-.service ul {
-    padding-left: 18px;
-    margin: 0;
-}
-
-.projects {
-    background: none;
-    padding: 60px 0 60px 0;
-    text-align: center;
-}
-.project-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px 32px;
-    margin-top: 30px;
-}
-.project {
-    position: relative;
-    background: none;
-    box-shadow: none;
-    border-radius: 0;
-    margin: 0;
-    overflow: visible;
-    text-align: left;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 0 18px;
-    transition: all 0.28s cubic-bezier(.4,0,.2,1);
-}
-.project:hover {
-    transform: scale(1.35) translateY(-28px) rotate(-3deg);
-    z-index: 5;
-    box-shadow: 0 36px 96px 16px #D7BAAD, 0 16px 64px 0 #B58E7B, 0 0 0 12px #fffbe9;
-    border: 12px solid #D7BAAD;
-    background: #fffbe9;
-    filter: brightness(1.18) saturate(1.22) contrast(1.13);
-    transition: all 0.28s cubic-bezier(.4,0,.2,1);
-}
-.project-img-placeholder {
-    background: #ccc;
-    display: block;
-    transition: filter 0.2s;
-}
-.project-hover {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    background: rgba(30,30,30,0.82);
-    color: #fff;
-    border-radius: inherit;
-    padding: 24px 20px 18px 24px;
-    transition: opacity 0.25s;
-    pointer-events: none;
-}
-.project:hover .project-hover {
-    opacity: 1;
-    pointer-events: auto;
-    background: rgba(30,30,30,0.995);
-    box-shadow: 0 36px 96px #D7BAAD;
-    transition: all 0.28s cubic-bezier(.4,0,.2,1);
-}
-.project-hover h3 {
-    margin: 0 0 8px 0;
-    font-size: 1.2em;
-    font-family: 'Syne', Arial, sans-serif;
-    font-weight: 700;
-}
-.project-year {
-    font-size: 1em;
-    color: #6dd5ed;
-    margin-bottom: 8px;
-    font-family: 'Inter', Arial, sans-serif;
-}
-.hashtags {
-    font-size: 0.98em;
-    color: #fff;
-    opacity: 0.85;
-    font-family: 'Inter', Arial, sans-serif;
-}
-footer {
-    background: linear-gradient(90deg, #232526 0%, #414345 100%);
-    color: #fff;
-    text-align: center;
-    padding: 40px 0 28px 0;
-    margin-top: 0;
-    font-family: 'Inter', Arial, sans-serif;
-    position: relative;
-    overflow: hidden;
-}
-.footer-content {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1;
-}
-.footer-content a {
-    color: #6dd5ed;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s;
-    font-size: 1.08em;
-}
-.footer-content a:hover {
-    color: #fff;
-    text-decoration: underline;
-}
-.footer-content p {
-    margin: 10px 0;
-    font-size: 1.08em;
-    letter-spacing: 0.01em;
-}
-.footer-content .footer-copyright {
-    font-size: 0.92em;
-    color: #bfc3c7;
-    margin-top: 2px;
-    letter-spacing: 0.04em;
-}
-.footer-graffiti {
-    font-family: 'Syne', Arial, sans-serif;
-    font-size: 1.2em;
-    color: #ffeb3b;
-    text-shadow: 2px 2px 0 #232526, 4px 4px 0 #6dd5ed;
-    margin-top: 18px;
-    letter-spacing: 0.04em;
-    display: inline-block;
-    transform: rotate(-2deg);
-}
-
-/* Hamburger menu styles */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
+    max-width: 180px;
+    aspect-ratio: 4/5;lumn;
+    background: #ececec;ter;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(215,186,173,0.06);
     cursor: pointer;
-    margin-left: 10px;
-    z-index: 200;
+    perspective: 600px;
+    outline: none;
+    transition: box-shadow 0.18s cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+}   width: 100%;
+.mahjong-tile:hover, .mahjong-tile:focus {
+    box-shadow: 0 4px 16px rgba(215,186,173,0.13);
+}   border-radius: 2px;
+.mahjong-tile.flipped .mahjong-tile-inner,
+.mahjong-tile.matched .mahjong-tile-inner {
+    transform: rotateY(180deg);
+}   .header-content nav {
+.mahjong-tile-inner {;
+    width: 100%;: absolute;
+    height: 100%;;
+    border-radius: 12px;
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+    transform-style: preserve-3d;255,0.95);
+    position: relative;px 8px rgba(0,0,0,0.04);
+}       flex-direction: column;
+.mahjong-tile-front, .mahjong-tile-back {
+    position: absolute; 24px 24px;
+    width: 100%;x;
+    height: 100%;
+    left: 0; top: 0;nav.open {
+    border-radius: 12px;
+    backface-visibility: hidden;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
-.hamburger span {
-    height: 4px;
+.mahjong-tile-front {
+    background: #ececec;nt sections */
+}hero-content, .what-i-do, .projects, .footer-content {
+.mahjong-tile-back {px;
+    transform: rotateY(180deg);
+    background: #fff;
+    display: flex;
+    align-items: center; cards to one line on the left */
+    justify-content: center;
+}   gap: 30px;
+.mahjong-tile-back img {
     width: 100%;
-    background: #222;
-    margin: 5px 0;
-    border-radius: 2px;
-    transition: 0.3s;
+    height: 100%;eft;
+    object-fit: cover;start;
+    border-radius: 12px;x-start;
+    display: block !important;
+    opacity: 1 !important;
+    background: #ececec !important;
 }
-@media (max-width: 800px) {
-    .header-content nav {
-        display: none;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100vw;
-        background: rgba(255,255,255,0.95);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 24px 0 24px 24px;
-        gap: 18px;
-    }
-    .header-content nav.open {
-        display: flex;
-    }
-    .hamburger {
-        display: flex;
-    }
-}
-
-/* Add padding for content sections */
-.hero-content, .what-i-do, .projects, .footer-content {
-    padding-left: 24px;
-    padding-right: 24px;
-}
-
-/* Align text in project cards to one line on the left */
-.project-list {
-    gap: 30px;
-}
-.project {
-    text-align: left;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding-left: 18px;
-    padding-right: 18px;
-}
-
-@media (max-width: 1000px) {
-    .services, .project-list {
-        flex-direction: column;
-        align-items: center;
-    }
-    .header-content {
-        flex-direction: column;
-        gap: 12px;
-    }
-    .main-header {
-        padding: 0;
-    }
-}
+.mahjong-tile.matched {px) {
+    opacity: 0.45;oject-list {
+    pointer-events: none;olumn;
+}       align-items: center;
+.mahjong-message {
+    font-size: 1.2em;
+    color: #3a2b1a;ion: column;
+    margin-top: 18px;
+    min-height: 1.5em;
+    background: #F7F7F7;
+    border: none;0;
+    box-shadow: none;
+    padding: 0 0.5em;}/* --- MAHJONG LEADERBOARD POPUP --- */.mahjong-leaderboard-popup,.mahjong-leaderboard-btn {    display: none !important;}/* Remove the following lines to avoid hiding other elements *//*.mahjong-leaderboard-content,.mahjong-leaderboard-close,.mahjong-leaderboard-list li,.mahjong-leaderboard-content h3 {    display: none !important;}*//* --- COLOR THEME CHANGE: Replace all #ff0081 with #D7BAAD --- */.loading-dot {    background: #D7BAAD;}.hero {    background: #F7F7F7;    /* border: 2px solid #D7BAAD; */}.hero {    border: none;}.book-call,.book-call::after,.social-links a,.social-links a.book-call,.social-links a:hover,.social-links a:focus,.mahjong-leaderboard-btn,.mahjong-leaderboard-btn:hover,.mahjong-leaderboard-btn:focus,.mahjong-toggle-projects-btn,.mahjong-toggle-projects-btn:hover,.mahjong-toggle-projects-btn:focus,.mahjong-leaderboard-content h3,.mahjong-leaderboard-close,.mahjong-win-ok,#pink-cursor {    background: #D7BAAD !important;    color: #fff !important;    border-color: #D7BAAD !important;}.social-links a,.social-links a.book-call {    border-color: #D7BAAD !important;}.social-links a:hover img, .social-links a:focus img {    filter: brightness(0) invert(1);}.mahjong-tile:hover, .mahjong-tile:focus {    box-shadow: 0 4px 16px rgba(215,186,173,0.13);}.project-v2-img:hover, .project-v2-img:focus {    box-shadow: 0 4px 16px rgba(215,186,173,0.13);}.mahjong-tile {    box-shadow: 0 2px 8px rgba(215,186,173,0.06);}.project-v2-img {    box-shadow: 0 2px 8px rgba(215,186,173,0.06);}.mahjong-leaderboard-content {    box-shadow: 0 8px 32px rgba(215,186,173,0.13);}.mahjong-win-content {    box-shadow: 0 8px 32px rgba(215,186,173,0.13);}/* --- SOCIAL ICON BUTTONS --- */.social-links a {    display: inline-flex !important;    align-items: center;    justify-content: center;    height: 56px;    min-width: 56px;    padding: 0 32px;    border-radius: 28px;    background: #fff;    border: 2px solid #D7BAAD;    transition: background 0.18s, color 0.18s, box-shadow 0.18s, border-color 0.18s;    box-sizing: border-box;    margin: 0 10px 10px 0;    box-shadow: 0 2px 12px 0 rgba(215,186,173,0.13), 0 1.5px 6px 0 rgba(215,186,173,0.09);    font-family: 'Syne', Arial, sans-serif;    font-size: 1.18em;    font-weight: 700;    letter-spacing: 0.01em;    color: #3a2b1a !important;    text-decoration: none !important;    gap: 0.5em;}.social-links a:hover, .social-links a:focus {    background: #D7BAAD;    border-color: #D7BAAD;    color: #fff !important;    box-shadow: 0 6px 24px 0 rgba(215,186,173,0.18), 0 2px 8px 0 rgba(215,186,173,0.13);    transform: translateY(-2px) scale(1.03);}.social-links img, .social-links svg {    width: 28px;    height: 28px;    display: block;    /* Remove pink filter, set fill via CSS */    filter: none !important;    fill: #3a2b1a !important;    color: #3a2b1a !important;    transition: fill 0.18s, color 0.18s;}.social-links a:hover img, .social-links a:focus img,.social-links a:hover svg, .social-links a:focus svg {    fill: #fff !important;    color: #fff !important;}/* Remove old filter for pink color *//* .social-links img { filter: invert(36%) sepia(99%) saturate(7496%) hue-rotate(314deg) brightness(99%) contrast(106%); } *//* --- PINK CIRCLE MOUSE --- */#pink-cursor {    position: fixed;    top: 0; left: 0;    width: 32px;    height: 32px;    border-radius: 50%;    background: #D7BAAD;    opacity: 0.18;    pointer-events: none;    z-index: 9999;    transform: translate(-50%, -50%);    transition: width 0.18s, height 0.18s, opacity 0.18s, background 0.18s;}@media (max-width: 1024px) {    #pink-cursor {        display: none !important;    }}@media (max-width: 700px) {    #pink-cursor {        display: none !important;    }}.abu-dhabi-hover {    position: relative;    z-index: 3;    cursor: pointer;    display: inline-block;}.ah-bg-img {    display: none;    position: absolute;    left: 50%;    top: 50%;    width: 220px;    height: 620px;    transform: translate(-50%, -60%);    background: url('assets/ah.jpg') center center/cover no-repeat;    opacity: 0.6;    z-index: 1;    pointer-events: none;    border-radius: 18px;    box-shadow: 0 4px 24px rgba(0,0,0,0.10);    transition: opacity 0.25s;}.abu-dhabi-hover:hover .ah-bg-img,.abu-dhabi-hover:focus .ah-bg-img {    display: block;}@media (max-width: 700px) {    .ah-bg-img {        display: none !important;    }}/* --- BUTTONS: Consistent Modern Style --- */.mahjong-toggle-projects-btn,.mahjong-leaderboard-btn,.book-call,.social-links a.book-call {    padding: 0 40px;    height: 54px;    min-width: 170px;    border-radius: 28px;    background: linear-gradient(90deg, #D7BAAD 0%, #f3e7de 100%);    color: #3a2b1a;    border: none;    font-family: 'Syne', Arial, sans-serif;    font-size: 1.18em;    font-weight: 700;    letter-spacing: 0.01em;    cursor: pointer;    transition: box-shadow 0.18s, background 0.18s, color 0.18s, transform 0.13s;    display: inline-flex;    align-items: center;    justify-content: center;    box-shadow: 0 2px 12px 0 rgba(215,186,173,0.13), 0 1.5px 6px 0 rgba(215,186,173,0.09);    outline: none;    text-decoration: none;    margin: 0 10px 10px 0;    position: relative;    overflow: hidden;    gap: 0.5em;}.mahjong-toggle-projects-btn:hover,.mahjong-leaderboard-btn:hover,.book-call:hover,.social-links a.book-call:hover,.mahjong-toggle-projects-btn:focus,.mahjong-leaderboard-btn:focus,.book-call:focus,.social-links a.book-call:focus {    background: linear-gradient(90deg, #e2c7b2 0%, #f7f2ee 100%);    color: #111;    box-shadow: 0 6px 24px 0 rgba(215,186,173,0.18), 0 2px 8px 0 rgba(215,186,173,0.13);    transform: translateY(-2px) scale(1.03);}.mahjong-leaderboard-btn,.mahjong-leaderboard-btn:focus,.mahjong-leaderboard-btn:hover {    display: inline-flex;}    </style></head><body style="background:#F7F7F7;">    <div class="loading-overlay" id="loading-overlay" aria-label="Loading" role="status">        <div class="loading-dots">            <div class="loading-dot"></div>            <div class="loading-dot"></div>            <div class="loading-dot"></div>        </div>    </div>    <div id="pink-cursor"></div>    <!-- header removed -->    <!-- Hero Section -->    <section class="hero" id="hero">        <div class="hero-content">            <img src="assets/me.jpeg" alt="Viktoria Volokitina portrait" class="hero-img" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:20px;" />            <h1 style="font-size:2.6em;line-height:1.2;position:relative;z-index:2;">                  Viktoria Volokitina — a multidisciplinary designer and contemporary artist based in <span class="abu-dhabi-hover" style="position:relative;z-index:3;cursor:pointer;">Abu Dhabi                    <span class="ah-bg-img" aria-hidden="true"></span>                  </span>.  My practice spans branding, Web3, product visuals, and spatial storytelling. I’m drawn to experiment, which is why this website was vibecoded over a few days.                </h1>                <p style="font-size:1.18em;line-height:1.6;margin-top:22px;color:#222;max-width:800px;opacity:0.6;">I work in focused creative waves rather than on a fixed daily schedule, always with respect for deadlines. Each project is an immersive process, approached with care and intensity. If more time is ever needed, you'll know early. My goal isn’t just to deliver, but to create something meaningful and lasting.</p>                <button class="book-call" id="contact-btn" style="margin-bottom:18px;">Contact</button>                <div id="contact-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:4000;background:rgba(0,0,0,0.18);justify-content:center;align-items:center;">                    <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(215,186,173,0.13);padding:44px 36px 32px 36px;min-width:320px;max-width:90vw;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center;gap:32px;">                        <button id="close-contact-modal" style="position:absolute;top:18px;right:18px;background:none;border:none;font-size:2em;color:#D7BAAD;cursor:pointer;">&times;</button>                        <div style="display:flex;gap:18px;justify-content:center;align-items:center;margin:32px 0 0 0;width:100%;">                            <a href="https://www.instagram.com/volv_victory/" target="_blank" aria-label="Instagram" class="social-links-modal social-links-btn"><img src="assets/instagram.svg" alt="Instagram" style="width:28px;height:28px;" /></a>                            <a href="https://www.behance.net/volv_victory" target="_blank" aria-label="Behance" class="social-links-modal social-links-btn"><img src="assets/behance.svg" alt="Behance" style="width:28px;height:28px;" /></a>                            <a href="https://www.linkedin.com/in/volvvictory/" target="_blank" aria-label="LinkedIn" class="social-links-modal social-links-btn"><img src="assets/linkedin.svg" alt="LinkedIn" style="width:28px;height:28px;" /></a>                        </div>                        <a class="book-call-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0gXCwYVL7o99qEhqoWkemf4UN5DNvc6fpr_NUs3JcYjqJNbyN9hbXCpE5Qf_ULKrvOrfjbDSy3" target="_blank">Book a Call</a>                    </div>                </div>                <script>                // Contact modal logic                document.getElementById('contact-btn').onclick = function() {                    document.getElementById('contact-modal').style.display = 'flex';                };                document.getElementById('close-contact-modal').onclick = function() {                    document.getElementById('contact-modal').style.display = 'none';                };                document.getElementById('contact-modal').onclick = function(e) {                    if (e.target === this) this.style.display = 'none';                };                </script>                <style>                .social-links-btn {                    display: inline-flex !important;                    align-items: center;                    justify-content: center;                    height: 56px;                    min-width: 56px;                    padding: 0 32px;                    border-radius: 28px;                    background: #fff;                    border: 2px solid #D7BAAD;                    transition: background 0.18s, color 0.18s, box-shadow 0.18s, border-color 0.18s;                    box-sizing: border-box;                    margin: 0 10px 0 0;                    box-shadow: 0 2px 12px 0 rgba(215,186,173,0.13), 0 1.5px 6px 0 rgba(215,186,173,0.09);                    font-family: 'Syne', Arial, sans-serif;                    font-size: 1.18em;                    font-weight: 700;                    letter-spacing: 0.01em;                    color: #3a2b1a !important;                    text-decoration: none !important;                    gap: 0.5em;                }                .social-links-btn:hover, .social-links-btn:focus {                    background: #D7BAAD;                    border-color: #D7BAAD;                    color: #fff !important;                    box-shadow: 0 6px 24px 0 rgba(215,186,173,0.18), 0 2px 8px 0 rgba(215,186,173,0.13);                    transform: translateY(-2px) scale(1.03);                }                .social-links-btn img, .social-links-btn svg {                    width: 28px;                    height: 28px;                    display: block;                    filter: none !important;                    fill: #3a2b1a !important;                    color: #3a2b1a !important;                    transition: fill 0.18s, color 0.18s;                }                .social-links-btn:hover img, .social-links-btn:focus img,                .social-links-btn:hover svg, .social-links-btn:focus svg {                    fill: #fff !important;                    color: #fff !important;                }                .book-call-link {                    display: block;                    margin: 18px auto 0 auto;                    font-family: 'Inter', Arial, sans-serif;                    font-size: 1.13em;                    color: #3a2b1a;                    text-decoration: underline;                    background: none;                    border: none;                    padding: 0;                    cursor: pointer;                    transition: color 0.18s;                }                .book-call-link:hover, .book-call-link:focus {                    color: #D7BAAD;                    text-decoration: underline;                }                </style>            </div>        </section>        <!-- REPLACED: Mahjong game removed and replaced with image gallery -->        <section class="gallery" id="gallery" style="max-width:1100px;margin:48px auto;padding:0 16px;">            <div id="gallery-grid" class="projects-v2-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;"></div>            <!-- Lightbox -->            <div id="lightbox" style="display:none;position:fixed;inset:0;z-index:3500;background:rgba(0,0,0,0.75);align-items:center;justify-content:center;padding:24px;">                <button id="lightbox-close" aria-label="Close" style="position:absolute;top:18px;right:18px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;">&times;</button>                <img id="lightbox-img" src="" alt="" style="max-width:calc(100% - 48px);max-height:calc(100% - 48px);border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.5);" />                <div id="lightbox-caption" style="color:#fff;text-align:center;margin-top:12px;font-family:Inter,Arial,sans-serif;"></div>            </div>        </section> <!-- end gallery -->        <!-- Selected exhibitions & awards -->        <section class="highlights" id="highlights" aria-labelledby="highlights-title">            <h2 id="highlights-title">Highlights 2018–2025</h2>            <div class="timeline" role="list">                <div class="timeline-item" role="listitem"><strong>2024:</strong> Featured in <em>Evolution</em> (Tsifergauz, St. Petersburg) and <em>AI:i? Neural Networks and Creative Process</em> (Krasnokholmskaya Gallery).</div>                <div class="timeline-item" role="listitem"><strong>2023:</strong> Participant in <em>Forms of Dialogue</em> (MMOMA) and <em>ARTWEEK</em> (Novosibirsk).</div>                <div class="timeline-item" role="listitem"><strong>2022:</strong> Winner of the <em>Start Science-Art</em> grant for the project <em>Sluchilos</em>.</div>                <div class="timeline-item" role="listitem"><strong>2021:</strong> Exhibited <em>Selfportrait</em> at Erarta Museum; Participant in the <em>Venice XVII Architecture Biennale</em> (Russian collaborative project "Open").</div>                <div class="timeline-item" role="listitem"><strong>2020:</strong> <strong>Gold Medalist/Winner</strong> of the <em>ArtMasters National Championship</em> in the Mixed Reality Designer category.</div>                <div class="timeline-item" role="listitem"><strong>2018–2019:</strong> Winner of the <em>Circle of Light</em> (International Festival) and <em>Light Nights</em> (Gatchina).</div>            </div>        </section>        <!-- Technical proficiency -->        <section class="proficiency" id="proficiency" aria-labelledby="proficiency-title">            <h2 id="proficiency-title">Technical Proficiency</h2>            <div class="proficiency-grid">                <div class="section">                    <strong>Design & 3D</strong>                    <div class="chips" aria-hidden="false">                        <span class="chip">Figma</span>                        <span class="chip">Adobe Creative Suite</span>                        <span class="chip">Blender</span>                        <span class="chip">TouchDesigner</span>                        <span class="chip">Midjourney</span>                        <span class="chip">Framer</span>                    </div>                </div>                <div class="section">                    <strong>Dev</strong>                    <div class="chips">                        <span class="chip">Unity</span>                        <span class="chip">UE5</span>                        <span class="chip">Python (basics)</span>                        <span class="chip">HTML/CSS/JS</span>                    </div>                </div>                <div class="section">                    <strong>Project Management</strong>                    <div class="chips">                        <span class="chip">Jira</span>                        <span class="chip">GitHub</span>                        <span class="chip">Notion</span>                        <span class="chip">Collaboration with curators, scientists, developers</span>                    </div>                </div>            </div>        </section>        <!-- Mahjong Game Section (removed) -->        <!-- <section class="mahjong-game" id="mahjong-game">            <div class="mahjong-board" id="mahjong-board"></div>            <div class="mahjong-message" id="mahjong-message"></div>            <div style="display:flex;gap:18px;justify-content:center;margin-top:24px;flex-wrap:wrap;">                <!-- <button class="mahjong-leaderboard-btn" id="mahjong-leaderboard-btn">Leaderboard</button> -->                <!-- <button class="mahjong-toggle-projects-btn" id="mahjong-toggle-projects-btn">I don't play</button>            </div>        </section> -->        <section class="projects-v2" id="projects-v2" style="display:none;">            <div class="projects-v2-grid" id="projects-v2-grid"></div>        </section>        <div class="mahjong-leaderboard-popup" id="mahjong-leaderboard-popup" aria-modal="true" role="dialog" tabindex="-1">            <div class="mahjong-leaderboard-content">                <button class="mahjong-leaderboard-close" id="mahjong-leaderboard-close" aria-label="Close leaderboard">&times;</button>                <h3>Leaderboard</h3>                <ul class="mahjong-leaderboard-list" id="mahjong-leaderboard-list"></ul>                <div style="font-size:0.95em;color:#888;">Best times (seconds) — local to your browser</div>            </div>        </div>        <!-- Footer Contact Section -->        <footer>            <div class="footer-content">                <!-- You can add footer links or contact info here if needed -->            </div>            <div class="footer-copyright">                © 2025 Viktoria Volokitina. All rights reserved            </div>        </footer>                <div class="mahjong-leaderboard-popup" id="leaderboard-popup">            <div class="mahjong-leaderboard-content">                <button class="mahjong-leaderboard-close" id="close-popup">&times;</button>                <h3>Mahjong Match - Leaderboard</h3>                <ol class="mahjong-leaderboard-list" id="leaderboard-list">                    <!-- Leaderboard items will be populated by JavaScript -->                </ol>            </div>        </div>        <script src="scripts/main.js"></script>        <script>    // Gallery script (replaces Mahjong logic)    (function(){        const grid = document.getElementById('gallery-grid');        const lightbox = document.getElementById('lightbox');        const lightboxImg = document.getElementById('lightbox-img');        const lightboxCaption = document.getElementById('lightbox-caption');        const lightboxClose = document.getElementById('lightbox-close');        function renderGallery(imageNames){            if(!grid) return;            grid.innerHTML = imageNames.map((name,i) => {                const src = 'gallery/' + name;                return `<button class="gallery-item" data-src="${src}" data-index="${i}" style="border:none;padding:0;background:none;cursor:pointer;border-radius:12px;overflow:hidden;display:block;box-shadow:0 2px 8px rgba(0,0,0,0.06)"><img src="${src}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;" /></button>`;            }).join('');            Array.from(grid.querySelectorAll('.gallery-item')).forEach(btn => {                btn.addEventListener('click', () => {                    const src = btn.dataset.src;                    lightboxImg.src = src;                    lightboxImg.alt = btn.querySelector('img').alt || '';                    lightboxCaption.textContent = lightboxImg.alt;                    lightbox.style.display = 'flex';                });            });        }        async function checkExists(url){            try{                const res = await fetch(url, { method: 'HEAD' });                return res.ok;            }catch(e){                return false;            }        }        // Try list.json first, otherwise auto-detect files named gm_01..gm_N        (async function loadGallery(){            // 1) try gallery/list.json (expected to be array of filenames)            try{                const r = await fetch('gallery/list.json');                if(r.ok){                    const list = await r.json();                    if(Array.isArray(list) && list.length){                        renderGallery(list);                        return;                    }                }            }catch(e){ /* ignore and fallback */ }            // 2) probe for gm_01..gm_MAX (adjust MAX if you have more)            const MAX = 40;            const names = [];            const checks = [];            for(let i=1;i<=MAX;i++){                const idx = String(i).padStart(2,'0'); // 01,02,...                const candidates = [`gm_${idx}.jpg`,`gm_${idx}.png`,`gm_${idx}.jpeg`,`gm_${idx}.webp`];                // push a promise that finds the first existing variant                checks.push((async ()=>{                    for(const n of candidates){                        const url = 'gallery/' + n;                        if(await checkExists(url)){                            return n;                        }                    }                    return null;                })());            }            const results = await Promise.all(checks);            for(const r of results) if(r) names.push(r);            if(names.length){                renderGallery(names);                return;            }            // 3) last-resort fallback: try a few default names            renderGallery(['01.jpg','02.jpg','03.jpg'].map(n=>'gallery/'+n).map(p=>p.replace('gallery/','')));        })();        lightboxClose && lightboxClose.addEventListener('click', ()=> lightbox.style.display = 'none');        lightbox && lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.style.display = 'none'; });        document.addEventListener('keydown', (e) => { if(e.key === 'Escape') lightbox.style.display = 'none'; });    })();    // keep remaining scripts (pink cursor / loading) untouched    </script>    <script>    // --- PINK CIRCLE MOUSE ---    (function() {        const cursor = document.getElementById('pink-cursor');        document.addEventListener('mousemove', function(e) {            cursor.style.left = e.clientX + 'px';            cursor.style.top = e.clientY + 'px';        });        document.addEventListener('mousedown', function() {            cursor.style.width = '44px';            cursor.style.height = '44px';            cursor.style.opacity = '0.28';        });        document.addEventListener('mouseup', function() {            cursor.style.width = '32px';            cursor.style.height = '32px';            cursor.style.opacity = '0.18';        });    })();    window.addEventListener('DOMContentLoaded', function() {        setTimeout(function() {            document.getElementById('loading-overlay').style.opacity = '0';            setTimeout(function() {                document.getElementById('loading-overlay').style.display = 'none';            }, 400);        }, 900); // show loading for at least 0.9s    });    </script>    <script data-goatcounter="https://chencri.goatcounter.com/count"        async src="//gc.zgo.at/count.js"></script></body></html>
