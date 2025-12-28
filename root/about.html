@@ -33,24 +33,7 @@
     </div>
     <div id="pink-cursor"></div>
     <div id="site-header"></div>
-    <script>
-    // Dynamically load the shared header (robust for local/server use)
-    (function() {
-      var headerPath = 'header.html';
-      fetch(headerPath)
-        .then(function(r) {
-          if (!r.ok) throw new Error('Header not found');
-          return r.text();
-        })
-        .then(function(html) {
-          document.getElementById('site-header').innerHTML = html;
-        })
-        .catch(function(e) {
-          document.getElementById('site-header').innerHTML = '<div style="background:#F7F7F7;color:#D7BAAD;padding:12px;text-align:center;">Header failed to load</div>';
-          console.error('Header load error:', e);
-        });
-    })();
-    </script>
+    <!-- Header is loaded and initialized via scripts/main.js -->
     <main style="margin-top:100px;padding:32px;max-width:800px;margin-left:auto;margin-right:auto;">
         <section class="about" id="about" style="max-width:800px;margin:48px auto;">
             <img src="assets/viktoria%20volokitina.jpeg" alt="Viktoria Volokitina" style="width:180px;height:180px;object-fit:cover;border-radius:50%;margin-bottom:24px;box-shadow:0 2px 12px 0 rgba(215,186,173,0.13);display:block;" />
@@ -189,5 +172,6 @@
             }, 900); // show loading for at least 0.9s
         });
         </script>
+        <script src="scripts/main.js"></script>
     </body>
 </html>

@@ -1,5 +1,3 @@
-<!-- Rebuilt header for Viktoria Volokitina Portfolio -->
-<!-- styles moved to main.css for consistency -->
 <header class="header-fixed">
   <div class="header-flex">
     <h1 class="site-title">
@@ -23,65 +21,4 @@
       <a href="https://www.linkedin.com/in/volvvictory/" target="_blank" aria-label="LinkedIn" class="social-btn"><img src="assets/linkedin.svg" alt="LinkedIn" style="width:28px;height:28px;" /></a>
     </nav>
   </div>
-  <script>
-    (function() {
-      var hamburger = document.getElementById('hamburger-menu');
-      var popup = document.getElementById('menu-popup');
-      var body = document.body;
-      function isMobile() { return window.innerWidth <= 860; }
-
-      function openMenu() {
-        popup.classList.add('open');
-        popup.setAttribute('aria-hidden', 'false');
-        hamburger.setAttribute('aria-expanded', 'true');
-        body.classList.add('menu-open');
-      }
-      function closeMenu() {
-        popup.classList.remove('open');
-        popup.setAttribute('aria-hidden', 'true');
-        hamburger.setAttribute('aria-expanded', 'false');
-        body.classList.remove('menu-open');
-      }
-
-      hamburger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (isMobile()) {
-          if (popup.classList.contains('open')) {
-            closeMenu();
-          } else {
-            openMenu();
-          }
-        }
-      });
-
-      // Keyboard: open/close with Enter/Space, close with Escape
-      hamburger.addEventListener('keydown', function(e) {
-        if (!isMobile()) return;
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          hamburger.click();
-        }
-      });
-      document.addEventListener('keydown', function(e) {
-        if (isMobile() && popup.classList.contains('open') && e.key === 'Escape') {
-          closeMenu();
-        }
-      });
-
-      // Close nav when clicking outside (mobile)
-      document.addEventListener('click', function(e) {
-        if (isMobile() && popup.classList.contains('open')) {
-          if (!popup.contains(e.target) && !hamburger.contains(e.target)) {
-            closeMenu();
-          }
-        }
-      });
-      // Close nav on resize to desktop
-      window.addEventListener('resize', function() {
-        if (!isMobile()) {
-          closeMenu();
-        }
-      });
-    })();
-  </script>
 </header>

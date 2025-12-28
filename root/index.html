@@ -634,14 +634,7 @@
     </div>
     <div id="pink-cursor"></div>
     <div id="site-header"></div>
-    <script>
-    // Dynamically load the shared header
-    fetch('header.html')
-      .then(r => r.text())
-      .then(html => {
-        document.getElementById('site-header').innerHTML = html;
-      });
-    </script>
+    <!-- Header is loaded and initialized via scripts/main.js -->
 
     <!-- Contact Modal -->
     <div id="contact-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:4000;background:rgba(0,0,0,0.18);justify-content:center;align-items:center;">
