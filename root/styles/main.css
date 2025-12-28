@@ -558,7 +558,8 @@ footer {
   flex-direction: column;
   position: absolute;
   top: 56px;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   background: #fff;
   width: 200px;
   padding: 64px 0;
@@ -570,10 +571,9 @@ footer {
 }
 @media (max-width: 420px) {
   .menu-popup {
-    right: auto;
+    top: 56px;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 12px 12px 12px 12px;
   }
 }
 .menu-popup.open {

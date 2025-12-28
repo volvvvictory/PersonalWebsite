@@ -45,10 +45,10 @@
         <section class="highlights" id="highlights" style="max-width:800px;margin:48px auto;padding:0;">
             <h2 id="highlights-title">Exhibitions &amp; Awards</h2>
             <div class="timeline" role="list">
-                <div class="timeline-item" role="listitem"><strong>2025</strong><br>Zifergauz Gallery, St. Petersburg — My Mother Was a Computer exhibition, collective project: “Sluchilos”</div>
-                <div class="timeline-item" role="listitem"><strong>2024</strong><br>MMOMA (Moscow Museum of Modern Art), Moscow — Forms of Dialogue exhibition, collective project: “Sluchilos”<br>Krasnokholmskaya Gallery, Moscow — AI:i? Neural Networks and Creative Process exhibition, collective project: <a href="#" class="allinall-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">All in all</a><br>Zifergauz Gallery, St. Petersburg — EVOLUTION exhibition, collective project: “...freeze on the spot!”</div>
-                <div class="timeline-item" role="listitem"><strong>2023</strong><br>NUR Festival, Kazan — Shortlisted, collective project: <a href="#" class="allinall-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">All in all</a><br>MMOMA, Moscow — Form of Dialogue exhibition, collective project: “Sluchilos”<br>Gallery Here on Taganka, Moscow — NFT. We Have to Move exhibition, collective project: <a href="#" class="allinall-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">All in all</a><br>ARTWEEK Festival, Novosibirsk — collective project: <a href="#" class="allinall-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">All in all</a></div>
-                <div class="timeline-item" role="listitem"><strong>2022</strong><br>Start Science-Art Grant — Winner, collective project: “Sluchilos”</div>
+                <div class="timeline-item" role="listitem"><strong>2025</strong><br>Zifergauz Gallery, St. Petersburg — My Mother Was a Computer exhibition, collective project: <a href="#" class="sluchilos-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">Sluchilos</a></div>
+                <div class="timeline-item" role="listitem"><strong>2024</strong><br>MMOMA (Moscow Museum of Modern Art), Moscow — Forms of Dialogue exhibition, collective project: <a href="#" class="sluchilos-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">Sluchilos</a><br>Krasnokholmskaya Gallery, Moscow — AI:i? Neural Networks and Creative Process exhibition, collective project: <a href="#" class="allinall-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">All in all</a><br>Zifergauz Gallery, St. Petersburg — EVOLUTION exhibition, collective project: "...freeze on the spot!"</div>
+                <div class="timeline-item" role="listitem"><strong>2023</strong><br>NUR Festival, Kazan — Shortlisted, collective project: <a href="#" class="allinall-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">All in all</a><br>MMOMA, Moscow — Form of Dialogue exhibition, collective project: <a href="#" class="sluchilos-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">Sluchilos</a><br>Gallery Here on Taganka, Moscow — NFT. We Have to Move exhibition, collective project: <a href="#" class="allinall-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">All in all</a><br>ARTWEEK Festival, Novosibirsk — collective project: <a href="#" class="allinall-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">All in all</a></div>
+                <div class="timeline-item" role="listitem"><strong>2022</strong><br>Start Science-Art Grant — Winner, collective project: <a href="#" class="sluchilos-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">Sluchilos</a></div>
                 <div class="timeline-item" role="listitem"><strong>2021</strong><br>Erarta Museum, St. Petersburg — My Page exhibition, work: “Selfportrait”<br>Audi Born-Digital Award — Shortlisted, collective project: “Celestial Corporeality”<br>EVERART Weekend, Moscow — Participant</div>
                 <div class="timeline-item" role="listitem"><strong>2020</strong><br>ArtMasters National Championship — Winner, “Mixed Reality Designer”<br>FLASH Virtual Residency — Participant</div>
                 <div class="timeline-item" role="listitem"><strong>2019</strong><br>Intervals Festival, Nizhny Novgorod — Audiovisual project — Participant, part of “hpt.x”<br>Gatchina Light Nights — Winner, Light Projection Festival (with hpt.x)<br>The Garden of Dreams, St. Petersburg — Science-art exhibition</div>
@@ -88,6 +88,47 @@
                             VR experience transforms the user into a co-author of a living digital world. Your presence leaves persistent data points that serve as the primary language for interacting with a reactive AI. The environment evolves in real-time, non-linear dialogue between human movement and machine intelligence.<br><br>
                             <em>Exhibit:</em> Gallery Khodynka, 'Game Junction' exhibition, Moscow<br>
                             <em>Artists:</em> Victoria Volokitina, Leonid Gremyachikh
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sluchilos Modal -->
+            <div id="sluchilos-modal" style="display:none;position:fixed;inset:0;z-index:3500;background:rgba(0,0,0,0.75);align-items:center;justify-content:center;padding:24px;flex-direction:column;">
+                <button id="sluchilos-modal-close" aria-label="Close" style="position:absolute;top:18px;right:18px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;">&times;</button>
+                <style>
+                @media (max-width: 700px) {
+                    .sluchilos-modal-desktop { display: none !important; }
+                    .sluchilos-modal-mobile { display: flex !important; flex-direction: column; align-items: center; justify-content: center; }
+                }
+                @media (min-width: 701px) {
+                    .sluchilos-modal-desktop { display: flex !important; }
+                    .sluchilos-modal-mobile { display: none !important; }
+                }
+                </style>
+                <div id="sluchilos-modal-content" style="max-width:900px;width:98vw;background:none;border-radius:18px;padding:0;color:#fff;box-shadow:none;display:flex;flex-direction:column;align-items:center;">
+                    <div class="sluchilos-modal-desktop" style="display:flex;flex-direction:row;gap:32px;align-items:flex-start;justify-content:center;width:100%;">
+                        <div style="display:flex;flex-direction:column;gap:18px;min-width:260px;max-width:340px;">
+                            <img src='assets/Gallery/installation.sluchilos01.png' alt='Sluchilos 1' style='width:260px;height:320px;object-fit:cover;border-radius:18px;box-shadow:0 4px 16px rgba(215,186,173,0.18);background:#222;' />
+                            <img src='assets/Gallery/installation.sluchilos02.png' alt='Sluchilos 2' style='width:260px;height:320px;object-fit:cover;border-radius:18px;box-shadow:0 4px 16px rgba(215,186,173,0.18);background:#222;' />
+                        </div>
+                        <div style="min-width:260px;max-width:340px;color:#fff;font-size:1.08em;line-height:1.5;text-align:left;background:linear-gradient(135deg,rgba(34,34,34,0.85) 80%,rgba(215,186,173,0.18) 100%);padding:22px 22px 22px 28px;border-radius:16px;box-shadow:0 2px 12px 0 rgba(34,34,34,0.13);backdrop-filter:blur(2px);">
+                            <strong>Sluchilos' 2023-2025</strong><br>
+                            Spatial sound installation using computer vision methods for video data stream analysis and speech synthesis algorithms. Realized in the form of a playground — a 'playroom' — in the given contest dimensions of 5x5 m.<br><br>
+                            'If I can't see it, then it doesn't exist'. It is easy to ignore a process whose resulting impact cannot be seen or touched. Can we continue to turn our backs on the problems of algorithmic recognition if 'observation without an observer' is verbally articulated, remaining just as invisible and pervasive?<br><br>
+                            <em>Artists:</em> Ksenia Gorlanova, Tatiana Zobnina, Victoria Volokitina, Alexander Pogrebnyak<br>
+                            <em>Exhibited:</em> MMOMA, Moscow
+                        </div>
+                    </div>
+                    <div class="sluchilos-modal-mobile" style="display:none;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:98vw;">
+                        <!-- Only one image (first) and text below for mobile -->
+                        <img src="assets/Gallery/installation.sluchilos01.png" alt="Sluchilos 1" style="width:92vw;max-width:340px;height:auto;object-fit:cover;border-radius:18px;box-shadow:0 4px 16px rgba(215,186,173,0.18);margin-bottom:18px;background:#222;" />
+                        <div style="width:92vw;max-width:340px;color:#fff;font-size:1.08em;line-height:1.5;text-align:left;background:linear-gradient(135deg,rgba(34,34,34,0.85) 80%,rgba(215,186,173,0.18) 100%);padding:18px 12px 18px 18px;border-radius:16px;box-shadow:0 2px 12px 0 rgba(34,34,34,0.13);backdrop-filter:blur(2px);">
+                            <strong>Sluchilos' 2023-2025</strong><br>
+                            Spatial sound installation using computer vision methods for video data stream analysis and speech synthesis algorithms. Realized in the form of a playground — a 'playroom' — in the given contest dimensions of 5x5 m.<br><br>
+                            'If I can't see it, then it doesn't exist'. It is easy to ignore a process whose resulting impact cannot be seen or touched. Can we continue to turn our backs on the problems of algorithmic recognition if 'observation without an observer' is verbally articulated, remaining just as invisible and pervasive?<br><br>
+                            <em>Artists:</em> Ksenia Gorlanova, Tatiana Zobnina, Victoria Volokitina, Alexander Pogrebnyak<br>
+                            <em>Exhibited:</em> MMOMA, Moscow
                         </div>
                     </div>
                 </div>
@@ -134,28 +175,57 @@
             </div>
         </footer>
         <script>
-        // Allinall modal logic for all links
+        // Modal logic for Allinall and Sluchilos
         document.addEventListener('DOMContentLoaded', function() {
-            var links = document.querySelectorAll('.allinall-link');
-            var modal = document.getElementById('allinall-modal');
-            var close = document.getElementById('allinall-modal-close');
-            links.forEach(function(link) {
+            // Allinall modal
+            var allinallLinks = document.querySelectorAll('.allinall-link');
+            var allinallModal = document.getElementById('allinall-modal');
+            var allinallClose = document.getElementById('allinall-modal-close');
+            
+            allinallLinks.forEach(function(link) {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    modal.style.display = 'flex';
+                    allinallModal.style.display = 'flex';
                 });
             });
-            if(close && modal) {
-                close.addEventListener('click', function() {
-                    modal.style.display = 'none';
+            
+            if(allinallClose && allinallModal) {
+                allinallClose.addEventListener('click', function() {
+                    allinallModal.style.display = 'none';
                 });
-                modal.addEventListener('click', function(e) {
-                    if(e.target === modal) modal.style.display = 'none';
-                });
-                document.addEventListener('keydown', function(e) {
-                    if(e.key === 'Escape') modal.style.display = 'none';
+                allinallModal.addEventListener('click', function(e) {
+                    if(e.target === allinallModal) allinallModal.style.display = 'none';
                 });
             }
+
+            // Sluchilos modal
+            var sluchilosLinks = document.querySelectorAll('.sluchilos-link');
+            var sluchilosModal = document.getElementById('sluchilos-modal');
+            var sluchilosClose = document.getElementById('sluchilos-modal-close');
+            
+            sluchilosLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sluchilosModal.style.display = 'flex';
+                });
+            });
+            
+            if(sluchilosClose && sluchilosModal) {
+                sluchilosClose.addEventListener('click', function() {
+                    sluchilosModal.style.display = 'none';
+                });
+                sluchilosModal.addEventListener('click', function(e) {
+                    if(e.target === sluchilosModal) sluchilosModal.style.display = 'none';
+                });
+            }
+
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if(e.key === 'Escape') {
+                    if(allinallModal) allinallModal.style.display = 'none';
+                    if(sluchilosModal) sluchilosModal.style.display = 'none';
+                }
+            });
         });
         </script>
         <script>
