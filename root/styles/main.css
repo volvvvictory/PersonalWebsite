@@ -340,6 +340,16 @@ footer {
   border-radius: 2px;
   transition: all 0.3s;
 }
+/* Hamburger icon transform to X when menu is open */
+#hamburger-menu[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+}
+#hamburger-menu[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+#hamburger-menu[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
+}
 @media (max-width: 860px) {
   .menu-group {
     display: none;
@@ -370,14 +380,13 @@ footer {
   flex-direction: column;
   position: absolute;
   top: 56px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  width: 200px;
+  left: 0;
+  width: 100%;
+  background: rgba(247, 247, 247, 0.95);
   padding: 64px 0;
   box-shadow: 0 2px 12px rgba(215,186,173,0.13);
   z-index: 2001;
-  border-radius: 12px 12px 12px 12px;
+  border-radius: 0;
   align-items: center;
   gap: 0;
     max-height: 70vh;
@@ -386,8 +395,8 @@ footer {
 @media (max-width: 420px) {
   .menu-popup {
     top: 56px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    width: 100%;
   }
 }
 .menu-popup.open {
