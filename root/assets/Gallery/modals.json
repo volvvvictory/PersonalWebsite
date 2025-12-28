@@ -1,0 +1,39 @@
+{
+  "modals": [
+    {
+      "id": "allinall",
+      "title": "For All Exists Infinity",
+      "imageFilter": "installation.all",
+      "description": "VR experience transforms the user into a co-author of a living digital world. Your presence leaves persistent data points that serve as the primary language for interacting with a reactive AI. The environment evolves in real-time, non-linear dialogue between human movement and machine intelligence.",
+      "exhibition": "Gallery Khodynka, 'Game Junction' exhibition, Moscow",
+      "artists": [
+        "Victoria Volokitina",
+        "Leonid Gremyachikh"
+      ]
+    },
+    {
+      "id": "nerf",
+      "title": "All in all 2024",
+      "imageFilter": "nerf",
+      "description": "Abstract two-dimensional physically drawn watercolors and Neural Radiance Field technology were combined to create a connection from the first to the last artwork. The new technologies allowed us to visualize the experience of experiencing flat images as a whole.\n\nFor this project, we experimented to create our own pipeline to work with camera trajectories and train models. Initially, we were unsure of the end result. We cause a glitch and force the neural network to build something three-dimensional and real from something that is not.",
+      "exhibition": "'NFT. We'll have to go to', Zdes' Gallery na Taganke, Moscow, Russia",
+      "artists": [
+        "Nikita Krutoy",
+        "Victoria Volokitina"
+      ]
+    },
+    {
+      "id": "sluchilos",
+      "title": "Sluchilos' 2023-2025",
+      "imageFilter": "sluchilos",
+      "description": "Spatial sound installation using computer vision methods for video data stream analysis and speech synthesis algorithms. Realized in the form of a playground — a 'playroom' — in the given contest dimensions of 5x5 m.\n\n'If I can't see it, then it doesn't exist'. It is easy to ignore a process whose resulting impact cannot be seen or touched. Can we continue to turn our backs on the problems of algorithmic recognition if 'observation without an observer' is verbally articulated, remaining just as invisible and pervasive?",
+      "exhibition": "MMOMA, Moscow",
+      "artists": [
+        "Ksenia Gorlanova",
+        "Tatiana Zobnina",
+        "Victoria Volokitina",
+        "Alexander Pogrebnyak"
+      ]
+    }
+  ]
+}

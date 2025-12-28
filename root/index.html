@@ -295,8 +295,7 @@
 .mahjong-toggle-projects-btn:focus,
 .mahjong-leaderboard-content h3,
 .mahjong-leaderboard-close,
-.mahjong-win-ok,
-#pink-cursor {
+.mahjong-win-ok {
     background: #D7BAAD !important;
     color: #fff !important;
     border-color: #D7BAAD !important;
@@ -373,30 +372,6 @@
 }
 /* Remove old filter for pink color */
 /* .social-links img { filter: invert(36%) sepia(99%) saturate(7496%) hue-rotate(314deg) brightness(99%) contrast(106%); } */
-/* --- PINK CIRCLE MOUSE --- */
-#pink-cursor {
-    position: fixed;
-    top: 0; left: 0;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #D7BAAD;
-    opacity: 0.18;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: width 0.18s, height 0.18s, opacity 0.18s, background 0.18s;
-}
-@media (max-width: 1024px) {
-    #pink-cursor {
-        display: none !important;
-    }
-}
-@media (max-width: 700px) {
-    #pink-cursor {
-        display: none !important;
-    }
-}
 .abu-dhabi-hover {
     position: relative;
     z-index: 3;
@@ -632,38 +607,11 @@
             <div class="loading-dot"></div>
         </div>
     </div>
-    <div id="pink-cursor"></div>
     <div id="site-header"></div>
     <!-- Header is loaded and initialized via scripts/main.js -->
 
-    <!-- Contact Modal -->
-    <div id="contact-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:4000;background:rgba(0,0,0,0.18);justify-content:center;align-items:center;">
-        <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(215,186,173,0.13);padding:44px 36px 32px 36px;min-width:320px;max-width:90vw;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center;gap:32px;">
-            <button id="close-contact-modal" style="position:absolute;top:18px;right:18px;background:none;border:none;font-size:2em;color:#D7BAAD;cursor:pointer;">&times;</button>
-            <div style="display:flex;gap:18px;justify-content:center;align-items:center;margin:32px 0 0 0;width:100%;">
-                <a href="https://www.instagram.com/volv_victory/" target="_blank" aria-label="Instagram" class="social-links-modal social-links-btn"><img src="assets/instagram.svg" alt="Instagram" style="width:28px;height:28px;" /></a>
-                <a href="https://www.behance.net/volv_victory" target="_blank" aria-label="Behance" class="social-links-modal social-links-btn"><img src="assets/behance.svg" alt="Behance" style="width:28px;height:28px;" /></a>
-                <a href="https://www.linkedin.com/in/volvvictory/" target="_blank" aria-label="LinkedIn" class="social-links-modal social-links-btn"><img src="assets/linkedin.svg" alt="LinkedIn" style="width:28px;height:28px;" /></a>
-            </div>
-            <a class="book-call-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0gXCwYVL7o99qEhqoWkemf4UN5DNvc6fpr_NUs3JcYjqJNbyN9hbXCpE5Qf_ULKrvOrfjbDSy3" target="_blank">Book a Call</a>
-        </div>
-    </div>
-    <script>
-    // Contact modal logic
-    document.getElementById('contact-btn').onclick = function() {
-        document.getElementById('contact-modal').style.display = 'flex';
-    };
-    document.getElementById('close-contact-modal').onclick = function() {
-        document.getElementById('contact-modal').style.display = 'none';
-    };
-    document.getElementById('contact-modal').onclick = function(e) {
-        if (e.target === this) this.style.display = 'none';
-    };
-    </script>
-
-    <!-- hero removed: gallery is first content -->
+    <!-- gallery is first content -->
         <main style="display: grid; grid-template-columns: 1fr; gap: 0;">
-        <!-- REPLACED: Mahjong game removed and replaced with image gallery -->
         <section class="gallery" id="gallery" style="width:100%;margin:0;padding:0;">
             <div style="height:100px;"></div>
             <div class="gallery-filters" style="display:flex;gap:12px;margin:32px 16px 24px 16px;justify-content:center;flex-wrap:wrap;">
@@ -689,19 +637,7 @@
             </div>
         </section> <!-- end gallery -->
 
-        <!-- ...existing code... -->
 
-        <!-- ...existing code... -->
-
-        <!-- Mahjong Game Section (removed) -->
-        <!-- <section class="mahjong-game" id="mahjong-game">
-            <div class="mahjong-board" id="mahjong-board"></div>
-            <div class="mahjong-message" id="mahjong-message"></div>
-            <div style="display:flex;gap:18px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
-                <!-- <button class="mahjong-leaderboard-btn" id="mahjong-leaderboard-btn">Leaderboard</button> -->
-                <!-- <button class="mahjong-toggle-projects-btn" id="mahjong-toggle-projects-btn">I don't play</button>
-            </div>
-        </section> -->
         <section class="projects-v2" id="projects-v2" style="display:none;">
             <div class="projects-v2-grid" id="projects-v2-grid"></div>
         </section>
@@ -726,6 +662,7 @@
 
         
         <script src="scripts/main.js"></script>
+        <script src="scripts/modals.js"></script>
         <script>
     // Gallery script
     (function(){
@@ -736,6 +673,7 @@
         const lightboxClose = document.getElementById('lightbox-close');
         let allImages = [];
         let currentFilter = 'all';
+        let modalConfigs = [];
 
         function renderGallery(images){
             if(!grid) return;
@@ -750,165 +688,25 @@
                 item.addEventListener('click', () => {
                     const src = item.dataset.src;
                     const name = item.dataset.name;
-                    // If image is part of 'all' (For All Exists Infinity VR project), show modal
-                    if (name.includes('installation.all')) {
-                        const allinallImages = allImages.filter(img => {
+                    
+                    // Check if image matches any modal config
+                    const matchedModal = findMatchingModal(name, modalConfigs);
+                    
+                    if (matchedModal) {
+                        // Get images for this project
+                        const projectImages = allImages.filter(img => {
                             const imgName = typeof img === 'string' ? img : img.name;
-                            return imgName.includes('installation.all') && !imgName.includes('allinall');
+                            return imgName.includes(matchedModal.imageFilter);
                         });
-                        // Responsive: show scattered images + text on desktop, only one image + text below on mobile
-                        let cardHtml = `
-<style>
-@media (max-width: 700px) {
-    .allinall-modal-desktop { display: none !important; }
-    .allinall-modal-mobile { display: flex !important; flex-direction: column; align-items: center; justify-content: center; }
-}
-@media (min-width: 701px) {
-    .allinall-modal-desktop { display: flex !important; }
-    .allinall-modal-mobile { display: none !important; }
-}
-</style>
-<div class="allinall-modal-desktop" style="gap:32px;align-items:flex-start;flex-wrap:wrap;">
-    <div style="display:flex;flex-wrap:wrap;gap:0;min-width:540px;max-width:700px;position:relative;height:600px;">
-        <!-- Scattered images for desktop -->
-        ${allinallImages.map((img, idx) => {
-            const imgName = typeof img === 'string' ? img : img.name;
-            const imgSrc = 'assets/Gallery/' + imgName;
-            const angle = (360 / allinallImages.length) * idx + (idx * 17) % 360;
-            const radius = 170 + (idx % 3) * 60;
-            const x = Math.round(120 + Math.cos(angle * Math.PI / 180) * radius + Math.random()*18 - 9);
-            const y = Math.round(120 + Math.sin(angle * Math.PI / 180) * radius + Math.random()*18 - 9);
-            return `<img src='${imgSrc}' alt='${imgName}' style='width:320px;height:360px;object-fit:cover;border-radius:18px;box-shadow:0 4px 16px rgba(215,186,173,0.18);position:absolute;left:${x}px;top:${y}px;background:#222;' />`;
-        }).join('')}
-    </div>
-    <div style="min-width:260px;max-width:340px;color:#fff;font-size:1.08em;line-height:1.5;text-align:left;background:linear-gradient(135deg,rgba(34,34,34,0.85) 80%,rgba(215,186,173,0.18) 100%);padding:22px 22px 22px 28px;border-radius:16px;box-shadow:0 2px 12px 0 rgba(34,34,34,0.13);backdrop-filter:blur(2px);">
-        <strong>For All Exists Infinity</strong><br>
-        VR experience transforms the user into a co-author of a living digital world. Your presence leaves persistent data points that serve as the primary language for interacting with a reactive AI. The environment evolves in real-time, non-linear dialogue between human movement and machine intelligence.<br><br>
-        <em>Exhibit:</em> Gallery Khodynka, 'Game Junction' exhibition, Moscow<br>
-        <em>Artists:</em> Victoria Volokitina, Leonid Gremyachikh
-    </div>
-</div>
-<div class="allinall-modal-mobile" style="display:none;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:98vw;">
-    <!-- Only one image (first) and text below for mobile -->
-    <img src="assets/Gallery/${typeof allinallImages[0] === 'string' ? allinallImages[0] : allinallImages[0].name}" alt="For All Exists Infinity" style="width:92vw;max-width:340px;height:auto;object-fit:cover;border-radius:18px;box-shadow:0 4px 16px rgba(215,186,173,0.18);margin-bottom:18px;background:#222;" />
-    <div style="width:92vw;max-width:340px;color:#fff;font-size:1.08em;line-height:1.5;text-align:left;background:linear-gradient(135deg,rgba(34,34,34,0.85) 80%,rgba(215,186,173,0.18) 100%);padding:18px 12px 18px 18px;border-radius:16px;box-shadow:0 2px 12px 0 rgba(34,34,34,0.13);backdrop-filter:blur(2px);">
-        <strong>For All Exists Infinity</strong><br>
-        VR experience transforms the user into a co-author of a living digital world. Your presence leaves persistent data points that serve as the primary language for interacting with a reactive AI. The environment evolves in real-time, non-linear dialogue between human movement and machine intelligence.<br><br>
-        <em>Exhibit:</em> Gallery Khodynka, 'Game Junction' exhibition, Moscow<br>
-        <em>Artists:</em> Victoria Volokitina, Leonid Gremyachikh
-    </div>
-</div>
-`;
-                        lightboxCaption.innerHTML = cardHtml;
-                        // Hide the default lightboxImg (for accessibility, keep alt updated)
-                        lightboxImg.src = '';
-                        lightboxImg.alt = '';
-                        lightbox.style.display = 'flex';
-                    } else if (name.includes('nerf')) {
-                        // Nerfs modal
-                        const nerfImages = allImages.filter(img => (typeof img === 'string' ? img : img.name).toLowerCase().includes('nerf'));
-                        let cardHtml = '';
-                        cardHtml += `
-<style>
-@media (max-width: 700px) {
-    .nerf-modal-desktop { display: none !important; }
-    .nerf-modal-mobile { display: flex !important; flex-direction: column; align-items: center; justify-content: center; }
-}
-@media (min-width: 701px) {
-    .nerf-modal-desktop { display: flex !important; }
-    .nerf-modal-mobile { display: none !important; }
-}
-</style>
-<div class="nerf-modal-desktop" style="gap:32px;align-items:flex-start;flex-wrap:wrap;">
-    <div style="display:flex;flex-wrap:wrap;gap:0;min-width:540px;max-width:700px;position:relative;height:600px;">
-        <!-- Scattered images for desktop -->
-        ${nerfImages.map((img, idx) => {
-            const imgName = typeof img === 'string' ? img : img.name;
-            const imgSrc = 'assets/Gallery/' + imgName;
-            const angle = (360 / nerfImages.length) * idx + (idx * 17) % 360;
-            const radius = 170 + (idx % 3) * 60;
-            const x = Math.round(120 + Math.cos(angle * Math.PI / 180) * radius + Math.random()*18 - 9);
-            const y = Math.round(120 + Math.sin(angle * Math.PI / 180) * radius + Math.random()*18 - 9);
-            return `<img src='${imgSrc}' alt='${imgName}' style='width:320px;height:360px;object-fit:cover;border-radius:18px;box-shadow:0 4px 16px rgba(215,186,173,0.18);position:absolute;left:${x}px;top:${y}px;background:#222;' />`;
-        }).join('')}
-    </div>
-    <div style="min-width:260px;max-width:340px;color:#fff;font-size:1.08em;line-height:1.5;text-align:left;background:linear-gradient(135deg,rgba(34,34,34,0.85) 80%,rgba(215,186,173,0.18) 100%);padding:22px 22px 22px 28px;border-radius:16px;box-shadow:0 2px 12px 0 rgba(34,34,34,0.13);backdrop-filter:blur(2px);">
-        <strong>All in all 2024</strong><br>
-        Abstract two-dimensional physically drawn watercolors and Neural Radiance Field technology were combined to create a connection from the first to the last artwork. The new technologies allowed us to visualize the experience of experiencing flat images as a whole.<br><br>
-        For this project, we experimented to create our own pipeline to work with camera trajectories and train models. Initially, we were unsure of the end result. We cause a glitch and force the neural network to build something three-dimensional and real from something that is not.<br><br>
-        <em>Exhibited:</em> ‘NFT. We\'ll have to go to’, Zdes’ Gallery na Taganke, Moscow, Russia<br>
-        <em>Artists:</em> Nikita Krutoy, Victoria Volokitina
-    </div>
-</div>
-<div class="nerf-modal-mobile" style="display:none;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:98vw;">
-    <!-- Only one image (first) and text below for mobile -->
-    <img src="assets/Gallery/${typeof nerfImages[0] === 'string' ? nerfImages[0] : nerfImages[0].name}" alt="All in all 2024" style="width:92vw;max-width:340px;height:auto;object-fit:cover;border-radius:18px;box-shadow:0 4px 16px rgba(215,186,173,0.18);margin-bottom:18px;background:#222;" />
-    <div style="width:92vw;max-width:340px;color:#fff;font-size:1.08em;line-height:1.5;text-align:left;background:linear-gradient(135deg,rgba(34,34,34,0.85) 80%,rgba(215,186,173,0.18) 100%);padding:18px 12px 18px 18px;border-radius:16px;box-shadow:0 2px 12px 0 rgba(34,34,34,0.13);backdrop-filter:blur(2px);">
-        <strong>All in all 2024</strong><br>
-        Abstract two-dimensional physically drawn watercolors and Neural Radiance Field technology were combined to create a connection from the first to the last artwork. The new technologies allowed us to visualize the experience of experiencing flat images as a whole.<br><br>
-        For this project, we experimented to create our own pipeline to work with camera trajectories and train models. Initially, we were unsure of the end result. We cause a glitch and force the neural network to build something three-dimensional and real from something that is not.<br><br>
-        <em>Exhibited:</em> ‘NFT. We\'ll have to go to’, Zdes’ Gallery na Taganke, Moscow, Russia<br>
-        <em>Artists:</em> Nikita Krutoy, Victoria Volokitina
-    </div>
-</div>
-`;
-                        lightboxCaption.innerHTML = cardHtml;
-                        lightboxImg.src = '';
-                        lightboxImg.alt = '';
-                        lightbox.style.display = 'flex';
-                    } else if (name.includes('sluchilos')) {
-                        // Sluchilos modal
-                        const sluchilosImages = allImages.filter(img => (typeof img === 'string' ? img : img.name).toLowerCase().includes('sluchilos'));
-                        let cardHtml = '';
-                        cardHtml += `
-<style>
-@media (max-width: 700px) {
-    .sluchilos-modal-desktop { display: none !important; }
-    .sluchilos-modal-mobile { display: flex !important; flex-direction: column; align-items: center; justify-content: center; }
-}
-@media (min-width: 701px) {
-    .sluchilos-modal-desktop { display: flex !important; }
-    .sluchilos-modal-mobile { display: none !important; }
-}
-</style>
-<div class="sluchilos-modal-desktop" style="gap:32px;align-items:flex-start;flex-wrap:wrap;">
-    <div style="display:flex;flex-wrap:wrap;gap:0;min-width:540px;max-width:700px;position:relative;height:600px;">
-        <!-- Scattered images for desktop -->
-        ${sluchilosImages.map((img, idx) => {
-            const imgName = typeof img === 'string' ? img : img.name;
-            const imgSrc = 'assets/Gallery/' + imgName;
-            const angle = (360 / sluchilosImages.length) * idx + (idx * 17) % 360;
-            const radius = 170 + (idx % 3) * 60;
-            const x = Math.round(120 + Math.cos(angle * Math.PI / 180) * radius + Math.random()*18 - 9);
-            const y = Math.round(120 + Math.sin(angle * Math.PI / 180) * radius + Math.random()*18 - 9);
-            return `<img src='${imgSrc}' alt='${imgName}' style='width:320px;height:360px;object-fit:cover;border-radius:18px;box-shadow:0 4px 16px rgba(215,186,173,0.18);position:absolute;left:${x}px;top:${y}px;background:#222;' />`;
-        }).join('')}
-    </div>
-    <div style="min-width:260px;max-width:340px;color:#fff;font-size:1.08em;line-height:1.5;text-align:left;background:linear-gradient(135deg,rgba(34,34,34,0.85) 80%,rgba(215,186,173,0.18) 100%);padding:22px 22px 22px 28px;border-radius:16px;box-shadow:0 2px 12px 0 rgba(34,34,34,0.13);backdrop-filter:blur(2px);">
-        <strong>Sluchilos' 2023-2025</strong><br>
-        Spatial sound installation using computer vision methods for video data stream analysis and speech synthesis algorithms. Realized in the form of a playground — a 'playroom' — in the given contest dimensions of 5x5 m.<br><br>
-        'If I can't see it, then it doesn't exist'. It is easy to ignore a process whose resulting impact cannot be seen or touched. Can we continue to turn our backs on the problems of algorithmic recognition if 'observation without an observer' is verbally articulated, remaining just as invisible and pervasive?<br><br>
-        <em>Artists:</em> Ksenia Gorlanova, Tatiana Zobnina, Victoria Volokitina, Alexander Pogrebnyak<br>
-        <em>Exhibited:</em> MMOMA, Moscow
-    </div>
-</div>
-<div class="sluchilos-modal-mobile" style="display:none;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:98vw;">
-    <!-- Only one image (first) and text below for mobile -->
-    <img src="assets/Gallery/${typeof sluchilosImages[0] === 'string' ? sluchilosImages[0] : sluchilosImages[0].name}" alt="Sluchilos" style="width:92vw;max-width:340px;height:auto;object-fit:cover;border-radius:18px;box-shadow:0 4px 16px rgba(215,186,173,0.18);margin-bottom:18px;background:#222;" />
-    <div style="width:92vw;max-width:340px;color:#fff;font-size:1.08em;line-height:1.5;text-align:left;background:linear-gradient(135deg,rgba(34,34,34,0.85) 80%,rgba(215,186,173,0.18) 100%);padding:18px 12px 18px 18px;border-radius:16px;box-shadow:0 2px 12px 0 rgba(34,34,34,0.13);backdrop-filter:blur(2px);">
-        <strong>Sluchilos' 2023-2025</strong><br>
-        Spatial sound installation using computer vision methods for video data stream analysis and speech synthesis algorithms. Realized in the form of a playground — a 'playroom' — in the given contest dimensions of 5x5 m.<br><br>
-        'If I can't see it, then it doesn't exist'. It is easy to ignore a process whose resulting impact cannot be seen or touched. Can we continue to turn our backs on the problems of algorithmic recognition if 'observation without an observer' is verbally articulated, remaining just as invisible and pervasive?<br><br>
-        <em>Artists:</em> Ksenia Gorlanova, Tatiana Zobnina, Victoria Volokitina, Alexander Pogrebnyak<br>
-        <em>Exhibited:</em> MMOMA, Moscow
-    </div>
-</div>
-`;
+                        
+                        // Generate modal HTML from config
+                        const cardHtml = generateModalHtml(matchedModal, projectImages);
                         lightboxCaption.innerHTML = cardHtml;
                         lightboxImg.src = '';
                         lightboxImg.alt = '';
                         lightbox.style.display = 'flex';
                     } else {
+                        // Default lightbox for regular images
                         lightboxImg.src = src;
                         lightboxImg.alt = name;
                         lightboxCaption.textContent = '';
@@ -917,7 +715,7 @@
                 });
             });
         }
-
+        
         function filterImages(){
             if(currentFilter === 'all'){
                 renderGallery(allImages);
@@ -926,7 +724,7 @@
                 renderGallery(filtered);
             }
         }
-
+        
         async function checkExists(url){
             try{
                 const res = await fetch(url, { method: 'HEAD' });
@@ -935,8 +733,10 @@
                 return false;
             }
         }
+
         (async function loadGallery(){
-            // 1) try gallery/list.json (expected to be array of filenames or objects)
+            // Load modal configs from JSON
+            modalConfigs = await loadModalConfigs();
             try{
                 const r = await fetch('assets/Gallery/list.json');
                 if(r.ok){
@@ -949,50 +749,18 @@
                 }
             }catch(e){ /* ignore and use default list */ }
 
-            // 2) use a default list of images (add your image filenames here)
+            // 2) use a default list of images
             const defaultImages = [
-                'painting.abstract.jpg',
-                'painting.flowers01.jpg',
-                '4.jpg',
-                'digital.creature.01.png',
-                'digital.creature.02.png',
-                'flowers.jpg',
-                '02 room.jpg',
-                'abstarction orange and red.jpg',
-                'abstarct watercolor.jpg',
-                'installation.sluchilos11',
-                'installation.sluchilos03.jpg',
-                'installation.all1.png',
-                'digital.or01.jpg',
-                'installation.all2.png',
-                'digital.pillow.png',
-                'abstarct watercolor blue.jpg',
-                'digital.blue02.jpg',
-                'digital.tea.png',
-                '01 room.jpg',
-                'digital.02.jpg',
-                'painting.blue.jpg',
-                'installation.sluchilos02.png',
-                'digital.blue02.jpg',
-                'digital.ai1.png',
-                'digital.creature.03.png',
-                'digital.twins.png',
-                'digital.Themis.png',
-                'digital.nude.jpg',
-                'installation.sluchilos01.png',
-                'installation.nerfs01.png',
-                'digital.face.png',
-                'painting nature.jpg',
-                '03 room.jpg',
-                'digital.03.jpg',
-                'digital.or02.jpg',
-                'digital.ai2.png',
-                'painting black.jpg',
-                'digital.green.jpg',
-                'digital.pirple.jpg',
-                'digital.01.jpg',              
-                'painting.water.png',
-                              
+                'painting.abstract.jpg', 'painting.flowers01.jpg', '4.jpg', 'digital.creature.01.png',
+                'digital.creature.02.png', 'flowers.jpg', '02 room.jpg', 'abstarction orange and red.jpg',
+                'abstarct watercolor.jpg', 'installation.sluchilos11', 'installation.sluchilos03.jpg',
+                'installation.all1.png', 'digital.or01.jpg', 'installation.all2.png', 'digital.pillow.png',
+                'abstarct watercolor blue.jpg', 'digital.blue02.jpg', 'digital.tea.png', '01 room.jpg',
+                'digital.02.jpg', 'painting.blue.jpg', 'installation.sluchilos02.png', 'digital.ai1.png',
+                'digital.creature.03.png', 'digital.twins.png', 'digital.Themis.png', 'digital.nude.jpg',
+                'installation.sluchilos01.png', 'installation.nerfs01.png', 'digital.face.png',
+                'painting nature.jpg', '03 room.jpg', 'digital.03.jpg', 'digital.or02.jpg', 'digital.ai2.png',
+                'painting black.jpg', 'digital.green.jpg', 'digital.pirple.jpg', 'digital.01.jpg', 'painting.water.png'
             ];
             allImages = defaultImages.map(name => {
                 const cat = name.split('.')[0].split('_')[0].toLowerCase();
@@ -1017,27 +785,8 @@
         lightbox && lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.style.display = 'none'; });
         document.addEventListener('keydown', (e) => { if(e.key === 'Escape') lightbox.style.display = 'none'; });
     })();
-    // keep remaining scripts (pink cursor / loading) untouched
     </script>
     <script>
-    // --- PINK CIRCLE MOUSE ---
-    (function() {
-        const cursor = document.getElementById('pink-cursor');
-        document.addEventListener('mousemove', function(e) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        document.addEventListener('mousedown', function() {
-            cursor.style.width = '44px';
-            cursor.style.height = '44px';
-            cursor.style.opacity = '0.28';
-        });
-        document.addEventListener('mouseup', function() {
-            cursor.style.width = '32px';
-            cursor.style.height = '32px';
-            cursor.style.opacity = '0.18';
-        });
-    })();
     window.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             document.getElementById('loading-overlay').style.opacity = '0';
