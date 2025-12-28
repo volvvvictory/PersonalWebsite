@@ -62,67 +62,7 @@
             0% { transform: translateY(0); opacity: 0.7; }
             100% { transform: translateY(-18px); opacity: 1; }
         }
-        /* --- HERO SECTION --- */
-        .hero {
-            background: #F7F7F7;
-            padding-top: 64px;
-            padding-bottom: 80px;
-            margin-top: 0;
-            margin-bottom: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            /* border: 2px solid #D7BAAD; */
-        }
-        .hero-content {
-            text-align: left;
-            max-width: 900px;
-            width: 90%;
-            margin: 0 auto;
-            padding-top: 32px;
-            padding-bottom: 0;
-        }
-        .hero-content h1 {
-            font-size: 1.5em !important;
-            line-height: 1.3;
-        }
-        .hero-content .subtitle {
-            font-family: 'Syne', Arial, sans-serif;
-        }
-        .hero-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-        @media (max-width: 900px) {
-            .hero-content {
-                max-width: 98vw;
-                width: 100%;
-                padding: 0 8px 0 8px;
-            }
-        }
-        @media (max-width: 700px) {
-            .hero {
-                padding-top: 18px;
-                padding-bottom: 72px;
-                margin: 0;
-            }
-            .hero-content {
-                max-width: 100vw;
-                width: 100%;
-                padding: 24px 4vw 0 4vw;
-            }
-            .hero-img {
-                margin-top: 12px !important;
-            }
-        }
-        @media (max-width: 500px) {
-            .hero {
-                padding-bottom: 90px;
-            }
-        }
+        /* hero styles removed: gallery is primary content */
         /* --- FOOTER --- */
         footer {
             background: #F7F7F7;
@@ -728,103 +668,7 @@
     };
     </script>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero" style="display:none;">
-        <div class="hero-content">
-            <img src="assets/me.jpeg" alt="Viktoria Volokitina portrait" class="hero-img" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:20px;" />
-            <h1 style="font-size:2.6em;line-height:1.2;position:relative;z-index:2;">
-                  Viktoria Volokitina — a multidisciplinary designer and contemporary artist based in <span class="abu-dhabi-hover" style="position:relative;z-index:3;cursor:pointer;">Abu Dhabi
-                    <span class="ah-bg-img" aria-hidden="true"></span>
-                  </span>.  My practice spans branding, Web3, product visuals, and spatial storytelling. I’m drawn to experiment, which is why this website was vibecoded over a few days.
-                </h1>
-                <p style="font-size:1.18em;line-height:1.6;margin-top:22px;color:#222;max-width:800px;opacity:0.6;">I work in focused creative waves rather than on a fixed daily schedule, always with respect for deadlines. Each project is an immersive process, approached with care and intensity. If more time is ever needed, you'll know early. My goal isn’t just to deliver, but to create something meaningful and lasting.</p>
-                <div id="contact-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:4000;background:rgba(0,0,0,0.18);justify-content:center;align-items:center;">
-                    <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(215,186,173,0.13);padding:44px 36px 32px 36px;min-width:320px;max-width:90vw;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center;gap:32px;">
-                        <button id="close-contact-modal" style="position:absolute;top:18px;right:18px;background:none;border:none;font-size:2em;color:#D7BAAD;cursor:pointer;">&times;</button>
-                        <div style="display:flex;gap:18px;justify-content:center;align-items:center;margin:32px 0 0 0;width:100%;">
-                            <a href="https://www.instagram.com/volv_victory/" target="_blank" aria-label="Instagram" class="social-links-modal social-links-btn"><img src="assets/instagram.svg" alt="Instagram" style="width:28px;height:28px;" /></a>
-                            <a href="https://www.behance.net/volv_victory" target="_blank" aria-label="Behance" class="social-links-modal social-links-btn"><img src="assets/behance.svg" alt="Behance" style="width:28px;height:28px;" /></a>
-                            <a href="https://www.linkedin.com/in/volvvictory/" target="_blank" aria-label="LinkedIn" class="social-links-modal social-links-btn"><img src="assets/linkedin.svg" alt="LinkedIn" style="width:28px;height:28px;" /></a>
-                        </div>
-                        <a class="book-call-link" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0gXCwYVL7o99qEhqoWkemf4UN5DNvc6fpr_NUs3JcYjqJNbyN9hbXCpE5Qf_ULKrvOrfjbDSy3" target="_blank">Book a Call</a>
-                    </div>
-                </div>
-                <script>
-                // Contact modal logic
-                document.getElementById('contact-btn').onclick = function() {
-                    document.getElementById('contact-modal').style.display = 'flex';
-                };
-                document.getElementById('close-contact-modal').onclick = function() {
-                    document.getElementById('contact-modal').style.display = 'none';
-                };
-                document.getElementById('contact-modal').onclick = function(e) {
-                    if (e.target === this) this.style.display = 'none';
-                };
-                </script>
-                <style>
-                .social-links-btn {
-                    display: inline-flex !important;
-                    align-items: center;
-                    justify-content: center;
-                    height: 56px;
-                    min-width: 56px;
-                    padding: 0 32px;
-                    border-radius: 28px;
-                    background: #fff;
-                    border: 2px solid #D7BAAD;
-                    transition: background 0.18s, color 0.18s, box-shadow 0.18s, border-color 0.18s;
-                    box-sizing: border-box;
-                    margin: 0 10px 0 0;
-                    box-shadow: 0 2px 12px 0 rgba(215,186,173,0.13), 0 1.5px 6px 0 rgba(215,186,173,0.09);
-                    font-family: 'Syne', Arial, sans-serif;
-                    font-size: 1.18em;
-                    font-weight: 700;
-                    letter-spacing: 0.01em;
-                    color: #3a2b1a !important;
-                    text-decoration: none !important;
-                    gap: 0.5em;
-                }
-                .social-links-btn:hover, .social-links-btn:focus {
-                    background: #D7BAAD;
-                    border-color: #D7BAAD;
-                    color: #fff !important;
-                    box-shadow: 0 6px 24px 0 rgba(215,186,173,0.18), 0 2px 8px 0 rgba(215,186,173,0.13);
-                    transform: translateY(-2px) scale(1.03);
-                }
-                .social-links-btn img, .social-links-btn svg {
-                    width: 28px;
-                    height: 28px;
-                    display: block;
-                    filter: none !important;
-                    fill: #3a2b1a !important;
-                    color: #3a2b1a !important;
-                    transition: fill 0.18s, color 0.18s;
-                }
-                .social-links-btn:hover img, .social-links-btn:focus img,
-                .social-links-btn:hover svg, .social-links-btn:focus svg {
-                    fill: #fff !important;
-                    color: #fff !important;
-                }
-                .book-call-link {
-                    display: block;
-                    margin: 18px auto 0 auto;
-                    font-family: 'Inter', Arial, sans-serif;
-                    font-size: 1.13em;
-                    color: #3a2b1a;
-                    text-decoration: underline;
-                    background: none;
-                    border: none;
-                    padding: 0;
-                    cursor: pointer;
-                    transition: color 0.18s;
-                }
-                .book-call-link:hover, .book-call-link:focus {
-                    color: #D7BAAD;
-                    text-decoration: underline;
-                }
-                </style>
-            </div>
-        </section>
+    <!-- hero removed: gallery is first content -->
         <main style="display: grid; grid-template-columns: 1fr; gap: 0;">
         <!-- REPLACED: Mahjong game removed and replaced with image gallery -->
         <section class="gallery" id="gallery" style="width:100%;margin:0;padding:0;">
@@ -886,19 +730,11 @@
                 © 2025 Viktoria Volokitina. All rights reserved
             </div>
         </footer>
+
         
-        <div class="mahjong-leaderboard-popup" id="leaderboard-popup">
-            <div class="mahjong-leaderboard-content">
-                <button class="mahjong-leaderboard-close" id="close-popup">&times;</button>
-                <h3>Mahjong Match - Leaderboard</h3>
-                <ol class="mahjong-leaderboard-list" id="leaderboard-list">
-                    <!-- Leaderboard items will be populated by JavaScript -->
-                </ol>
-            </div>
-        </div>
         <script src="scripts/main.js"></script>
         <script>
-    // Gallery script (replaces Mahjong logic)
+    // Gallery script
     (function(){
         const grid = document.getElementById('gallery-grid');
         const lightbox = document.getElementById('lightbox');
