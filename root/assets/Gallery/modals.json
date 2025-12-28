@@ -1,13 +1,13 @@
 {
   "modals": [
     {
-      "id": "allinall",
+      "id": "all",
       "title": "For All Exists Infinity",
       "imageFilter": "installation.all",
       "description": "VR experience transforms the user into a co-author of a living digital world. Your presence leaves persistent data points that serve as the primary language for interacting with a reactive AI. The environment evolves in real-time, non-linear dialogue between human movement and machine intelligence.",
       "exhibition": "Gallery Khodynka, 'Game Junction' exhibition, Moscow",
       "artists": [
-        "Victoria Volokitina",
+        "Viktoria Volokitina",
         "Leonid Gremyachikh"
       ]
     },
@@ -19,7 +19,7 @@
       "exhibition": "'NFT. We'll have to go to', Zdes' Gallery na Taganke, Moscow, Russia",
       "artists": [
         "Nikita Krutoy",
-        "Victoria Volokitina"
+        "Viktoria Volokitina"
       ]
     },
     {
@@ -31,7 +31,19 @@
       "artists": [
         "Ksenia Gorlanova",
         "Tatiana Zobnina",
-        "Victoria Volokitina",
+        "Viktoria Volokitina",
+        "Alexander Pogrebnyak"
+      ]
+    },
+    {
+      "id": "freeze",
+      "title": "...freeze! 2024",
+      "imageFilter": "freeze",
+      "description": "Our planet is in continuous motion. Rocks shift in space, forming canyons, lakes and seas. Glaciers 'cut through' mountains, creating plains suitable for life. What is usually perceived by us as inanimate plays an important role in the formation of the modern appearance of the planet. The project '...freeze!' focuses on the evolution of the geological landscape. The full-scale projection immerses viewers in the space of geological processes: the origin and destruction of mountains, the formation of crevasses, cliffs and plains under the influence of external forces. Rotate the controller and watch the changes taking place on the screen — from the speed of time to the transformation of weather events. The opportunity to control nature reminds the viewer of the importance of ecological thinking and the need to be attentive to the environment.",
+      "exhibition": "The Digital House Gallery in St. Petersburg exhibition of media artists 'Evolution'.",
+      "artists": [
+        "Ksenia Gorlanova",
+        "Viktoria Volokitina",
         "Alexander Pogrebnyak"
       ]
     }
