@@ -50,8 +50,8 @@
                 <div class="timeline-item" role="listitem"><strong>2022</strong><br>Start Science-Art Grant — Winner, collective project: <a href="#" class="sluchilos-link" style="color:#D7BAAD;text-decoration:underline;cursor:pointer;">Sluchilos</a></div>
                 <div class="timeline-item" role="listitem"><strong>2021</strong><br>Erarta Museum, St. Petersburg — My Page exhibition, work: “Selfportrait”<br>Audi Born-Digital Award — Shortlisted, collective project: “Celestial Corporeality”<br>EVERART Weekend, Moscow — Participant</div>
                 <div class="timeline-item" role="listitem"><strong>2020</strong><br>ArtMasters National Championship — Winner, “Mixed Reality Designer”<br>FLASH Virtual Residency — Participant</div>
-                <div class="timeline-item" role="listitem"><strong>2019</strong><br>Intervals Festival, Nizhny Novgorod — Audiovisual project — Participant, part of “hpt.x”<br>Gatchina Light Nights — Winner, Light Projection Festival (with hpt.x)<br>The Garden of Dreams, St. Petersburg — Science-art exhibition</div>
-                <div class="timeline-item" role="listitem"><strong>2018</strong><br>Circle of Light International Festival, Moscow — Winner (with hpt.x)<br>Medea (A. Mironov Theater) — Visual accompaniment/Scenography<br>METAXIS Media-Art Festival, St. Petersburg — Participant</div>
+                <div class="timeline-item" role="listitem"><strong>2019</strong><br>Intervals Festival, Nizhny Novgorod — Audiovisual project — Participant, part of "<a href="https://hptx.co/en" target="_blank" style="color:#D7BAAD;text-decoration:underline;">hpt.x</a>"<br>Gatchina Light Nights — Winner, Light Projection Festival (with <a href="https://hptx.co/en" target="_blank" style="color:#D7BAAD;text-decoration:underline;">hpt.x</a>)<br>The Garden of Dreams, St. Petersburg — Science-art exhibition</div>
+                <div class="timeline-item" role="listitem"><strong>2018</strong><br>Circle of Light International Festival, Moscow — Winner (with <a href="https://hptx.co/en" target="_blank" style="color:#D7BAAD;text-decoration:underline;">hpt.x</a>)<br>Medea (A. Mironov Theater) — Visual accompaniment/Scenography<br>METAXIS Media-Art Festival, St. Petersburg — Participant</div>
             </div>
         </section>
 
@@ -120,26 +120,60 @@
             const sluchilosModal = modalConfigs.find(m => m.id === 'sluchilos');
             const nerfModal = modalConfigs.find(m => m.id === 'nerf');
 
+            function showModal(modal, images) {
+                // Create modal overlay
+                const modalOverlay = document.createElement('div');
+                modalOverlay.className = 'modal-overlay';
+                modalOverlay.style.cssText = 'display:flex;position:fixed;inset:0;z-index:3500;background:rgba(0,0,0,0.75);align-items:center;justify-content:center;padding:24px;flex-direction:column;';
+                
+                // Create close button
+                const closeBtn = document.createElement('button');
+                closeBtn.innerHTML = '&times;';
+                closeBtn.setAttribute('aria-label', 'Close');
+                closeBtn.style.cssText = 'position:absolute;top:18px;right:18px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;z-index:3501;';
+                
+                // Create modal content container
+                const modalContent = document.createElement('div');
+                modalContent.style.cssText = 'max-width:900px;width:98vw;background:none;border-radius:18px;padding:0;color:#fff;box-shadow:none;display:flex;flex-direction:column;align-items:center;';
+                
+                // Generate and insert modal HTML
+                const modalHtml = generateModalHtml(modal, images);
+                modalContent.innerHTML = modalHtml;
+                
+                modalOverlay.appendChild(closeBtn);
+                modalOverlay.appendChild(modalContent);
+                document.body.appendChild(modalOverlay);
+                
+                // Close handlers
+                closeBtn.addEventListener('click', () => {
+                    modalOverlay.remove();
+                });
+                
+                modalOverlay.addEventListener('click', (e) => {
+                    if (e.target === modalOverlay) {
+                        modalOverlay.remove();
+                    }
+                });
+                
+                document.addEventListener('keydown', function escHandler(e) {
+                    if (e.key === 'Escape') {
+                        modalOverlay.remove();
+                        document.removeEventListener('keydown', escHandler);
+                    }
+                });
+            }
+
             // Handle "Sluchilos" links
             const sluchilosLinks = document.querySelectorAll('.sluchilos-link');
             sluchilosLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     if (sluchilosModal) {
-                        // Get all sluchilos images from the gallery
                         const images = [
-                            'assets/Gallery/installation.sluchilos01.png',
-                            'assets/Gallery/installation.sluchilos02.png'
+                            'installation.sluchilos01.png',
+                            'installation.sluchilos02.png'
                         ];
-                        const modalHtml = generateModalHtml(sluchilosModal, images);
-                        
-                        // Create and display modal
-                        const modalContainer = document.createElement('div');
-                        modalContainer.innerHTML = modalHtml;
-                        document.body.appendChild(modalContainer.firstElementChild);
-                        
-                        const modal = document.querySelector('.modal-overlay');
-                        if (modal) modal.style.display = 'flex';
+                        showModal(sluchilosModal, images);
                     }
                 });
             });
@@ -150,20 +184,11 @@
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     if (nerfModal) {
-                        // Get nerf images from the gallery
                         const images = [
-                            'assets/Gallery/nerf01.png',
-                            'assets/Gallery/nerf02.png'
+                            'nerf01.png',
+                            'nerf02.png'
                         ];
-                        const modalHtml = generateModalHtml(nerfModal, images);
-                        
-                        // Create and display modal
-                        const modalContainer = document.createElement('div');
-                        modalContainer.innerHTML = modalHtml;
-                        document.body.appendChild(modalContainer.firstElementChild);
-                        
-                        const modal = document.querySelector('.modal-overlay');
-                        if (modal) modal.style.display = 'flex';
+                        showModal(nerfModal, images);
                     }
                 });
             });
