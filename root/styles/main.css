@@ -590,3 +590,135 @@ footer {
     font-size: 0.9em;
     color: #555;
 }
+/* --- HEADER & MENU STYLES MOVED FROM header.html --- */
+.header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #F7F7F7;
+  z-index: 1000;
+  padding: 16px 32px 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #D7BAAD;
+  flex-direction: column;
+}
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px;
+  position: relative;
+}
+.site-title {
+  font-family: 'Syne', Arial, sans-serif;
+  font-size: 1.5em;
+  color: #111;
+  margin: 0;
+  text-align: left;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.menu-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.menu-btn, .social-btn {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  font-size: 1em;
+  cursor: pointer;
+  color: #3a2b1a;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  transition: background 0.18s, color 0.18s;
+}
+.menu-btn:hover, .social-btn:hover {
+  background: #f0e6e0;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border: 2px solid #D7BAAD;
+  border-radius: 24px;
+  cursor: pointer;
+  z-index: 2002;
+  box-shadow: 0 2px 12px 0 rgba(215,186,173,0.13), 0 1.5px 6px 0 rgba(215,186,173,0.09);
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, border-color 0.18s;
+}
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: #111;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+@media (max-width: 860px) {
+  .menu-group {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+    margin-left: auto;
+  }
+}
+@media (max-width: 420px) {
+  .header-flex {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .hamburger {
+    margin: 0 auto 8px auto;
+    align-self: center;
+  }
+  .site-title {
+    margin: 0 auto 8px auto;
+    text-align: center;
+    align-self: center;
+  }
+}
+.menu-popup {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: #fff;
+  width: 200px;
+  padding: 16px 0;
+  box-shadow: 0 2px 12px rgba(215,186,173,0.13);
+  z-index: 2001;
+  border-radius: 0 0 0 12px;
+  align-items: center;
+  gap: 0;
+}
+.menu-popup.open {
+  display: flex;
+}
+.menu-popup a {
+  margin: 0 auto 8px auto;
+  text-align: center;
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+body.menu-open {
+  overflow: hidden;
+}
+/* --- END HEADER & MENU STYLES --- */
