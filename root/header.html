@@ -113,11 +113,29 @@
   align-items: center;
   display: flex;
 }
+  /* Move header fixed styles from inline to CSS */
+.header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #F7F7F7;
+  z-index: 1000;
+  padding: 16px 32px 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #D7BAAD;
+  flex-direction: column;
+}
+body.menu-open {
+  overflow: hidden;
+}
 </style>
-<header style="position:fixed;top:0;left:0;width:100%;background:#F7F7F7;z-index:1000;padding:16px 32px 0 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #D7BAAD;flex-direction:column;">
+<header class="header-fixed">
   <div class="header-flex">
-    <h1 class="site-title" style="font-family:'Syne',Arial,sans-serif;font-size:1.5em;color:#111;margin:0;text-align:left;flex:0 0 auto;white-space:nowrap;">
-      <a href="index.html" style="color:inherit;text-decoration:none;white-space:nowrap;">Viktoria Volokitina</a>
+    <h1 class="site-title">
+      <a href="index.html">Viktoria Volokitina</a>
     </h1>
     <div class="menu-group">
       <a href="about.html" class="menu-btn">About</a>
@@ -125,12 +143,12 @@
       <a href="https://www.behance.net/volv_victory" target="_blank" aria-label="Behance" class="social-btn"><img src="assets/behance.svg" alt="Behance" style="width:28px;height:28px;" /></a>
       <a href="https://www.linkedin.com/in/volvvictory/" target="_blank" aria-label="LinkedIn" class="social-btn"><img src="assets/linkedin.svg" alt="LinkedIn" style="width:28px;height:28px;" /></a>
     </div>
-    <button class="hamburger" id="hamburger-menu" aria-label="Open navigation" aria-expanded="false">
+    <button class="hamburger" id="hamburger-menu" aria-label="Open navigation" aria-expanded="false" aria-controls="menu-popup" tabindex="0">
       <span></span>
       <span></span>
       <span></span>
     </button>
-    <nav class="menu-popup" id="menu-popup">
+    <nav class="menu-popup" id="menu-popup" aria-hidden="true">
       <a href="about.html" class="menu-btn">About</a>
       <a href="https://www.instagram.com/volv_victory/" target="_blank" aria-label="Instagram" class="social-btn"><img src="assets/instagram.svg" alt="Instagram" style="width:28px;height:28px;" /></a>
       <a href="https://www.behance.net/volv_victory" target="_blank" aria-label="Behance" class="social-btn"><img src="assets/behance.svg" alt="Behance" style="width:28px;height:28px;" /></a>
@@ -138,33 +156,64 @@
     </nav>
   </div>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    (function() {
       var hamburger = document.getElementById('hamburger-menu');
       var popup = document.getElementById('menu-popup');
+      var body = document.body;
       function isMobile() { return window.innerWidth <= 860; }
+
+      function openMenu() {
+        popup.classList.add('open');
+        popup.setAttribute('aria-hidden', 'false');
+        hamburger.setAttribute('aria-expanded', 'true');
+        body.classList.add('menu-open');
+      }
+      function closeMenu() {
+        popup.classList.remove('open');
+        popup.setAttribute('aria-hidden', 'true');
+        hamburger.setAttribute('aria-expanded', 'false');
+        body.classList.remove('menu-open');
+      }
+
       hamburger.addEventListener('click', function(e) {
         e.stopPropagation();
         if (isMobile()) {
-          var isOpen = popup.classList.toggle('open');
-          hamburger.setAttribute('aria-expanded', isOpen);
+          if (popup.classList.contains('open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
         }
       });
+
+      // Keyboard: open/close with Enter/Space, close with Escape
+      hamburger.addEventListener('keydown', function(e) {
+        if (!isMobile()) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          hamburger.click();
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (isMobile() && popup.classList.contains('open') && e.key === 'Escape') {
+          closeMenu();
+        }
+      });
+
       // Close nav when clicking outside (mobile)
       document.addEventListener('click', function(e) {
         if (isMobile() && popup.classList.contains('open')) {
           if (!popup.contains(e.target) && !hamburger.contains(e.target)) {
-            popup.classList.remove('open');
-            hamburger.setAttribute('aria-expanded', 'false');
+            closeMenu();
           }
         }
       });
       // Close nav on resize to desktop
       window.addEventListener('resize', function() {
         if (!isMobile()) {
-          popup.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', 'false');
+          closeMenu();
         }
       });
-    });
+    })();
   </script>
 </header>
