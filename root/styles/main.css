@@ -382,7 +382,7 @@ footer {
   top: 56px;
   left: 0;
   width: 100%;
-  background: rgba(247, 247, 247, 0.95);
+  background: linear-gradient(to top, #fff 10%, rgba(247, 247, 247, 0.95) 100%);
   padding: 64px 0;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 2px 12px rgba(215,186,173,0.2);
   z-index: 2001;
