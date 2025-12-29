@@ -3,6 +3,13 @@
     const grid = document.getElementById('gallery-grid');
     let allImages = [];
     let currentFilter = 'all';
+    let hasSignaledReady = false;
+
+    function signalGalleryReady(){
+        if (hasSignaledReady) return;
+        hasSignaledReady = true;
+        document.dispatchEvent(new CustomEvent('gallery:ready'));
+    }
 
     // Lightbox modal
     function openLightbox(src, caption) {
@@ -67,7 +74,7 @@
             const name = typeof item === 'string' ? item : item.name;
             const src = 'assets/Gallery/' + name;
             return `<div class="gallery-item" data-idx="${idx}" style="cursor: pointer;">
-                <img src="${src}" alt="${name}" />
+                <img src="${src}" alt="${name}" loading="lazy" decoding="async" />
             </div>`;
         }).join('');
         
@@ -113,6 +120,7 @@
                 if(Array.isArray(list) && list.length){
                     allImages = list;
                     filterImages();
+                    signalGalleryReady();
                     return;
                 }
             }
@@ -173,6 +181,7 @@
             return { name, category, caption: '', projectId: '' };
         });
         filterImages();
+        signalGalleryReady();
     })();
 
     // Filter buttons
