@@ -59,8 +59,8 @@
         grid.innerHTML = images.map((item, idx) => {
             // Handle contact card
             if (item && item.type === 'contact') {
-                return `<div class="gallery-item contact-card" style="cursor: default; background: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 32px; text-align: left; color: #555; border: 1.6px solid #ddd; border-radius: 12px;">
-                    <div style="margin-bottom: 12px;">
+                return `<div class="gallery-item contact-card" style="cursor: default; background: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 16px; text-align: left; color: #555; border: 1.6px solid #ddd; border-radius: 12px;">
+                    <div style="margin-bottom: 8px;">
                         <div style="font-size: 0.9em; opacity: 0.7; margin-bottom: 4px; color: #666;">Email</div>
                         <a href="mailto:${item.email}" style="color: #555; text-decoration: none; font-weight: 500; font-size: 0.95em;">${item.email}</a>
                     </div>

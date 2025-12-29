@@ -366,30 +366,24 @@ body.menu-open {
     }
 }
 
-/* Hide contact card in gallery - now permanently in footer */
-.contact-card {
-    display: none;
-}
 
-/* Show contact card in footer on all screen sizes */
+
+/* Footer contact card base layout */
 .contact-card-footer {
-    display: block;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+  padding: 32px;
 }
 
-/* Gallery responsive: 3 columns on small screens */
-@media (max-width: 600px) {
-    #gallery-grid {
-        column-count: 3;
-    }
-    /* Stack contact card items vertically on mobile */
-    .contact-card-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        padding: 16px;
-    }
+/* Stack contact card items vertically below 800px */
+@media (max-width: 800px) {
+  .contact-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 32px;
+  }
 }
 
 /* --- END HEADER & MENU STYLES --- */
-
-/* Modals removed */
