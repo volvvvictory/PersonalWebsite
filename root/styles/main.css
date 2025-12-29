@@ -44,7 +44,7 @@ img{max-width:100%;height:auto;display:block}
 /* --- LOADING SCREEN --- */
 .loading-overlay {
     position: fixed;
-    z-index: 5000;;
+    z-index: 5000;
     top: 0; left: 0; width: 100vw; height: 100vh;
     background: #F7F7F7;
     display: flex;
@@ -92,7 +92,7 @@ img{max-width:100%;height:auto;display:block}
     padding-bottom: 0;
 }
 .hero-content h1 {
-    font-size: 1.5em !important;
+    font-size: 1.5em;
     line-height: 1.3;
 }
 .hero-content .subtitle {
@@ -124,7 +124,7 @@ img{max-width:100%;height:auto;display:block}
         padding: 24px 4vw 0 4vw;
     }
     .hero-img {
-        margin-top: 12px !important;
+        margin-top: 12px;
     }
 }
 @media (max-width: 500px) {
@@ -148,68 +148,7 @@ footer {
     color: #111;
     margin-top: 8px;
 }
-/* removed unused .social-links and .book-call styles */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-.hamburger span {
-    height: 3px;
-    width: 25px;
-    background: #333;
-    margin-bottom: 4px;
-    transition: all 0.3s;
-}
-@media (max-width: 768px) {
-    .nav-left nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background: white;
-        width: 100%;
-        padding: 10px 0;
-    }
-    .nav-left nav.open {
-        display: flex;
-    }
-    .hamburger {
-        display: flex;
-    }
-}
 
-/* removed unused Projects V2 styles */
-
-.loading-dot {
-    background: #D7BAAD;
-}
-/* consolidated duplicate .hero rules above */
-
-/* removed unused .social-links image hover styles */
-.project-v2-img:hover, .project-v2-img:focus {
-    box-shadow: 0 4px 16px rgba(215,186,173,0.13);
-}
-
-.project-v2-img {
-    box-shadow: 0 2px 8px rgba(215,186,173,0.06);
-}
-
-
-/* --- SOCIAL ICON BUTTONS --- */
-/* removed unused .social-links button styles */
-@media (max-width: 1024px) {
-    #pink-cursor {
-        display: none !important;
-    }
-}
-@media (max-width: 700px) {
-    #pink-cursor {
-        display: none !important;
-    }
-}
-/* removed unused ah-bg-img styles */
 /* --- HIGHLIGHTS SECTION --- */
 .highlights {
     text-align: left;
@@ -398,13 +337,6 @@ footer {
     max-height: 70vh;
     overflow-y: auto;
 }
-@media (max-width: 420px) {
-  .menu-popup {
-    top: 56px;
-    left: 0;
-    width: 100%;
-  }
-}
 .menu-popup.open {
   display: flex;
 }
@@ -429,15 +361,25 @@ body.menu-open {
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
     * {
-        transition: none !important;
-        animation: none !important;
+        transition: none;
+        animation: none;
     }
+}
+
+/* Hide contact card in gallery - now permanently in footer */
+.contact-card {
+    display: none;
+}
+
+/* Show contact card in footer on all screen sizes */
+.contact-card-footer {
+    display: block;
 }
 
 /* Gallery responsive: 3 columns on small screens */
 @media (max-width: 600px) {
     #gallery-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
+        column-count: 3;
     }
 }
 

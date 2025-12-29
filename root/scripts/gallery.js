@@ -127,61 +127,6 @@
         }catch(e){ 
             console.error('Failed to load list.json:', e);
         }
-
-        // 2) use a default list of images
-        const defaultImages = [
-            'painting.abstract.jpg', 
-            'painting.flowers01.jpg', 
-            '4.jpg', 
-            'digital.creature.01.png',
-            'digital.creature.02.png', 
-            'flowers.jpg', 
-            '02 room.jpg', 
-            'abstarction orange and red.jpg',
-            'abstarct watercolor.jpg', 
-            'installation.sluchilos11.jpg', 
-            'installation.sluchilos03.jpg',
-            'installation.all1.png', 
-            'digital.or01.jpg', 
-            'installation.all2.png', 
-            'digital.pillow.png',
-            'installation.freeze4.jpg',
-            'installation.freeze3.jpg',
-            'installation.freeze1.png',
-            'abstarct watercolor blue.jpg', 
-            'digital.blue02.jpg', 
-            'digital.tea.png', 
-            '01 room.jpg',
-            'digital.02.jpg', 
-            'painting.blue.jpg', 
-            'installation.sluchilos02.png', 
-            'digital.ai1.png',
-            'digital.creature.03.png', 
-            'digital.twins.png', 
-            'digital.Themis.png', 
-            'digital.nude.jpg',
-            'installation.sluchilos01.png', 
-            'installation.nerfs01.png', 
-            'digital.face.png',
-            'painting nature.jpg', 
-            '03 room.jpg', 
-            'digital.03.jpg', 
-            'digital.or02.jpg', 
-            'digital.ai2.png',
-            'painting black.jpg', 
-            'digital.green.jpg', 
-            'digital.pirple.jpg', 
-            'digital.01.jpg', 
-            'painting.water.png'
-        ];
-        allImages = defaultImages.map(name => {
-            const cat = name.split('.')[0].split('_')[0].toLowerCase();
-            let category = 'painting';
-            if (["digital","installation"].includes(cat)) category = cat;
-            return { name, category, caption: '', projectId: '' };
-        });
-        filterImages();
-        signalGalleryReady();
     })();
 
     // Filter buttons
