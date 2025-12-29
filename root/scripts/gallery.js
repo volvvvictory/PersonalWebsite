@@ -49,17 +49,33 @@
 
     function renderGallery(images){
         if(!grid) return;
-        grid.innerHTML = images.map((item) => {
+        grid.innerHTML = images.map((item, idx) => {
+            // Handle contact card
+            if (item && item.type === 'contact') {
+                return `<div class="gallery-item contact-card" style="cursor: default; background: #ffffff; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 32px; text-align: left; color: #555; border: 1.6px solid #ddd; border-radius: 12px;">
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 0.9em; opacity: 0.7; margin-bottom: 4px; color: #666;">Email</div>
+                        <a href="mailto:${item.email}" style="color: #555; text-decoration: none; font-weight: 500; font-size: 0.95em;">${item.email}</a>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.9em; opacity: 0.7; margin-bottom: 4px; color: #666;">Location</div>
+                        <div style="font-weight: 500; font-size: 0.95em; color: #555;">${item.location}</div>
+                    </div>
+                </div>`;
+            }
+            // Handle image items
             const name = typeof item === 'string' ? item : item.name;
             const src = 'assets/Gallery/' + name;
-            return `<div class="gallery-item" style="cursor: pointer;">
+            return `<div class="gallery-item" data-idx="${idx}" style="cursor: pointer;">
                 <img src="${src}" alt="${name}" />
             </div>`;
         }).join('');
         
-        // Add click handlers to open lightbox
-        grid.querySelectorAll('.gallery-item').forEach((item, idx) => {
-            item.addEventListener('click', () => {
+        // Add click handlers to open lightbox (skip for contact cards)
+        grid.querySelectorAll('.gallery-item:not(.contact-card)').forEach((el) => {
+            el.addEventListener('click', () => {
+                const dataIdx = el.getAttribute('data-idx');
+                const idx = dataIdx ? parseInt(dataIdx, 10) : 0;
                 const img = images[idx];
                 const name = typeof img === 'string' ? img : img.name;
                 const caption = (typeof img === 'object' && img.caption) ? img.caption : '';
@@ -154,6 +170,7 @@
             const cat = name.split('.')[0].split('_')[0].toLowerCase();
             let category = 'painting';
             if (["digital","installation"].includes(cat)) category = cat;
+            return { name, category, caption: '', projectId: '' };
         });
         filterImages();
     })();
