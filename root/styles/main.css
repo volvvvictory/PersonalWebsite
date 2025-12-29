@@ -263,6 +263,12 @@ footer {
     font-size: 0.9em;
     color: var(--brand);
 }
+
+/* Specific override: only Python chip should be subtly grey */
+.proficiency .chips .chip--light {
+  background: #ddd;
+  border-color: #ddd;
+}
 /* --- HEADER & MENU STYLES MOVED FROM header.html --- */
 .header-fixed {
   position: fixed;
