@@ -127,6 +127,8 @@
         }catch(e){ 
             console.error('Failed to load list.json:', e);
         }
+        // Always signal ready, even on error, so loading overlay doesn't hang
+        signalGalleryReady();
     })();
 
     // Filter buttons

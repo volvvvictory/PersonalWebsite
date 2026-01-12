@@ -18,7 +18,7 @@
             font-size: 0.89em;
         }
         .timeline-item {
-            margin-bottom: 7px;
+            margin-bottom: 16px;
             line-height: 1.4;
         }
     </style>
@@ -110,20 +110,7 @@
                 © 2025 Viktoria Volokitina. All rights reserved
             </div>
         </footer>
-        <script>
-        // Hide loading overlay after page load
-        window.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                var overlay = document.getElementById('loading-overlay');
-                if (overlay) {
-                    overlay.style.opacity = '0';
-                    setTimeout(function() {
-                        overlay.style.display = 'none';
-                    }, 400);
-                }
-            }, 900);
-        });
-        </script>
         <script src="scripts/main.js"></script>
+        <script src="scripts/loading.js"></script>
     </body>
 </html>

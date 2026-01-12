@@ -14,7 +14,12 @@ window.addEventListener('DOMContentLoaded', function() {
         setTimeout(resolve, 1200); // fallback if event never fires
     });
 
-    Promise.all([fontsReady, galleryReady]).then(function(){
-        requestAnimationFrame(function(){ hideOverlay(); });
-    });
+    Promise.all([fontsReady, galleryReady])
+        .then(function(){
+            requestAnimationFrame(function(){ hideOverlay(); });
+        })
+        .catch(function(err){
+            console.error('Loading error:', err);
+            hideOverlay(); // Hide overlay on error too
+        });
 });
