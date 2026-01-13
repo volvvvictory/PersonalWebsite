@@ -5,6 +5,7 @@ function initHeaderMenu(container) {
   var scope = container || document;
   var hamburger = scope.querySelector('#hamburger-menu');
   var popup = scope.querySelector('#menu-popup');
+  var backdrop = scope.querySelector('#menu-backdrop');
   var body = document.body;
   
   if (!hamburger || !popup) {
@@ -22,6 +23,10 @@ function initHeaderMenu(container) {
     popup.setAttribute('aria-hidden', 'false');
     hamburger.setAttribute('aria-expanded', 'true');
     body.classList.add('menu-open');
+    if (backdrop) {
+      backdrop.classList.add('visible');
+      backdrop.setAttribute('aria-hidden', 'false');
+    }
   }
   
   function closeMenu() {
@@ -29,6 +34,10 @@ function initHeaderMenu(container) {
     popup.setAttribute('aria-hidden', 'true');
     hamburger.setAttribute('aria-expanded', 'false');
     body.classList.remove('menu-open');
+    if (backdrop) {
+      backdrop.classList.remove('visible');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }
   }
 
   hamburger.addEventListener('click', function(e) {
@@ -63,6 +72,13 @@ function initHeaderMenu(container) {
       }
     }
   });
+  if (backdrop) {
+    backdrop.addEventListener('click', function() {
+      if (isMobile() && popup.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+  }
   
   window.addEventListener('resize', function() {
     if (!isMobile()) { 
