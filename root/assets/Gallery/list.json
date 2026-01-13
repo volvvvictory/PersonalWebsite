@@ -30,7 +30,7 @@
   {"name": "Абстракция 02, акварель, бумага, 10х15 см, 2023.png", "caption":"Abstraction 02, watercolor on paper, 10×15 cm, 2023", "category": "painting", "projectId": ""},
   {"name": "digital.ai1.png", "caption":"AI-generated artwork", "category": "digital", "projectId": ""},
   {"name": "FallEI_1.png", "caption":"Fall EI, interactive project", "category": "interactive", "projectId": ""},
-  {"name": "4Jk5IVHHL5E.jpg", "category": "installation", "caption":"Photos from the METAXIS exhibition", "projectId": ""},
+  {"name": "4Jk5IVHHL5E.jpg", "category": "installation", "caption":"Photos from the METAXIS exhibition", "projectId": "metaxis"},
   {"name": "installation.sluchilos11.JPG", "caption":"Installation project 'Sluchilos'", "category": "installation", "projectId": "sluchilos"},
   {"name": "digital.twins.png", "caption":"Twins, digital composition", "category": "digital", "projectId": ""},
   {"name": "installation.all3.jpg", "caption":"Installation project 'ALL'", "category": "installation", "projectId": "all"},
@@ -65,6 +65,7 @@
   {"name": "6.jpg", "category": "digital", "caption":"Digital composition", "projectId": ""},
   {"name": "digital.tea.png", "caption":"3D still life composition", "category": "digital", "projectId": ""},
   {"name": "installation.sluchilos01.png", "caption":"Installation project 'Sluchilos'", "category": "installation", "projectId": "sluchilos"},
-  {"name": "2AZMnnvwiJQ.jpg", "category": "installation", "caption":"Photos from the METAXIS exhibition", "projectId": ""},
+  {"name": "2AZMnnvwiJQ.jpg", "category": "installation", "caption":"Photos from the METAXIS exhibition", "projectId": "metaxis"},
+  {"name": "image 215.png", "caption":"Photos from the METAXIS exhibition", "category": "installation", "projectId": "metaxis"},
   {"name": "photo_2025-11-03_23-10-11.jpg", "caption":"Painting, November 2025", "category": "painting", "projectId": ""}
 ]
