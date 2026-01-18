@@ -4,6 +4,19 @@
     let allImages = [];
     let currentFilter = 'all';
     let hasSignaledReady = false;
+    let currentImageIndex = 0;
+    let filteredImages = [];
+
+    // Images that appear on the projects page
+    const projectPageImages = [
+        'installation.sluchilos01.png',
+        'installation.sluchilos04.jpg',
+        'installation.freeze4.jpg',
+        'installation.nerfs01.png',
+        'nerfs_021.png',
+        'installation.all1.png',
+        'installation.all2.png'
+    ];
 
     function signalGalleryReady(){
         if (hasSignaledReady) return;
@@ -12,7 +25,7 @@
     }
 
     // Lightbox modal
-    function openLightbox(src, caption) {
+    function openLightbox(src, caption, imageIndex = 0) {
         let lightbox = document.getElementById('gallery-lightbox');
         if (!lightbox) {
             lightbox = document.createElement('div');
@@ -31,31 +44,95 @@
             `;
             lightbox.innerHTML = `
                 <button id="lightbox-close" style="position: absolute; top: 18px; right: 18px; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">×</button>
+                <button id="lightbox-prev" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #fff; font-size: 32px; cursor: pointer; padding: 8px; display: flex; align-items: center; justify-content: center; opacity: 0.7; transition: opacity 0.2s;">‹</button>
+                <button id="lightbox-next" style="position: absolute; right: 18px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #fff; font-size: 32px; cursor: pointer; padding: 8px; display: flex; align-items: center; justify-content: center; opacity: 0.7; transition: opacity 0.2s;">›</button>
                 <img id="lightbox-img" style="max-width: 90vw; max-height: 70vh; border-radius: 12px; object-fit: contain;" />
-                <p id="lightbox-caption" style="color: #fff; margin-top: 16px; font-size: 0.95em; text-align: center; max-width: 600px;"></p>
+                <div id="lightbox-caption" style="color: #fff; margin-top: 16px; font-size: 0.95em; text-align: center; max-width: 600px; display: flex; flex-direction: column; gap: 12px; align-items: center;"></div>
             `;
             document.body.appendChild(lightbox);
             
             lightbox.querySelector('#lightbox-close').addEventListener('click', () => {
                 lightbox.style.display = 'none';
             });
+            
+            lightbox.querySelector('#lightbox-prev').addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentImageIndex = (currentImageIndex - 1 + filteredImages.length) % filteredImages.length;
+                updateLightboxImage();
+            });
+            
+            lightbox.querySelector('#lightbox-next').addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentImageIndex = (currentImageIndex + 1) % filteredImages.length;
+                updateLightboxImage();
+            });
+            
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) lightbox.style.display = 'none';
             });
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-                    lightbox.style.display = 'none';
+                if (lightbox.style.display === 'flex') {
+                    if (e.key === 'Escape') {
+                        lightbox.style.display = 'none';
+                    } else if (e.key === 'ArrowLeft') {
+                        currentImageIndex = (currentImageIndex - 1 + filteredImages.length) % filteredImages.length;
+                        updateLightboxImage();
+                    } else if (e.key === 'ArrowRight') {
+                        currentImageIndex = (currentImageIndex + 1) % filteredImages.length;
+                        updateLightboxImage();
+                    }
                 }
             });
         }
         
-        lightbox.querySelector('#lightbox-img').src = src;
-        lightbox.querySelector('#lightbox-caption').textContent = caption || '';
+        currentImageIndex = imageIndex;
+        updateLightboxImage();
         lightbox.style.display = 'flex';
+    }
+    
+    function updateLightboxImage() {
+        const lightbox = document.getElementById('gallery-lightbox');
+        if (!filteredImages.length) return;
+        
+        const currentItem = filteredImages[currentImageIndex];
+        const name = typeof currentItem === 'string' ? currentItem : currentItem.name;
+        const caption = (typeof currentItem === 'object' && currentItem.caption) ? currentItem.caption : '';
+        const src = 'assets/Gallery/' + name;
+        
+        lightbox.querySelector('#lightbox-img').src = src;
+        
+        // Build caption with text and link (only if image is on projects page)
+        const captionDiv = lightbox.querySelector('#lightbox-caption');
+        captionDiv.innerHTML = '';
+        
+        if (caption) {
+            const captionText = document.createElement('div');
+            captionText.textContent = caption;
+            captionDiv.appendChild(captionText);
+        }
+        
+        // Check if this image is on the projects page
+        const imageName = src.split('/').pop();
+        const isProjectImage = projectPageImages.includes(imageName);
+        
+        if (isProjectImage) {
+            // Add link to projects page
+            const link = document.createElement('a');
+            link.href = '/projects_new.html';
+            link.textContent = 'More about the project →';
+            link.style.cssText = 'color: #fff; text-decoration: underline; cursor: pointer; font-size: 0.95em;';
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                lightbox.style.display = 'none';
+                window.location.href = '/projects_new.html';
+            });
+            captionDiv.appendChild(link);
+        }
     }
 
     function renderGallery(images){
         if(!grid) return;
+        filteredImages = images;
         grid.innerHTML = images.map((item, idx) => {
             // Handle contact card
             if (item && item.type === 'contact') {
@@ -83,11 +160,7 @@
             el.addEventListener('click', () => {
                 const dataIdx = el.getAttribute('data-idx');
                 const idx = dataIdx ? parseInt(dataIdx, 10) : 0;
-                const img = images[idx];
-                const name = typeof img === 'string' ? img : img.name;
-                const caption = (typeof img === 'object' && img.caption) ? img.caption : '';
-                const src = 'assets/Gallery/' + name;
-                openLightbox(src, caption);
+                openLightbox(null, null, idx);
             });
         });
     }

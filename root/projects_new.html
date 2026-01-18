@@ -156,6 +156,13 @@
         </section>
     </main>
 
+    <!-- Lightbox -->
+    <div id="lightbox" style="display:none;position:fixed;inset:0;z-index:3500;background:rgba(0,0,0,0.75);align-items:center;justify-content:center;padding:24px;flex-direction:column;">
+        <button id="lightbox-close" aria-label="Close" style="position:absolute;top:18px;right:18px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;z-index:3501;">&times;</button>
+        <img id="lightbox-img" src="" alt="" style="max-width:calc(100% - 48px);max-height:calc(100% - 48px);border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.5);" />
+        <div id="lightbox-caption" style="color:#fff;text-align:center;margin-top:12px;font-family:Inter,Arial,sans-serif;display:flex;flex-direction:column;gap:12px;align-items:center;"></div>
+    </div>
+
     <footer>
         <div class="footer-content">
             <!-- Contact card -->
@@ -175,5 +182,71 @@
     <!-- Scripts -->
     <script src="scripts/main.js"></script>
     <script src="scripts/loading.js"></script>
+    <script>
+        // Lightbox functionality for project images
+        (function() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const lightboxClose = document.getElementById('lightbox-close');
+            
+            // Make all project images clickable - wait for DOM to be ready
+            function setupLightbox() {
+                const projectImages = document.querySelectorAll('main img');
+                console.log('Found ' + projectImages.length + ' images');
+                
+                projectImages.forEach((img, index) => {
+                    img.style.cursor = 'pointer';
+                    img.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log('Image clicked:', this.src);
+                        lightboxImg.src = this.src;
+                        lightboxImg.alt = this.alt || '';
+                        
+                        // Build caption with alt text only (no link on project page)
+                        lightboxCaption.innerHTML = '';
+                        if (this.alt) {
+                            const captionText = document.createElement('div');
+                            captionText.textContent = this.alt;
+                            lightboxCaption.appendChild(captionText);
+                        }
+                        
+                        lightbox.style.display = 'flex';
+                    });
+                });
+            }
+            
+            // Call setup immediately
+            setupLightbox();
+            
+            // Also setup when DOM is fully loaded
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupLightbox);
+            }
+            
+            // Close lightbox
+            if (lightboxClose) {
+                lightboxClose.addEventListener('click', () => {
+                    lightbox.style.display = 'none';
+                });
+            }
+            
+            if (lightbox) {
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        lightbox.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    lightbox.style.display = 'none';
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
