@@ -1,0 +1,21 @@
+{
+  "name": "about-me-website",
+  "version": "1.0.0",
+  "description": "A personal website to showcase information about me, including interests and contact details.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'No build process defined.'"
+  },
+  "keywords": [
+    "about me",
+    "personal website",
+    "portfolio"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>volvvictory.github.io</title>
+    <title>Viktoria Volokitina — Designer & Artist</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        .img-placeholder {
+            width: 120px;
+            height: 120px;
+            background: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .project-img-placeholder {
+            width: 100%;
+            height: 180px;
+            background: #ccc;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .pixel-bunny {
+            width: 48px;
+            height: 48px;
+            display: inline-block;
+            background: url('assets/pixel-bunny.png') no-repeat center center / contain;
+            vertical-align: middle;
+        }
+        .hero-content {
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .hero-content h1, .hero-content .subtitle {
+            font-family: 'Syne', Arial, sans-serif;
+        }
+        body, .footer-content, .service, .project, .book-call, .social-links a, .header-content nav a {
+            font-family: 'Inter', Arial, sans-serif;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background: #333;
+            margin-bottom: 4px;
+            transition: all 0.3s;
+        }
+        @media (max-width: 768px) {
+            .nav-left nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: white;
+                width: 100%;
+                padding: 10px 0;
+            }
+            .nav-left nav.open {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+        .footer-graffiti {
+            font-family: 'Graffiti', cursive;
+            font-size: 14px;
+            color: #333;
+            display: block;
+            margin-top: 8px;
+        }
+        .vibe-footer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .vibe-footer.open {
+            display: flex;
+        }
+        .vibe-footer-content {
+            text-align: center;
+        }
+        .vibe-shine {
+            font-size: 24px;
+            color: #ff0081;
+            text-shadow: 0 0 5px rgba(255, 0, 130, 0.7), 0 0 10px rgba(255, 0, 130, 0.5);
+        }
+        .footer-copyright {
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="nav-left">
+                <span class="pixel-bunny"></span>
+                <nav>
+                    <a href="#hero">about</a>
+                    <a href="#projects">portfolio</a>
+                </nav>
+                <div class="hamburger" id="hamburger-menu" aria-label="Open navigation" tabindex="0">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <a class="book-call" href="https://calendar.google.com/" target="_blank">Book a Call</a>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <span class="img-placeholder"></span>
+            <h1>Hello! I'm Viktoria Volokitina — a multidisciplinary designer and contemporary artist.</h1>
+            <p class="subtitle">With over 8 years of experience across brand identity, visual storytelling, and interactive environments, I bring clarity and energy to every project. I'm open to international collaborations.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/volv_victory/" target="_blank">Instagram</a>
+                <a href="https://www.behance.net/volv_victory" target="_blank">Behance</a>
+                <a href="https://www.linkedin.com/in/volvvictory/" target="_blank">LinkedIn</a>
+                <a href="https://t.me/volvvictory" target="_blank">Telegram</a>
+                <a href="mailto:volv.victory@gmail.com">Email</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- What I Do Section -->
+    <section class="what-i-do">
+        <h2>What I Do</h2>
+        <div class="services">
+            <div class="service">
+                <h3>Design for Startups <span class="duration">from 3 weeks</span></h3>
+                <ul>
+                    <li>Market research</li>
+                    <li>Naming</li>
+                    <li>Branding (logo, presentations)</li>
+                    <li>Illustrations and visuals</li>
+                    <li>Templates</li>
+                </ul>
+            </div>
+            <div class="service">
+                <h3>UX/UI Design</h3>
+                <ul>
+                    <li>Concept search</li>
+                    <li>Design</li>
+                    <li>Prototyping</li>
+                </ul>
+            </div>
+            <div class="service">
+                <h3>Consultation <span class="duration">1h, $100</span></h3>
+                <ul>
+                    <li>Expert advice to improve your product and design strategy</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Showcase Section -->
+    <section class="projects" id="projects">
+        <h2>Projects Showcase</h2>
+        <div class="project-list">
+            <a class="project" href="#" target="_blank">
+                <span class="project-img-placeholder"></span>
+                <h3>Project One</h3>
+                <p>Brand identity and visual storytelling for a tech startup.</p>
+            </a>
+            <a class="project" href="#" target="_blank">
+                <span class="project-img-placeholder"></span>
+                <h3>Project Two</h3>
+                <p>UI/UX design for a mobile application.</p>
+            </a>
+            <a class="project" href="#" target="_blank">
+                <span class="project-img-placeholder"></span>
+                <h3>Project Three</h3>
+                <p>Branding and illustrations for a creative agency.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer Contact Section -->
+    <footer>
+        <div class="footer-content">
+            <p><a href="mailto:volv.victory@gmail.com">volv.victory@gmail.com</a></p>
+            <p class="footer-copyright">© 2025 all rights reserved</p>
+        </div>
+    </footer>
+    <section class="vibe-footer" id="vibe-footer">
+        <div class="vibe-footer-content">
+            <span class="footer-graffiti vibe-shine">this webside was vibecoded by myself — it has cool vibe.</span>
+        </div>
+    </section>
+    <script src="scripts/main.js"></script>
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger-menu');
+        const nav = document.querySelector('.header-content nav');
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('open');
+        });
+        hamburger.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                nav.classList.toggle('open');
+            }
+        });
+    </script>
+</body>
+</html>
