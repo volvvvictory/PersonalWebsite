@@ -67,5 +67,8 @@
   {"name": "installation.sluchilos01.png", "caption":"Installation project 'Sluchilos'", "category": "installation", "projectId": "sluchilos"},
   {"name": "2AZMnnvwiJQ.jpg", "category": "installation", "caption":"Photos from the METAXIS exhibition", "projectId": "metaxis"},
   {"name": "image 215.png", "caption":"Photos from the METAXIS exhibition", "category": "installation", "projectId": "metaxis"},
-  {"name": "photo_2025-11-03_23-10-11.jpg", "caption":"Painting, November 2025", "category": "painting", "projectId": ""}
+  {"name": "photo_2025-11-03_23-10-11.jpg", "caption":"Painting, November 2025", "category": "painting", "projectId": ""},
+  {"name": "painting flowers in a vase.png", "caption":"Flowers in a vase, oil on canvas, 30×40 cm", "category": "painting", "projectId": ""},
+  {"name": "painting flowers in a vase and fruit.jpg", "caption":"Flowers in a vase and fruit, oil on canvas, 30×40 cm", "category": "painting", "projectId": ""},
+  {"name": "painting still life with flowers.png", "caption":"Still life with flowers, oil on canvas, 40×50 cm", "category": "painting", "projectId": ""}
 ]
