@@ -151,7 +151,7 @@
             const name = typeof item === 'string' ? item : item.name;
             const src = 'assets/Gallery/' + name;
             const nameNoExt = name.replace(/\.[^.]+$/, '');
-            const webp = `assets/Gallery/webp/${nameNoExt}`;
+            const webp = 'assets/Gallery/webp/' + encodeURIComponent(nameNoExt);
             return `<div class="gallery-item" data-idx="${idx}" style="cursor: pointer;">
                 <picture>
                     <source type="image/webp"
