@@ -61,89 +61,110 @@
             margin: 0;
         }
 
-        /* Modal */
+        /* Modal — full-screen lightbox */
         .shop-modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 3000;
-            background: rgba(0,0,0,0.55);
+            background: rgba(0,0,0,0.88);
             align-items: center;
             justify-content: center;
-            padding: 24px;
+            padding: 24px 32px;
         }
         .shop-modal-overlay.open { display: flex; }
-        .shop-modal {
-            background: #f0e5de;
-            border-radius: 16px;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            position: relative;
+
+        .shop-modal-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            line-height: 1;
+            cursor: pointer;
+            color: rgba(255,255,255,0.7);
+            padding: 4px;
+            transition: color 0.15s;
+            z-index: 3001;
         }
-        @media (max-width: 640px) { .shop-modal { grid-template-columns: 1fr; } }
+        .shop-modal-close:hover { color: #fff; }
+
+        .shop-modal {
+            display: flex;
+            gap: 12px;
+            max-width: 820px;
+            width: 100%;
+            align-items: center;
+        }
+        @media (max-width: 700px) {
+            .shop-modal { flex-direction: column; gap: 20px; }
+        }
 
         .shop-modal-images {
-            overflow: hidden;
-            border-radius: 16px 0 0 16px;
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .shop-modal-img-wrap {
+            position: relative;
+            height: 68vh;
             display: flex;
             align-items: center;
-            background: #f0e5de;
+            justify-content: center;
         }
-        @media (max-width: 640px) { .shop-modal-images { border-radius: 16px 16px 0 0; } }
+        @media (max-width: 700px) { .shop-modal-img-wrap { height: 45vh; } }
 
         .shop-modal-main-img {
-            width: 100%;
-            height: auto;
-            display: block;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
-            border-radius: 16px 0 0 16px;
+            border-radius: 8px;
+            display: block;
         }
-        @media (max-width: 640px) { .shop-modal-main-img { border-radius: 16px 16px 0 0; } }
 
         .shop-modal-thumbnails {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            padding: 10px 12px;
-            background: rgba(0,0,0,0.03);
+            justify-content: center;
+            flex-shrink: 0;
         }
         .shop-modal-thumb {
-            width: 54px;
-            height: 54px;
+            width: 52px;
+            height: 52px;
             object-fit: cover;
             border-radius: 6px;
             cursor: pointer;
             border: 2px solid transparent;
             transition: border-color 0.15s;
+            opacity: 0.7;
         }
-        .shop-modal-thumb.active { border-color: #D7BAAD; }
+        .shop-modal-thumb:hover { opacity: 1; }
+        .shop-modal-thumb.active { border-color: #D7BAAD; opacity: 1; }
 
         .shop-modal-info {
-            padding: 36px 32px;
+            width: 260px;
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             gap: 8px;
-            background: #f0e5de;
-            border-radius: 0 16px 16px 0;
         }
-        @media (max-width: 640px) { .shop-modal-info { padding: 24px; border-radius: 0 0 16px 16px; } }
+        @media (max-width: 700px) { .shop-modal-info { width: 100%; } }
 
         .shop-modal-title {
             font-family: 'Syne', sans-serif;
-            font-size: 1.5em;
-            color: #111;
+            font-size: 1.4em;
+            color: #fff;
             margin: 0 0 4px;
         }
         .shop-modal-meta {
             font-family: 'Inter', sans-serif;
-            font-size: 0.9em;
-            color: #666;
+            font-size: 0.88em;
+            color: rgba(255,255,255,0.55);
             line-height: 1.8;
             margin: 0;
         }
@@ -151,55 +172,21 @@
             font-family: 'Inter', sans-serif;
             font-size: 1.4em;
             font-weight: 700;
-            color: #111;
+            color: #fff;
             margin: 8px 0 16px;
         }
         .shop-modal-contact {
             font-family: 'Inter', sans-serif;
-            font-size: 0.9em;
-            color: #555;
+            font-size: 0.88em;
+            color: rgba(255,255,255,0.55);
             line-height: 1.7;
         }
         .shop-modal-contact a {
-            color: #3a2b1a;
+            color: rgba(255,255,255,0.85);
             text-decoration: underline;
         }
+        .shop-modal-contact a:hover { color: #fff; }
 
-        .shop-modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #666;
-            line-height: 1;
-            padding: 4px 8px;
-        }
-        .shop-modal-close:hover { color: #111; }
-
-        .shop-nav-arrows {
-            display: flex;
-            gap: 8px;
-            margin-top: 4px;
-        }
-        .shop-arrow {
-            background: none;
-            border: 1.5px solid #D7BAAD;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-            color: #3a2b1a;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.15s;
-        }
-        .shop-arrow:hover { background: #D7BAAD; color: #fff; }
-        .shop-arrow:disabled { opacity: 0.3; cursor: default; }
     </style>
 </head>
 <body style="background:#F7F7F7;">
@@ -253,10 +240,8 @@
         <div class="shop-modal" id="shop-modal">
             <button class="shop-modal-close" id="shop-modal-close" aria-label="Close">×</button>
             <div class="shop-modal-images">
-                <img class="shop-modal-main-img" id="shop-modal-main-img" src="" alt="" />
-                <div class="shop-nav-arrows" id="shop-nav-arrows" style="display:none;">
-                    <button class="shop-arrow" id="shop-prev">‹</button>
-                    <button class="shop-arrow" id="shop-next">›</button>
+                <div class="shop-modal-img-wrap">
+                    <img class="shop-modal-main-img" id="shop-modal-main-img" src="" alt="" />
                 </div>
                 <div class="shop-modal-thumbnails" id="shop-modal-thumbnails"></div>
             </div>
@@ -293,11 +278,9 @@
             document.getElementById('shop-modal-price').textContent = item.price;
 
             const thumbsEl = document.getElementById('shop-modal-thumbnails');
-            const arrowsEl = document.getElementById('shop-nav-arrows');
             thumbsEl.innerHTML = '';
 
             if (item.images.length > 1) {
-                arrowsEl.style.display = 'flex';
                 item.images.forEach((src, i) => {
                     const img = document.createElement('img');
                     img.src = src;
@@ -305,8 +288,6 @@
                     img.addEventListener('click', () => { currentImgIdx = i; updateModalImage(); });
                     thumbsEl.appendChild(img);
                 });
-            } else {
-                arrowsEl.style.display = 'none';
             }
 
             document.getElementById('shop-modal-overlay').classList.add('open');
@@ -325,22 +306,21 @@
         }
 
         document.getElementById('shop-modal-close').addEventListener('click', closeModal);
-        document.getElementById('shop-modal-overlay').addEventListener('click', function (e) {
-            if (e.target === this) closeModal();
-        });
-        document.getElementById('shop-prev').addEventListener('click', function () {
-            currentImgIdx = (currentImgIdx - 1 + currentItem.images.length) % currentItem.images.length;
-            updateModalImage();
-        });
-        document.getElementById('shop-next').addEventListener('click', function () {
-            currentImgIdx = (currentImgIdx + 1) % currentItem.images.length;
-            updateModalImage();
+        document.getElementById('shop-modal-overlay').addEventListener('click', closeModal);
+        document.getElementById('shop-modal').addEventListener('click', function (e) {
+            e.stopPropagation();
         });
         document.addEventListener('keydown', function (e) {
             if (!document.getElementById('shop-modal-overlay').classList.contains('open')) return;
             if (e.key === 'Escape') closeModal();
-            if (e.key === 'ArrowLeft') document.getElementById('shop-prev').click();
-            if (e.key === 'ArrowRight') document.getElementById('shop-next').click();
+            if (e.key === 'ArrowLeft') {
+                currentImgIdx = (currentImgIdx - 1 + currentItem.images.length) % currentItem.images.length;
+                updateModalImage();
+            }
+            if (e.key === 'ArrowRight') {
+                currentImgIdx = (currentImgIdx + 1) % currentItem.images.length;
+                updateModalImage();
+            }
         });
 
         async function loadShop() {
