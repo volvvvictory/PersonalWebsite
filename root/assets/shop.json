@@ -6,7 +6,10 @@
     "dimensions": "30×40 cm",
     "medium": "Oil on canvas board",
     "price": "$80",
-    "images": ["assets/Gallery/webp/painting flowers in a vase.webp"]
+    "images": [
+      "assets/Gallery/webp/painting flowers in a vase.webp",
+      "assets/Shop/webp/painting flowers in a vase 02.webp"
+    ]
   },
   {
     "id": "flowers-vase-fruit",
@@ -15,7 +18,9 @@
     "dimensions": "30×40 cm",
     "medium": "Oil on canvas board",
     "price": "$80",
-    "images": ["assets/Gallery/webp/painting flowers in a vase and fruit.webp"]
+    "images": [
+      "assets/Gallery/webp/painting flowers in a vase and fruit.webp"
+    ]
   },
   {
     "id": "still-life-flowers",
@@ -24,6 +29,10 @@
     "dimensions": "40×50 cm",
     "medium": "Oil on canvas board",
     "price": "$130",
-    "images": ["assets/Gallery/webp/painting still life with flowers.webp"]
+    "images": [
+      "assets/Gallery/webp/painting still life with flowers.webp",
+      "assets/Shop/webp/painting still life with flowers 02.webp",
+      "assets/Shop/webp/painting still life with flowers 03.webp"
+    ]
   }
 ]
