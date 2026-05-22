@@ -118,13 +118,13 @@
         if (isProjectImage) {
             // Add link to projects page
             const link = document.createElement('a');
-            link.href = '/projects_new.html';
+            link.href = 'projects.html';
             link.textContent = 'More about the project →';
             link.style.cssText = 'color: #fff; text-decoration: underline; cursor: pointer; font-size: 0.95em;';
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 lightbox.style.display = 'none';
-                window.location.href = '/projects_new.html';
+                window.location.href = 'projects.html';
             });
             captionDiv.appendChild(link);
         }
@@ -174,22 +174,11 @@
         }
     }
     
-    async function checkExists(url){
-        try{
-            const res = await fetch(url, { method: 'HEAD' });
-            return res.ok;
-        }catch(e){
-            return false;
-        }
-    }
-
     (async function loadGallery(){
         try{
             const r = await fetch('assets/Gallery/list.json');
-            console.log('Fetch response:', r.status, r.ok);
             if(r.ok){
                 const list = await r.json();
-                console.log('Loaded list.json:', list.length, 'items');
                 if(Array.isArray(list) && list.length){
                     allImages = list;
                     filterImages();

@@ -9,10 +9,12 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-    var galleryReady = new Promise(function(resolve){
-        document.addEventListener('gallery:ready', resolve, { once: true });
-        setTimeout(resolve, 1200); // fallback if event never fires
-    });
+    var galleryReady = document.getElementById('gallery-grid')
+        ? new Promise(function(resolve){
+            document.addEventListener('gallery:ready', resolve, { once: true });
+            setTimeout(resolve, 1200);
+          })
+        : Promise.resolve();
 
     Promise.all([fontsReady, galleryReady])
         .then(function(){
