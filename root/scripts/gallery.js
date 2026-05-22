@@ -150,8 +150,15 @@
             // Handle image items
             const name = typeof item === 'string' ? item : item.name;
             const src = 'assets/Gallery/' + name;
+            const nameNoExt = name.replace(/\.[^.]+$/, '');
+            const webp = `assets/Gallery/webp/${nameNoExt}`;
             return `<div class="gallery-item" data-idx="${idx}" style="cursor: pointer;">
-                <img src="${src}" alt="${name}" loading="lazy" decoding="async" />
+                <picture>
+                    <source type="image/webp"
+                        srcset="${webp}-400w.webp 400w, ${webp}-800w.webp 800w, ${webp}.webp 1200w"
+                        sizes="(max-width: 500px) 33vw, (max-width: 900px) 50vw, (max-width: 1200px) 33vw, 25vw" />
+                    <img src="${src}" alt="${name}" loading="lazy" decoding="async" />
+                </picture>
             </div>`;
         }).join('');
         

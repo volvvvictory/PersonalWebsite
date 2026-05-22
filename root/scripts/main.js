@@ -86,40 +86,17 @@ function initHeaderMenu(container) {
     }
   });
   
-  console.log('Header menu initialized');
 }
 
 // Single DOMContentLoaded handler for all initialization
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM loaded, initializing...');
-  
-  // Load shared header
-  var siteHeader = document.getElementById('site-header');
-  if (siteHeader) {
-    fetch('header.html')
-      .then(function(r){ 
-        if (!r.ok) throw new Error('Failed to load header');
-        return r.text(); 
-      })
-      .then(function(html){
-        siteHeader.innerHTML = html;
-        console.log('Header HTML loaded');
-        initHeaderMenu(siteHeader);
-      })
-      .catch(function(err){ 
-        console.error('Header load error:', err);
-        siteHeader.innerHTML = '<div style="background:#F7F7F7;color:#D7BAAD;padding:12px;text-align:center;">Header failed to load</div>';
-      });
-  }
-  
+  initHeaderMenu(document);
+
   // Demo contact form handler
   var contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', function(event) {
       event.preventDefault();
-      var formData = new FormData(contactForm);
-      var data = Object.fromEntries(formData.entries());
-      console.log('Form submitted:', data);
       alert('Thank you for your message!');
       contactForm.reset();
     });

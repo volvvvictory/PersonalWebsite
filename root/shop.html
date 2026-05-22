@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop — Viktoria Volokitina</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#FFFFFF">
+
+    <meta name="description" content="Original artworks for sale by Viktoria Volokitina">
+
+    <style>
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px 80px;
+        }
+        @media (max-width: 860px) { .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+        @media (max-width: 500px) { .shop-grid { grid-template-columns: 1fr; gap: 24px; padding: 0 16px 60px; } }
+
+        .shop-card {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .shop-card-img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .shop-card:hover .shop-card-img {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(58,43,26,0.1);
+        }
+        .shop-card-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 1em;
+            font-weight: 500;
+            color: #111;
+            margin: 0;
+        }
+        .shop-card-price {
+            font-family: 'Inter', sans-serif;
+            font-size: 1em;
+            color: #D7BAAD;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Modal */
+        .shop-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            background: rgba(0,0,0,0.55);
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .shop-modal-overlay.open { display: flex; }
+        .shop-modal {
+            background: #f0e5de;
+            border-radius: 16px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            position: relative;
+        }
+        @media (max-width: 640px) { .shop-modal { grid-template-columns: 1fr; } }
+
+        .shop-modal-images {
+            overflow: hidden;
+            border-radius: 16px 0 0 16px;
+            display: flex;
+            align-items: center;
+            background: #f0e5de;
+        }
+        @media (max-width: 640px) { .shop-modal-images { border-radius: 16px 16px 0 0; } }
+
+        .shop-modal-main-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            border-radius: 16px 0 0 16px;
+        }
+        @media (max-width: 640px) { .shop-modal-main-img { border-radius: 16px 16px 0 0; } }
+
+        .shop-modal-thumbnails {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 10px 12px;
+            background: rgba(0,0,0,0.03);
+        }
+        .shop-modal-thumb {
+            width: 54px;
+            height: 54px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.15s;
+        }
+        .shop-modal-thumb.active { border-color: #D7BAAD; }
+
+        .shop-modal-info {
+            padding: 36px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 8px;
+            background: #f0e5de;
+            border-radius: 0 16px 16px 0;
+        }
+        @media (max-width: 640px) { .shop-modal-info { padding: 24px; border-radius: 0 0 16px 16px; } }
+
+        .shop-modal-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5em;
+            color: #111;
+            margin: 0 0 4px;
+        }
+        .shop-modal-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.8;
+            margin: 0;
+        }
+        .shop-modal-price {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #111;
+            margin: 8px 0 16px;
+        }
+        .shop-modal-contact {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.7;
+        }
+        .shop-modal-contact a {
+            color: #3a2b1a;
+            text-decoration: underline;
+        }
+
+        .shop-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            line-height: 1;
+            padding: 4px 8px;
+        }
+        .shop-modal-close:hover { color: #111; }
+
+        .shop-nav-arrows {
+            display: flex;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .shop-arrow {
+            background: none;
+            border: 1.5px solid #D7BAAD;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            color: #3a2b1a;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s;
+        }
+        .shop-arrow:hover { background: #D7BAAD; color: #fff; }
+        .shop-arrow:disabled { opacity: 0.3; cursor: default; }
+    </style>
+</head>
+<body style="background:#F7F7F7;">
+    <div class="loading-overlay" id="loading-overlay" aria-label="Loading" role="status">
+        <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+        </div>
+    </div>
+
+    <header class="header-fixed">
+      <div class="header-flex">
+        <h1 class="site-title"><a href="index.html">Viktoria Volokitina</a></h1>
+        <div class="menu-group">
+          <a href="about.html" class="menu-btn">About</a>
+          <a href="projects.html" class="menu-btn">Projects</a>
+          <a href="shop.html" class="menu-btn">Shop</a>
+          <a href="https://www.instagram.com/volv_victory/" target="_blank" aria-label="Instagram" class="social-btn"><img src="assets/instagram.svg" alt="Instagram" style="width:28px;height:28px;" /></a>
+          <a href="https://www.behance.net/volv_victory" target="_blank" aria-label="Behance" class="social-btn"><img src="assets/behance.svg" alt="Behance" style="width:28px;height:28px;" /></a>
+          <a href="https://www.linkedin.com/in/volvvictory/" target="_blank" aria-label="LinkedIn" class="social-btn"><img src="assets/linkedin.svg" alt="LinkedIn" style="width:28px;height:28px;" /></a>
+          <a href="https://ru.pinterest.com/volvvictory/" target="_blank" aria-label="Pinterest" class="social-btn"><img src="assets/pinterest.svg" alt="Pinterest" style="width:28px;height:28px;" /></a>
+        </div>
+        <button class="hamburger" id="hamburger-menu" aria-label="Open navigation" aria-expanded="false" aria-controls="menu-popup" tabindex="0">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="menu-backdrop" id="menu-backdrop" aria-hidden="true"></div>
+        <nav class="menu-popup" id="menu-popup" aria-hidden="true">
+          <div class="menu-stack">
+            <a href="about.html" class="menu-btn">About</a>
+            <a href="projects.html" class="menu-btn">Projects</a>
+            <a href="shop.html" class="menu-btn">Shop</a>
+            <div class="menu-social" role="group" aria-label="Social links">
+              <a href="https://www.instagram.com/volv_victory/" target="_blank" aria-label="Instagram" class="social-btn"><img src="assets/instagram.svg" alt="Instagram" style="width:28px;height:28px;" /></a>
+              <a href="https://www.behance.net/volv_victory" target="_blank" aria-label="Behance" class="social-btn"><img src="assets/behance.svg" alt="Behance" style="width:28px;height:28px;" /></a>
+              <a href="https://www.linkedin.com/in/volvvictory/" target="_blank" aria-label="LinkedIn" class="social-btn"><img src="assets/linkedin.svg" alt="LinkedIn" style="width:28px;height:28px;" /></a>
+              <a href="https://ru.pinterest.com/volvvictory/" target="_blank" aria-label="Pinterest" class="social-btn"><img src="assets/pinterest.svg" alt="Pinterest" style="width:28px;height:28px;" /></a>
+            </div>
+          </div>
+          <div class="menu-mobile-title"><a href="index.html">Viktoria Volokitina, designer and artist based in Abu Dhabi</a></div>
+        </nav>
+      </div>
+    </header>
+
+    <main style="margin-top:100px; padding-top:48px;">
+        <div id="shop-grid" class="shop-grid"></div>
+    </main>
+
+    <!-- Detail modal -->
+    <div class="shop-modal-overlay" id="shop-modal-overlay" role="dialog" aria-modal="true">
+        <div class="shop-modal" id="shop-modal">
+            <button class="shop-modal-close" id="shop-modal-close" aria-label="Close">×</button>
+            <div class="shop-modal-images">
+                <img class="shop-modal-main-img" id="shop-modal-main-img" src="" alt="" />
+                <div class="shop-nav-arrows" id="shop-nav-arrows" style="display:none;">
+                    <button class="shop-arrow" id="shop-prev">‹</button>
+                    <button class="shop-arrow" id="shop-next">›</button>
+                </div>
+                <div class="shop-modal-thumbnails" id="shop-modal-thumbnails"></div>
+            </div>
+            <div class="shop-modal-info">
+                <h2 class="shop-modal-title" id="shop-modal-title"></h2>
+                <p class="shop-modal-meta" id="shop-modal-meta"></p>
+                <p class="shop-modal-price" id="shop-modal-price"></p>
+                <p class="shop-modal-contact">
+                    To purchase, contact via
+                    <a href="mailto:volv.victory@gmail.com">email</a>
+                    or
+                    <a href="https://t.me/volv_victory" target="_blank">Telegram</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/loading.js"></script>
+    <script>
+    (function () {
+        let items = [];
+        let currentItem = null;
+        let currentImgIdx = 0;
+
+        function openModal(item) {
+            currentItem = item;
+            currentImgIdx = 0;
+            updateModalImage();
+
+            document.getElementById('shop-modal-title').textContent = item.title;
+            document.getElementById('shop-modal-meta').textContent =
+                [item.year, item.dimensions, item.medium].filter(Boolean).map(s => s.toLowerCase()).join(' · ');
+            document.getElementById('shop-modal-price').textContent = item.price;
+
+            const thumbsEl = document.getElementById('shop-modal-thumbnails');
+            const arrowsEl = document.getElementById('shop-nav-arrows');
+            thumbsEl.innerHTML = '';
+
+            if (item.images.length > 1) {
+                arrowsEl.style.display = 'flex';
+                item.images.forEach((src, i) => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.className = 'shop-modal-thumb' + (i === 0 ? ' active' : '');
+                    img.addEventListener('click', () => { currentImgIdx = i; updateModalImage(); });
+                    thumbsEl.appendChild(img);
+                });
+            } else {
+                arrowsEl.style.display = 'none';
+            }
+
+            document.getElementById('shop-modal-overlay').classList.add('open');
+        }
+
+        function updateModalImage() {
+            const src = currentItem.images[currentImgIdx];
+            document.getElementById('shop-modal-main-img').src = src;
+            document.querySelectorAll('.shop-modal-thumb').forEach((el, i) => {
+                el.classList.toggle('active', i === currentImgIdx);
+            });
+        }
+
+        function closeModal() {
+            document.getElementById('shop-modal-overlay').classList.remove('open');
+        }
+
+        document.getElementById('shop-modal-close').addEventListener('click', closeModal);
+        document.getElementById('shop-modal-overlay').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+        document.getElementById('shop-prev').addEventListener('click', function () {
+            currentImgIdx = (currentImgIdx - 1 + currentItem.images.length) % currentItem.images.length;
+            updateModalImage();
+        });
+        document.getElementById('shop-next').addEventListener('click', function () {
+            currentImgIdx = (currentImgIdx + 1) % currentItem.images.length;
+            updateModalImage();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (!document.getElementById('shop-modal-overlay').classList.contains('open')) return;
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowLeft') document.getElementById('shop-prev').click();
+            if (e.key === 'ArrowRight') document.getElementById('shop-next').click();
+        });
+
+        async function loadShop() {
+            const r = await fetch('assets/shop.json');
+            items = await r.json();
+            const grid = document.getElementById('shop-grid');
+            grid.innerHTML = items.map((item, i) =>
+                `<div class="shop-card" data-idx="${i}">
+                    <img class="shop-card-img" src="${item.images[0]}" alt="${item.title}" loading="lazy" decoding="async" />
+                    <p class="shop-card-title">${item.title}</p>
+                    <p class="shop-card-price">${item.price}</p>
+                </div>`
+            ).join('');
+            grid.querySelectorAll('.shop-card').forEach(card => {
+                card.addEventListener('click', () => openModal(items[+card.dataset.idx]));
+            });
+        }
+
+        loadShop().catch(console.error);
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "flowers-vase",
+    "title": "Flowers in a vase",
+    "year": "2026",
+    "dimensions": "30×40 cm",
+    "medium": "Oil on canvas board",
+    "price": "$80",
+    "images": ["assets/Gallery/webp/painting flowers in a vase.webp"]
+  },
+  {
+    "id": "flowers-vase-fruit",
+    "title": "Flowers in a vase and fruit",
+    "year": "2026",
+    "dimensions": "30×40 cm",
+    "medium": "Oil on canvas board",
+    "price": "$80",
+    "images": ["assets/Gallery/webp/painting flowers in a vase and fruit.webp"]
+  },
+  {
+    "id": "still-life-flowers",
+    "title": "Still life with flowers",
+    "year": "2026",
+    "dimensions": "40×50 cm",
+    "medium": "Oil on canvas board",
+    "price": "$130",
+    "images": ["assets/Gallery/webp/painting still life with flowers.webp"]
+  }
+]
