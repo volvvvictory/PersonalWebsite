@@ -24,7 +24,7 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 32px 80px;
-            align-items: flex-end;
+            align-items: flex-start;
             justify-content: center;
         }
         @media (max-width: 500px) { .shop-grid { gap: 24px; padding: 0 16px 60px; } }
@@ -36,7 +36,7 @@
             gap: 12px;
             flex-shrink: 0;
         }
-        @media (max-width: 600px) { .shop-card { width: 100% !important; } }
+        @media (max-width: 440px) { .shop-card { width: 100% !important; } }
 
         .shop-card-img {
             width: 100%;
@@ -57,7 +57,11 @@
             font-family: 'Inter', sans-serif;
             font-size: 0.82em;
             font-weight: 400;
+            opacity: 0;
+            transition: opacity 0.2s;
         }
+        .shop-card:hover .shop-card-caption { opacity: 1; }
+        @media (max-width: 700px) { .shop-card-caption { opacity: 1; } }
         .shop-card-title { color: #555; margin: 0; }
         .shop-card-price { color: #555; margin: 0; flex-shrink: 0; }
 
@@ -344,7 +348,7 @@
             items = await r.json();
 
             const maxW = Math.max(...items.map(it => parseDims(it.dimensions)?.w || 0));
-            const BASE_PX = 280; // largest painting width in pixels
+            const BASE_PX = 400; // largest painting width in pixels
 
             const grid = document.getElementById('shop-grid');
             grid.innerHTML = items.map((item, i) => {
