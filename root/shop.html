@@ -18,26 +18,29 @@
 
     <style>
         .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 32px 80px;
+            align-items: flex-end;
+            justify-content: center;
         }
-        @media (max-width: 860px) { .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
-        @media (max-width: 500px) { .shop-grid { grid-template-columns: 1fr; gap: 24px; padding: 0 16px 60px; } }
+        @media (max-width: 500px) { .shop-grid { gap: 24px; padding: 0 16px 60px; } }
 
         .shop-card {
             cursor: pointer;
             display: flex;
             flex-direction: column;
             gap: 12px;
+            flex-shrink: 0;
         }
+        @media (max-width: 600px) { .shop-card { width: 100% !important; } }
+
         .shop-card-img {
             width: 100%;
-            aspect-ratio: 4 / 5;
-            object-fit: cover;
+            height: auto;
             border-radius: 12px;
             display: block;
             transition: transform 0.2s, box-shadow 0.2s;
@@ -46,20 +49,17 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 24px rgba(58,43,26,0.1);
         }
-        .shop-card-title {
+        .shop-card-caption {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
             font-family: 'Inter', sans-serif;
-            font-size: 1em;
-            font-weight: 500;
-            color: #111;
-            margin: 0;
+            font-size: 0.82em;
+            font-weight: 400;
         }
-        .shop-card-price {
-            font-family: 'Inter', sans-serif;
-            font-size: 1em;
-            color: #D7BAAD;
-            font-weight: 600;
-            margin: 0;
-        }
+        .shop-card-title { color: #555; margin: 0; }
+        .shop-card-price { color: #555; margin: 0; flex-shrink: 0; }
 
         /* Modal — full-screen lightbox */
         .shop-modal-overlay {
@@ -175,6 +175,13 @@
             color: #fff;
             margin: 8px 0 16px;
         }
+        .shop-modal-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88em;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.75;
+            margin: 4px 0 8px;
+        }
         .shop-modal-contact {
             font-family: 'Inter', sans-serif;
             font-size: 0.88em;
@@ -248,6 +255,7 @@
             <div class="shop-modal-info">
                 <h2 class="shop-modal-title" id="shop-modal-title"></h2>
                 <p class="shop-modal-meta" id="shop-modal-meta"></p>
+                <p class="shop-modal-desc" id="shop-modal-desc"></p>
                 <p class="shop-modal-price" id="shop-modal-price"></p>
                 <p class="shop-modal-contact">
                     To purchase, contact via
@@ -275,6 +283,9 @@
             document.getElementById('shop-modal-title').textContent = item.title;
             document.getElementById('shop-modal-meta').textContent =
                 [item.year, item.dimensions, item.medium].filter(Boolean).map(s => s.toLowerCase()).join(' · ');
+            const descEl = document.getElementById('shop-modal-desc');
+            descEl.textContent = item.description || '';
+            descEl.style.display = item.description ? '' : 'none';
             document.getElementById('shop-modal-price').textContent = item.price;
 
             const thumbsEl = document.getElementById('shop-modal-thumbnails');
@@ -323,17 +334,30 @@
             }
         });
 
+        function parseDims(str) {
+            const m = str && str.match(/(\d+)[×x](\d+)/);
+            return m ? { w: +m[1], h: +m[2] } : null;
+        }
+
         async function loadShop() {
             const r = await fetch('assets/shop.json');
             items = await r.json();
+
+            const maxW = Math.max(...items.map(it => parseDims(it.dimensions)?.w || 0));
+            const BASE_PX = 280; // largest painting width in pixels
+
             const grid = document.getElementById('shop-grid');
-            grid.innerHTML = items.map((item, i) =>
-                `<div class="shop-card" data-idx="${i}">
+            grid.innerHTML = items.map((item, i) => {
+                const dims = parseDims(item.dimensions);
+                const pxW = dims ? Math.round((dims.w / maxW) * BASE_PX) : BASE_PX;
+                return `<div class="shop-card" data-idx="${i}" style="width:${pxW}px">
                     <img class="shop-card-img" src="${item.images[0]}" alt="${item.title}" loading="lazy" decoding="async" />
-                    <p class="shop-card-title">${item.title}</p>
-                    <p class="shop-card-price">${item.price}</p>
-                </div>`
-            ).join('');
+                    <div class="shop-card-caption">
+                        <span class="shop-card-title">${item.title}</span>
+                        <span class="shop-card-price">${item.price}</span>
+                    </div>
+                </div>`;
+            }).join('');
             grid.querySelectorAll('.shop-card').forEach(card => {
                 card.addEventListener('click', () => openModal(items[+card.dataset.idx]));
             });

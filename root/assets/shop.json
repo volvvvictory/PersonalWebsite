@@ -3,7 +3,7 @@
     "id": "flowers-vase",
     "title": "Flowers in a vase",
     "year": "2026",
-    "dimensions": "40×50 cm",
+    "dimensions": "30×40 cm",
     "medium": "Oil on canvas board",
     "price": "$80",
     "images": [
@@ -15,9 +15,9 @@
     "id": "flowers-and-the-porcelain-ball",
     "title": "Flowers and the porcelain ball",
     "year": "2026",
-    "dimensions": "30×40 cm",
+    "dimensions": "40×50 cm",
     "medium": "Oil on canvas board",
-    "price": "$80",
+    "price": "$130",
     "images": [
       "assets/Shop/webp/painting flowers and the porcelain ball 1.webp",
       "assets/Shop/webp/painting flowers and the porcelain ball 2.webp",
@@ -34,6 +34,53 @@
     "price": "$80",
     "images": [
       "assets/Gallery/webp/painting flowers in a vase and fruit.webp"
+    ]
+  },
+  {
+    "id": "painting-parrots",
+    "title": "Parrots",
+    "year": "2026",
+    "dimensions": "56×70 cm",
+    "medium": "Oil pastels on paper, not framed",
+    "price": "$130",
+    "description": "This work emerged from living between landscapes. The forms exist in the space between, neither fully translated nor fully foreign.",
+    "images": [
+      "assets/Gallery/webp/painting parrots.webp"
+    ]
+  },
+  {
+    "id": "painting-field",
+    "title": "Field",
+    "year": "2026",
+    "dimensions": "56×70 cm",
+    "medium": "Oil pastels on paper, not framed",
+    "price": "$130",
+    "description": "The figures are happening and dissolving with the background, but we are still able to catch their movement.",
+    "images": [
+      "assets/Gallery/webp/painting field.webp"
+    ]
+  },
+  {
+    "id": "painting-phoenix",
+    "title": "Phoenix",
+    "year": "2026",
+    "dimensions": "56×70 cm",
+    "medium": "Oil pastels on paper, not framed",
+    "price": "$130",
+    "description": "The image of a bird that can reassemble itself is in the center of the painting. In scattered spots, it converges and collapses.",
+    "images": [
+      "assets/Gallery/webp/painting phoenix.webp"
+    ]
+  },
+  {
+    "id": "painting-peony",
+    "title": "Peony",
+    "year": "2026",
+    "dimensions": "40×50 cm",
+    "medium": "Oil on canvas board",
+    "price": "$100",
+    "images": [
+      "assets/Gallery/webp/painting peony.webp"
     ]
   },
   {
