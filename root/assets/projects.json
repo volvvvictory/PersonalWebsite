@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Sluchilos'",
+    "type": "Spatial sound installation",
+    "tools": "Computer vision, speech synthesis",
+    "year": "2023 – 2025",
+    "team": [
+      "Viktoria Volokitina",
+      "Tatyana Zobnina",
+      "Ksenia Gorlanova",
+      "Alexander Pogrebnyak"
+    ],
+    "description": [
+      "A spatial sound installation employing computer vision methods to analyze live video data streams and speech synthesis algorithms. The work is realized as a playground, a “playroom,” constructed within the fixed competition dimensions of 5 × 5 meters.",
+      "“If I do not see it, then it does not exist.” It is easy to ignore processes whose effects cannot be seen or physically sensed. But is it still possible to turn away from the problems of algorithmic recognition when “observation without an observer” is verbally articulated, remaining just as invisible and all-pervasive?"
+    ],
+    "images": [
+      "assets/Gallery/installation.sluchilos01.png",
+      "assets/Gallery/installation.sluchilos04.jpg",
+      "assets/Gallery/installation.sluchilos03.jpg",
+      "assets/Gallery/installation.sluchilos11.JPG"
+    ]
+  },
+  {
+    "name": "…Freeze in Place!",
+    "type": "Audiovisual interactive installation",
+    "tools": "",
+    "year": "2024",
+    "team": [
+      "Viktoria Volokitina",
+      "Ksenia Gorlanova",
+      "Alexander Pogrebnyak",
+      "Dev: Hello Computer"
+    ],
+    "description": [
+      "Our planet is in constant motion. Geological layers shift through space, forming canyons, lakes, and seas. Glaciers carve through mountains, creating plains suitable for life. What we usually perceive as inert plays a crucial role in shaping the planet’s contemporary appearance.",
+      "A full-scale projection immerses viewers in the space of geological processes: the formation and destruction of mountains, the emergence of fissures, cliffs, and plains under the influence of external forces. Rotate the controller and observe the changes unfolding on the screen, from the speed of time’s flow to the transformation of weather phenomena."
+    ],
+    "images": [
+      "assets/Gallery/installation.freeze4.jpg"
+    ]
+  },
+  {
+    "name": "All in All",
+    "type": "Neural Radiance Field installation",
+    "tools": "Watercolor, NeRF",
+    "year": "2023",
+    "team": [
+      "Nikita Krutoy",
+      "Viktoria Volokitina"
+    ],
+    "description": [
+      "Abstract two-dimensional physically drawn watercolors and Neural Radiance Field technology were combined to create a connection from the first to the last artwork. The new technologies allowed us to visualize the experience of experiencing flat images as a whole.",
+      "We did a lot of experimentation to create our own pipeline to work with camera trajectories and train models. We cause a glitch and force the neural network to build something three-dimensional and real from something that is not."
+    ],
+    "images": [
+      "assets/Gallery/installation.nerfs01.png",
+      "assets/Gallery/nerfs_021.png"
+    ]
+  },
+  {
+    "name": "For All Exists Infinity",
+    "type": "VR game-art project",
+    "tools": "",
+    "year": "2021",
+    "team": [
+      "Leonid Gremyachikh",
+      "Viktoria Volokitina"
+    ],
+    "description": [
+      "A VR game-based art project in which viewers can influence the virtual world by creating traces of their presence. These traces function as a form of communication with the in-game artificial intelligence."
+    ],
+    "images": [
+      "assets/Gallery/installation.all1.png",
+      "assets/Gallery/installation.all2.png",
+      "assets/Gallery/installation.all3.jpg"
+    ]
+  },
+  {
+    "name": "The Architecture of Consciousness",
+    "type": "VR installation",
+    "tools": "Oculus DK2, TouchDesigner",
+    "year": "2018",
+    "team": [
+      "Viktoria Volokitina"
+    ],
+    "description": [
+      "One of my first projects exploring the effect of virtual reality on people’s emotional states. The work immerses you in an impossible space with an eternal oscillation between the calmness of existence and the peak of anxiety.",
+      "The virtual space makes you feel an illusion of control over the surrounding space."
+    ],
+    "images": [
+      "assets/Gallery/2AZMnnvwiJQ.jpg",
+      "assets/Gallery/4Jk5IVHHL5E.jpg",
+      "assets/Gallery/image 215.png"
+    ]
+  }
+]

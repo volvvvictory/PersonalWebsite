@@ -33,17 +33,74 @@
     <meta name="twitter:image" content="https://volvvictory.netlify.app/ViktoriaOpenGraph.png">
 
     <style>
-        .project-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: start;
-            margin-bottom: 80px;
+        .project-entry {
+            border-top: 1px solid #ddd;
+            padding: 48px 0 64px;
         }
-        @media (max-width: 800px) {
-            .project-grid {
-                grid-template-columns: 1fr !important;
+        .project-entry:last-child { padding-bottom: 80px; }
+
+        .project-images {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 1fr;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+        .project-images img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr 2fr;
+            gap: 32px;
+            align-items: baseline;
+        }
+
+        .project-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25em;
+            font-weight: 700;
+            color: #111;
+            line-height: 1.3;
+        }
+        .project-what {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88em;
+            color: #555;
+            line-height: 1.7;
+        }
+        .project-what em {
+            display: block;
+            color: #888;
+            font-style: italic;
+            margin-top: 2px;
+        }
+        .project-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9em;
+            color: #333;
+            line-height: 1.75;
+        }
+        .project-desc p + p { margin-top: 12px; }
+
+        @media (max-width: 860px) {
+            .project-images img { height: 200px; }
+            .project-meta { grid-template-columns: 1fr 1fr; gap: 20px; }
+            .project-desc { grid-column: 1 / -1; }
+        }
+        @media (max-width: 560px) {
+            .project-images {
+                grid-auto-flow: row;
+                grid-auto-columns: unset;
+                grid-template-columns: 1fr 1fr;
             }
+            .project-images img { height: 160px; }
+            .project-meta { grid-template-columns: 1fr; gap: 16px; }
         }
     </style>
 </head>
@@ -88,155 +145,8 @@
       </div>
     </header>
     
-    <main style="margin-top:100px;padding:32px;max-width:1200px;margin-left:auto;margin-right:auto;">
-        <section style="max-width:1200px;margin:48px auto;">
-            <!-- Sluchilos Project -->
-            <div class="project-grid">
-                <!-- Left: Images -->
-                <div style="display:grid;grid-template-columns:1fr;gap:16px;">
-                    <picture>
-                        <source type="image/webp" srcset="assets/Gallery/webp/installation.sluchilos01-800w.webp 800w, assets/Gallery/webp/installation.sluchilos01.webp 1200w" sizes="(max-width: 800px) 100vw, 50vw" />
-                        <img src="assets/Gallery/installation.sluchilos01.png" alt="Sluchilos installation" loading="lazy" decoding="async" style="width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(215,186,173,0.06);object-fit:cover;" />
-                    </picture>
-                    <picture>
-                        <source type="image/webp" srcset="assets/Gallery/webp/installation.sluchilos04-800w.webp 800w, assets/Gallery/webp/installation.sluchilos04.webp 1200w" sizes="(max-width: 800px) 100vw, 50vw" />
-                        <img src="assets/Gallery/installation.sluchilos04.jpg" alt="Sluchilos installation" loading="lazy" decoding="async" style="width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(215,186,173,0.06);object-fit:cover;" />
-                    </picture>
-                </div>
-                
-                <!-- Right: Text -->
-                <div>
-                    <h2 style="font-size:1.8em;margin-bottom:8px;color:#111;">Sluchilos'</h2>
-                    
-                    <p style="font-size:1em;line-height:1.6;margin-bottom:16px;color:#222;">A spatial sound installation employing computer vision methods to analyze live video data streams and speech synthesis algorithms. The work is realized as a playground, a "playroom," constructed within the fixed competition dimensions of 5 × 5 meters.</p>
-                    
-                    <p style="font-size:1em;line-height:1.6;margin-bottom:24px;color:#222;">"If I do not see it, then it does not exist." It is easy to ignore processes whose effects cannot be seen or physically sensed. But is it still possible to turn away from the problems of algorithmic recognition when "observation without an observer" is verbally articulated, remaining just as invisible and all-pervasive?</p>
-                    
-                    <div style="font-size:0.95em;color:#555;">
-                        <p style="margin-bottom:2px;"><strong>Artists:</strong><br>Viktoria Volokitina<br>Tatyana Zobnina<br>Ksenia Gorlanova<br>Alexander Pogrebnyak</p>
-                        <p style="margin-bottom:2px;"><strong>Exhibited:</strong><br>MMOMA (Moscow Museum of Modern Art), Moscow, 2023<br>Tsifergaus Digital Art Gallery, Saint Petersburg, 2025</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Freeze in Place Project -->
-            <div class="project-grid">
-                <!-- Left: Images -->
-                <div style="display:grid;grid-template-columns:1fr;gap:16px;">
-                    <picture>
-                        <source type="image/webp" srcset="assets/Gallery/webp/installation.freeze4-800w.webp 800w, assets/Gallery/webp/installation.freeze4.webp 1200w" sizes="(max-width: 800px) 100vw, 50vw" />
-                        <img src="assets/Gallery/installation.freeze4.jpg" alt="Freeze in Place installation" loading="lazy" decoding="async" style="width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(215,186,173,0.06);object-fit:cover;" />
-                    </picture>
-                </div>
-                
-                <!-- Right: Text -->
-                <div>
-                    <h2 style="font-size:1.8em;margin-bottom:16px;color:#111;">…Freeze in Place!</h2>
-                    
-                    <p style="font-size:1em;line-height:1.6;margin-bottom:16px;color:#222;">Audiovisual interactive installation. Our planet is in constant motion. Geological layers shift through space, forming canyons, lakes, and seas. Glaciers carve through mountains, creating plains suitable for life. What we usually perceive as inert plays a crucial role in shaping the planet's contemporary appearance.</p>
-                    
-                    <p style="font-size:1em;line-height:1.6;margin-bottom:16px;color:#222;">The project "…Freeze in Place!" focuses on the evolution of the geological landscape. A full-scale projection immerses viewers in the space of geological processes: the formation and destruction of mountains, the emergence of fissures, cliffs, and plains under the influence of external forces. Rotate the controller and observe the changes unfolding on the screen, from the speed of time's flow to the transformation of weather phenomena.</p>
-                    
-                    <p style="font-size:1em;line-height:1.6;margin-bottom:24px;color:#222;">The ability to control nature reminds viewers of the importance of ecological awareness and the need for a thoughtful, attentive relationship with the environment.</p>
-                    
-                    <div style="font-size:0.95em;color:#555;">
-                        <p style="margin-bottom:2px;"><strong>Artists:</strong><br>Viktoria Volokitina<br>Ksenia Gorlanova<br>Alexander Pogrebnyak</p>
-                        <p style="margin-bottom:2px;"><strong>Exhibited:</strong><br>Evolution, Tsifergaus Gallery, Saint Petersburg, 2024</p>
-                        <p style="margin-bottom:2px;"><strong>Development:</strong><br>Hello Computer</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- All in All Project -->
-            <div class="project-grid">
-                <!-- Left: Images -->
-                <div style="display:grid;grid-template-columns:1fr;gap:16px;">
-                    <picture>
-                        <source type="image/webp" srcset="assets/Gallery/webp/installation.nerfs01-800w.webp 800w, assets/Gallery/webp/installation.nerfs01.webp 1200w" sizes="(max-width: 800px) 100vw, 50vw" />
-                        <img src="assets/Gallery/installation.nerfs01.png" alt="Installation project NERF" loading="lazy" decoding="async" style="width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(215,186,173,0.06);object-fit:cover;" />
-                    </picture>
-                    <picture>
-                        <source type="image/webp" srcset="assets/Gallery/webp/nerfs_021-800w.webp 800w, assets/Gallery/webp/nerfs_021.webp 1200w" sizes="(max-width: 800px) 100vw, 50vw" />
-                        <img src="assets/Gallery/nerfs_021.png" alt="Installation project NERF" loading="lazy" decoding="async" style="width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(215,186,173,0.06);object-fit:cover;" />
-                    </picture>
-                </div>
-                
-                <!-- Right: Text -->
-                <div>
-                    <h2 style="font-size:1.8em;margin-bottom:8px;color:#111;">All in All</h2>                    
-                    <p style="font-size:1em;line-height:1.6;margin-bottom:16px;color:#222;">Abstract two-dimensional physically drawn watercolors and Neural Radiance Field technology were combined to create a connection from the first to the last artwork. The new technologies allowed us to visualize the experience of experiencing flat images as a whole.</p>
-                    
-                    <p style="font-size:1em;line-height:1.6;margin-bottom:24px;color:#222;">For this project, we did a lot of experimentation to create our own pipeline to work with camera trajectories and train models. Initially, we were unsure of the end result. We cause a glitch and force the neural network to build something three-dimensional and real from something that is not.</p>
-                    
-                    <div style="font-size:0.95em;color:#555;">
-                        <p style="margin-bottom:2px;"><strong>Artists:</strong><br>Nikita Krutoy<br>Viktoria Volokitina</p>
-                        <p style="margin-bottom:2px;"><strong>Exhibited:</strong><br>Zdes’ Gallery na Taganke, Moscow, 2023</p>                                                             
-                    </div>
-                </div>
-            </div>
-
-            <!-- For All Exists Infinity Project -->
-            <div class="project-grid">
-                <!-- Left: Images -->
-                <div style="display:grid;grid-template-columns:1fr;gap:16px;">
-                    <picture>
-                        <source type="image/webp" srcset="assets/Gallery/webp/installation.all1-800w.webp 800w, assets/Gallery/webp/installation.all1.webp 1200w" sizes="(max-width: 800px) 100vw, 50vw" />
-                        <img src="assets/Gallery/installation.all1.png" alt="For All Exists Infinity - VR project" loading="lazy" decoding="async" style="width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(215,186,173,0.06);object-fit:cover;" />
-                    </picture>
-                    <picture>
-                        <source type="image/webp" srcset="assets/Gallery/webp/installation.all2-800w.webp 800w, assets/Gallery/webp/installation.all2.webp 1200w" sizes="(max-width: 800px) 100vw, 50vw" />
-                        <img src="assets/Gallery/installation.all2.png" alt="For All Exists Infinity - VR project" loading="lazy" decoding="async" style="width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(215,186,173,0.06);object-fit:cover;" />
-                    </picture>
-                    <picture>
-                        <source type="image/webp" srcset="assets/Gallery/webp/installation.all3-800w.webp 800w, assets/Gallery/webp/installation.all3.webp 1200w" sizes="(max-width: 800px) 100vw, 50vw" />
-                        <img src="assets/Gallery/installation.all3.jpg" alt="For All Exists Infinity - VR project" loading="lazy" decoding="async" style="width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(215,186,173,0.06);object-fit:cover;" />
-                    </picture>    
-                </div>
-                
-                <!-- Right: Text -->
-                <div>
-                    <h2 style="font-size:1.8em;margin-bottom:8px;color:#111;">For All Exists Infinity</h2>                    
-                    <p style="font-size:1em;line-height:1.6;margin-bottom:16px;color:#222;">A VR game-based art project in which viewers can influence the virtual world by creating traces of their presence. These traces function as a form of communication with the in-game artificial intelligence.</p>
-                    
-                    <div style="font-size:0.95em;color:#555;">
-                        <p style="margin-bottom:2px;"><strong>Artists:</strong><br>Leonid Gremyachikh<br>Viktoria Volokitina</p>
-                        <p style="margin-bottom:2px;"><strong>Exhibited:</strong><br>Khodynka Gallery, Moscow, 2021</p>                        
-                    </div>
-                </div>
-            </div>
-
-            <!-- The Architecture of Consciousness Project -->
-            <div class="project-grid">
-                <!-- Left: Images -->
-                <div style="display:grid;grid-template-columns:1fr;gap:16px;">
-                    <picture>
-                        <source type="image/webp" srcset="assets/Gallery/webp/2AZMnnvwiJQ-800w.webp 800w, assets/Gallery/webp/2AZMnnvwiJQ.webp 1200w" sizes="(max-width: 800px) 100vw, 50vw" />
-                        <img src="assets/Gallery/2AZMnnvwiJQ.jpg" alt="The Architecture of Consciousness - VR installation" loading="lazy" decoding="async" style="width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(215,186,173,0.06);object-fit:cover;" />
-                    </picture>
-                    <picture>
-                        <source type="image/webp" srcset="assets/Gallery/webp/4Jk5IVHHL5E-800w.webp 800w, assets/Gallery/webp/4Jk5IVHHL5E.webp 1200w" sizes="(max-width: 800px) 100vw, 50vw" />
-                        <img src="assets/Gallery/4Jk5IVHHL5E.jpg" alt="The Architecture of Consciousness - METAXIS exhibition" loading="lazy" decoding="async" style="width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(215,186,173,0.06);object-fit:cover;" />
-                    </picture>
-                    <picture>
-                        <source type="image/webp" srcset="assets/Gallery/webp/image 215-800w.webp 800w, assets/Gallery/webp/image 215.webp 1200w" sizes="(max-width: 800px) 100vw, 50vw" />
-                        <img src="assets/Gallery/image 215.png" alt="The Architecture of Consciousness - METAXIS exhibition" loading="lazy" decoding="async" style="width:100%;border-radius:12px;box-shadow:0 2px 8px rgba(215,186,173,0.06);object-fit:cover;" />
-                    </picture>
-                </div>
-                
-                <!-- Right: Text -->
-                <div>
-                    <h2 style="font-size:1.8em;margin-bottom:8px;color:#111;">The Architecture of Consciousness</h2>                    
-                    <p style="font-size:1em;line-height:1.6;margin-bottom:16px;color:#222;">It's one of my first projects where I explore affecting people's feelings by virtual reality. Installation created using Oculus Development Kit 2 and TouchDesigner software.</p>
-                    
-                    <p style="font-size:1em;line-height:1.6;margin-bottom:24px;color:#222;">The work immerses you in an impossible space with an eternal oscillation between the calmness of existence and the peak of anxiety. The virtual space makes you feel an illusion of control over the surrounding space.</p>
-                    
-                    <div style="font-size:0.95em;color:#555;">
-                        <p style="margin-bottom:2px;"><strong>Artist:</strong><br>Viktoria Volokitina</p>
-                        <p style="margin-bottom:2px;"><strong>Exhibited:</strong><br>METAXIS, Media Arts Festival, 2018</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main style="margin-top:100px; padding: 0 32px; max-width:1200px; margin-left:auto; margin-right:auto;">
+        <section id="projects-list" style="margin: 48px 0;"></section>
     </main>
 
     <footer>
@@ -258,5 +168,90 @@
     <!-- Scripts -->
     <script src="scripts/main.js"></script>
     <script src="scripts/loading.js"></script>
+    <script>
+    (function () {
+        function webpBase(src) {
+            // Convert assets/Gallery/file.ext → assets/Gallery/webp/file
+            return src.replace(/^(assets\/Gallery\/)([^/]+)\.[^.]+$/, '$1webp/$2');
+        }
+
+        function buildPicture(src, alt, sizesVw) {
+            const isGallery = /^assets\/Gallery\/[^/]+\.[^.]+$/.test(src);
+            const pic = document.createElement('picture');
+            if (isGallery) {
+                const base = webpBase(src);
+                const source = document.createElement('source');
+                source.type = 'image/webp';
+                source.srcset = base + '-800w.webp 800w, ' + base + '.webp 1200w';
+                source.sizes = sizesVw + 'vw';
+                pic.appendChild(source);
+            }
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = alt;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            pic.appendChild(img);
+            return pic;
+        }
+
+        function buildEntry(proj) {
+            const entry = document.createElement('div');
+            entry.className = 'project-entry';
+
+            // Image strip
+            const imgDiv = document.createElement('div');
+            imgDiv.className = 'project-images';
+            const sizesVw = Math.floor(80 / proj.images.length);
+            proj.images.forEach(function (src) {
+                imgDiv.appendChild(buildPicture(src, proj.name, sizesVw));
+            });
+
+            // Meta row
+            const metaDiv = document.createElement('div');
+            metaDiv.className = 'project-meta';
+
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'project-name';
+            nameDiv.textContent = proj.name;
+
+            const whatDiv = document.createElement('div');
+            whatDiv.className = 'project-what';
+            var whatHTML = proj.type || '';
+            if (proj.tools) whatHTML += '<br>' + proj.tools;
+            whatHTML += '<em>' + proj.year + '</em>';
+            whatHTML += proj.team.map(function (t) {
+                return t.includes(':')
+                    ? '<span style="color:#aaa;">' + t + '</span>'
+                    : t;
+            }).join('<br>');
+            whatDiv.innerHTML = whatHTML;
+
+            const descDiv = document.createElement('div');
+            descDiv.className = 'project-desc';
+            descDiv.innerHTML = (proj.description || []).map(function (p) {
+                return '<p>' + p + '</p>';
+            }).join('');
+
+            metaDiv.appendChild(nameDiv);
+            metaDiv.appendChild(whatDiv);
+            metaDiv.appendChild(descDiv);
+
+            entry.appendChild(imgDiv);
+            entry.appendChild(metaDiv);
+            return entry;
+        }
+
+        fetch('assets/projects.json')
+            .then(function (r) { return r.json(); })
+            .then(function (projects) {
+                var list = document.getElementById('projects-list');
+                projects.forEach(function (proj) {
+                    list.appendChild(buildEntry(proj));
+                });
+            })
+            .catch(function (err) { console.error('projects.json load error', err); });
+    })();
+    </script>
 </body>
 </html>

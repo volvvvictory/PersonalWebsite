@@ -12,6 +12,19 @@
     ]
   },
   {
+    "id": "flowers-and-the-porcelain-ball",
+    "title": "Flowers and the porcelain ball",
+    "year": "2026",
+    "dimensions": "30×40 cm",
+    "medium": "Oil on canvas board",
+    "price": "$80",
+    "images": [
+      "assets/Shop/webp/painting flowers and the porcelain ball 1.webp",
+      "assets/Shop/webp/painting flowers and the porcelain ball 2.webp",
+      "assets/Shop/webp/painting flowers and the porcelain ball 3.webp"
+    ]
+  },
+  {
     "id": "flowers-vase-fruit",
     "title": "Flowers in a vase and fruit",
     "year": "2026",
